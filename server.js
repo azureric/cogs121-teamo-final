@@ -9,9 +9,6 @@ var dotenv = require('dotenv');
 var pg = require('pg');
 var app = express();
 
-var testData = require('./public/js/reference.json');
-//var delphiSample = require('./sampleServer.json');
-
 //client id and client secret here, taken from .env (which you need to create)
 dotenv.load();
 
@@ -34,7 +31,7 @@ app.set('port', process.env.PORT || 3000);
 
 //routes
 app.get('/', function(req, res){
-  res.render('index');
+  res.render('index_landing');
 });
 
 app.get('/title', function(req, res){
@@ -73,7 +70,7 @@ app.get('/delphidata', function (req, res) {
             var renderData = {"name": "flare", "children" : []};
 
             var unListedItem = [];
-            
+
 
             for(i = 0; i < rawData.length; i++){
                 // var renderDataItem = {};
