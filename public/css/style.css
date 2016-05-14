@@ -244,6 +244,17 @@ img:not([draggable]), embed, object, video{
 	z-index: 100000;	
 }
 
+.catloader{
+    width: 500px;
+    height: auto;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    margin: -250px 0 0 -250px;
+
+    z-index: 100001;
+}
+
 .loader{
   width: 50px;
   height: 50px;
