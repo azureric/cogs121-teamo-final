@@ -1,6 +1,6 @@
  {
-   "name": "mywebapp",
-   "version": "0.0.1",
+  "name": "cogs121-teamo-final",
+  "version": "0.0.1",
    "scripts": {
      "start": "node server.js"
    },
@@ -10,6 +10,15 @@
      "express": "^4.13.4",
      "express-handlebars": "^1.2.2",
      "express-session": "^1.10.4",
-     "pg": "^4.5.3"
+     "pg": "^4.5.3",
+     "connect-mongo": "^1.1.0",
+     "cookie-parser": "^1.4.1",
+     "handlebars": "^4.0.5",
+     "method-override": "^2.3.5",
+     "mongodb": "1.4.30",
+     "mongoose": "3.8.23",
+     "passport": "^0.3.2",
+     "passport-twitter": "^1.0.4",
+     "socket.io": "^1.4.5"
    }
  }
