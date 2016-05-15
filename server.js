@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var dotenv = require('dotenv');
 var pg = require('pg');
+const passport = require("passport");
+
 var app = express();
 
 //client id and client secret here, taken from .env (which you need to create)
