@@ -110,11 +110,12 @@ d3.json("/geojson/mapdisplay_render.json", function(error, sd) {
         })
 
         .on('mouseover', function(d) {
+            console.log("On the Map! CUrrent name is: " + d.properties.name);
             if ($.inArray(d.properties.name, supportRenderGeo) != -1) {
-                // console.log("hover found " + d.properties.name);
+                console.log("Object found " + d.properties.name);
                 tip.show(d);
             } else {
-                // console.log("hover NOT found " + d.properties.name);
+                console.log("Object NOT found " + d.properties.name);
             }
         })
 
