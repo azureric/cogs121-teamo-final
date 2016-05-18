@@ -36,12 +36,12 @@ app.get('/', function(req, res){
   res.render('index_landing');
 });
 
-app.get('/title', function(req, res){
-  res.render('title');
+app.get('/map_view', function(req, res){
+  res.render('map_view');
 });
 
-app.get('/dashboard', function(req, res){
-    res.render('dashboard');
+app.get('/explore', function(req, res){
+    res.render('explore');
 });
 
 
