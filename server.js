@@ -165,6 +165,40 @@ app.get('/delphidata', function (req, res) {
 });
 
 
+app.get('/gender_graph', function(req, res){
+   res.render('gender_graph');
+});
+
+app.get('/gender_data', function(req, res){
+    //connect to DELPHI Database
+    var pg = require('pg');
+
+
+    var conString = process.env.DATABASE_CONNECTION_URL;
+
+    var client = new pg.Client(conString);
+    client.connect(function(err) {
+        if(err) {
+            return console.error('could not connect to postgres', err);
+
+        }
+
+        client.query('SELECT "Geography", "Year", "Gender", "Hospitalization No." FROM cogs121_16_raw.hhsa_anxiety_disorder_by_gender_2010_2012 WHERE "Geography" LIKE \'%Actual Rate%\'',
+            function(err, result) {
+                if(err) {
+                    return console.error('error running query', err);
+                }
+
+                var rawData = result.rows;
+                // console.log(rawData);
+
+                client.end();
+                //return { delphidata: result };
+            });
+    });
+
+    return { delphidata: "No data present." }
+});
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
