@@ -243,6 +243,7 @@ app.get('/gender_data', function(req, res){
                 var rawData = result.rows;
                 // console.log(rawData);
 
+                res.json(rawData);
                 client.end();
                 //return { delphidata: result };
             });

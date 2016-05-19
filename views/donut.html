@@ -31,10 +31,10 @@
 </style>
 
 <body>
-	<h1>Donut Chart Visualization</h1>
+	<h1>Anxiety Hospitalizations by Race</h1>
 	<button class="randomize">2010</button>
-	<button class="randomize">2011</button>
-	<button class="randomize">2012</button>
+	<button class="randomize2">2011</button>
+	<button class="randomize3">2012</button>
 
 	<script src="../js/d3.min.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
@@ -83,7 +83,7 @@
 			function randomData() {
 				var labels = color.domain();
 				return labels.map(function(label) {
-					console.log(Object.keys(data["2010"][0]));
+					// console.log(Object.keys(data["2010"][0]));
 					return { label: label, value: Math.random() }
 				});
 			}
@@ -92,6 +92,19 @@
 
 			d3.select(".randomize")
 				.on("click", function() {
+					console.log("clicked");
+					change(randomData());
+				});
+
+			d3.select(".randomize2")
+				.on("click", function() {
+					console.log("clicked2");
+					change(randomData());
+				});
+
+			d3.select(".randomize3")
+				.on("click", function() {
+					console.log("clicked3");
 					change(randomData());
 				});
 
