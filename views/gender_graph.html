@@ -82,18 +82,25 @@
 //    config5.displayPercent = false;
 //    var gauge6 = loadLiquidFillGauge("fillgauge6", 120, config5);
 
-    function NewValue(){
-        if(Math.random() > .5){
-            return Math.round(Math.random()*100);
-        } else {
-            return (Math.random()*100).toFixed(1);
-        }
-    }
+//    function NewValue(){
+//        if(Math.random() > .5){
+//            return Math.round(Math.random()*100);
+//        } else {
+//            return (Math.random()*100).toFixed(1);
+//        }
+//    }
 </script>
 
 <script language="JavaScript">
-    d3.json("/gender_data", function(error, root) {
-
+    d3.json("/gender_data", function(error, data) {
+        function NewValue(){
+            var value = data['Hospitalization No.'];
+            if(Math.random() > .5){
+                return Math.round(value/100);
+            } else {
+                return Math.round(data['Hospitalization No.'] + 10);
+            }
+        }
     })
 </script>
 
