@@ -44,6 +44,9 @@ app.get('/explore', function(req, res){
     res.render('explore');
 });
 
+app.get('/donut', function(req, res){
+    res.render('donut');
+});
 
 app.get('/delphidata', function (req, res) {
   //connect to DELPHI Database
@@ -164,6 +167,54 @@ app.get('/delphidata', function (req, res) {
   return { delphidata: "No data present." }
 });
 
+//race data for donut chart
+app.get('/raceData', function(req, res) {    
+  //connect to DELPHI Database
+  var pg = require('pg');
+  var conString = process.env.DATABASE_CONNECTION_URL;
+
+  var client = new pg.Client(conString);
+  client.connect(function(err) {
+    if(err) {
+        return console.error('could not connect to postgres', err);
+
+    }
+    client.query('SELECT "Geography", "Race", "Year", "Hospitalization No." FROM cogs121_16_raw.hhsa_anxiety_disorder_by_race_2010_2012 AS tableData',
+        function(err, result) {
+            if(err) {
+                return console.error('error running query', err);
+            }
+
+            var rawData = result.rows;
+            var renderDataRace0 = {};
+            var renderDataRace1 = {};
+            var renderDataRace2 = {};
+            var year = {"2010": [], "2011": [], "2012": [] };
+
+            for(i = 0; i < rawData.length; i++) {
+                if(rawData[i].Geography === "San Diego County (Actual Rate)") {
+                    if(parseInt(rawData[i]["Year"]) == "2010") {
+                        renderDataRace0[(rawData[i].Race)] = rawData[i]["Hospitalization No."];
+                    }
+                    if(parseInt(rawData[i]["Year"]) == "2011") {
+                        renderDataRace1[(rawData[i].Race)] = rawData[i]["Hospitalization No."];
+                    }
+                    if(parseInt(rawData[i]["Year"]) == "2012") {
+                        renderDataRace2[(rawData[i].Race)] = rawData[i]["Hospitalization No."];
+                    }
+                }
+            }
+            year["2010"].push(renderDataRace0);
+            year["2011"].push(renderDataRace1);
+            year["2012"].push(renderDataRace2);
+
+            res.json(year);
+            client.end();
+        });
+  });
+
+  return { raceData: "No data present." }
+});
 
 
 http.createServer(app).listen(app.get('port'), function() {
