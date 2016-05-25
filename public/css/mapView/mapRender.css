@@ -1,0 +1,279 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  background-color: black;
+
+}
+
+p {
+  font-size: 15pt;
+  font-weight:200;
+}
+
+@media screen and (min-width: 992px )  {
+  #map-section {
+    padding-top: 0px;
+    padding-left: 0px;
+    height: 100%;
+    color: black;
+    background-color: #d1ccc9;
+  }
+}
+
+@media screen and (max-width: 992px )  {
+  #map-section {
+    padding-top:100px;
+    color: black;
+    background-color: #d1ccc9;
+  }
+}
+
+#map-wrap {
+  position: fixed;
+}
+
+#map {
+
+  width: 65%;
+  height: 100%;
+  margin: 0px;
+}
+
+#legend {
+  position: fixed;
+  background-color: white;
+  text-align: center;
+  padding: 10px 10px;
+  left: 0px;
+  bottom: 0px;
+  width: 225px;
+  height: 75px;
+  overflow: auto;
+  z-index: 999 !important;
+}
+
+.iconColor {
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  height: 15px;
+  width: 18px;
+  opacity: 0.9;
+  border: 1px solid #000;
+  z-index:19999 !important;
+}
+
+#color1 {
+  background-color: #999066;
+}
+
+#color2 {
+  background-color: #A69959;
+}
+
+#color3 {
+  background-color: #B2A14D;
+}
+
+#color4 {
+  background-color: #BFAA40;
+}
+
+#color5 {
+  background-color: #CCB333;
+}
+
+#color6 {
+  background-color: #D9BB26;
+}
+
+#color7 {
+  background-color: #E6C419;
+}
+
+#color8 {
+  background-color: #F2CC0D;
+}
+
+#color9 {
+  background-color: #FFD500;
+}
+
+#legend:hover {
+  opacity: 0.7;
+}
+
+.cities {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.cities svg {
+  position: absolute;
+  top: -4000px;
+  left: -4000px;
+  width: 8000px;
+  height: 8000px;
+}
+
+.cities path {
+  stroke-width: 1px;
+  fill-opacity: 0.7;
+}
+
+.cities path:hover {
+  fill: red;
+  fill-opacity: 0.8;
+}
+
+.chart {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chart rect {
+  fill: #89615F;
+}
+
+.graph {
+  text-align: center;
+  color: black;
+}
+
+/* Style for Index */
+.jumbotron {
+  background-image: url("../image/cars.jpg");
+  height: 600px;
+  margin:0;
+}
+
+.title {
+  text-align: center;
+  color: black;
+  font-size: 80pt;
+  font-weight: bolder;
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 150px;
+}
+
+#name {
+  font-size: 100pt;
+}
+
+.description {
+  padding-left: 50px;
+  padding-bottom: 50px;
+  color: black;
+}
+
+
+#stat-section {
+  padding-top:50px;
+  background-color: #AB9683;
+  text-align: center;
+}
+
+
+.btn {
+  background-color:#F0DAC7;
+  border: 2px solid #fff;
+  color: black;
+  width: 450px;
+  font-weight:900;
+}
+
+.btn-group{
+  padding-left:50px;
+}
+
+#help {
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  float: right;
+}
+
+.dropdown-menu {
+  width: 400px !important;
+  height: 400px !important;
+}
+
+.scrollable-menu {
+  left: initial;
+  height: auto;
+  max-height: 180px;
+  overflow-x: hidden;
+}
+.scrollable-menu::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 4px;
+}
+.scrollable-menu::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: lightgray;
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.75);
+}
+
+ul {
+  list-style-type: none;
+}
+
+.data2 {
+  margin-left: 20px;
+
+}
+
+.num {
+  font-size: 20px;
+}
+
+.shift {
+  margin-left: 50px;
+  padding-top: 20px;
+}
+
+#location {
+  margin: 0px;
+  font-size: 20px;
+  border: 0px;
+  padding: 0px;
+}
+
+.button2 {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar:hover {
+  fill: #b30059;
+  cursor: pointer;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.central {
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  border: 2px solid white;
+  width: 800px;
+  padding: 30px;
+  margin-top: 20px;
+
+}
