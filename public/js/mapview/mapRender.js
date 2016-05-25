@@ -6,6 +6,7 @@
         new google.maps.LatLng(33.352841, -116.165932)
     );
 
+    // https://snazzymaps.com/explore?sort=popular
     var map = new google.maps.Map(d3.select("#map").node(), {
         zoom: 9,
         minZoom: 9,

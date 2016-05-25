@@ -51,11 +51,11 @@ app.get('/donut', function(req, res){
 //race data for donut chart
 app.get('/raceData', function(req, res) {
   //connect to DELPHI Database
-  var pg = require('pg');
-  var conString = process.env.DATABASE_CONNECTION_URL;
+var pg = require('pg');
+var conString = process.env.DATABASE_CONNECTION_URL;
 
-  var client = new pg.Client(conString);
-  client.connect(function(err) {
+var client = new pg.Client(conString);
+client.connect(function(err) {
     if(err) {
         return console.error('could not connect to postgres', err);
 
@@ -92,13 +92,13 @@ app.get('/raceData', function(req, res) {
             res.json(year);
             client.end();
         });
-  });
+});
 
-  return { raceData: "No data present." }
+return { raceData: "No data present." }
 });
 
 app.get('/gender_graph', function(req, res){
-   res.render('gender_graph');
+    res.render('gender_graph');
 });
 
 app.get('/gender_data', function(req, res){
@@ -133,14 +133,7 @@ app.get('/gender_data', function(req, res){
     return { delphidata: "No data present." }
 });
 
-//Query DELPH data set
-
-app.get('/delphidata', router.queryDELPH.delphidata);
-app.get('/vehicle_availability', router.queryDELPH.vehicle_availability );
-
-app.get('/max_vehicles', router.queryDELPH.max_vehicles);
 app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
-app.get('/ranks', router.queryDELPH.ranks);
 
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
