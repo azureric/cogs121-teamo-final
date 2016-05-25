@@ -241,6 +241,7 @@
                                 var name = d.properties.NAME.toLowerCase();
                                 console.log("on name is " + name);
                                 if (renderOverlayData[name]) {
+                                    $(".data > .data1-details").css("display", "initial");
                                     var renderPercent = (Number(renderOverlayData[name]["ratio"]) * 100).toFixed(2) + "%";
                                     $(".data > .label1").text("Number of Households Who Don't Have Vehicles Available: ");
                                     $(".data > .label2").text("Households Available: ");
@@ -249,6 +250,7 @@
 
                                     $(".data > .data1").text(renderPercent);
                                 } else {
+                                    $(".data > .data1-details").css("display", "none");
                                     $(".description > .desTitle").text("Sorry, this city is currently not in the range of DELPH dataset.")
                                     $(".description > .cityName").text("");
                                     $(".data > .data1").text("");
