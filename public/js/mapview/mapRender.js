@@ -149,12 +149,10 @@
                 var svg = layer.append("svg");
                 var cities = svg.append("g").attr("class", "cityDiv");
 
-                // Assigning random value to a city
                 for (var i = 0; i < json.features.length; i++) {
 
                     var SDcity = json.features[i];
                     json.features[i].properties.VALUE = i;
-                    //console.log(SDcity);
                 }
 
                 overlay.draw = function() {
@@ -171,8 +169,6 @@
                     $.get("/map_anxiety_rate", function(data) {
                         console.log(data);
 
-                        // Represent the colors specturm of the data
-                        // where between red and blue represent the availablity of the car
                         var colorPallete = [
                             "#999066",
                             "#A69959",
@@ -197,7 +193,6 @@
                             renderOverlayData[propName]["ratio"] = data[i]["ratio"];
                             console.log(renderOverlayData[propName]["ratio"]);
                             percent = ((renderOverlayData[propName]["ratio"] * 100).toFixed(2)) + "%";
-                            dataArray.push(data[i]["no vehicle available"]);
                         }
 
                         var linearScale = d3.scale.linear();
@@ -234,7 +229,6 @@
                             .text(function(d) {
                                 return d.properties.NAME;
                             });
-
 
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
