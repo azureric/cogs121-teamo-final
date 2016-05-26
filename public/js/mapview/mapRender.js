@@ -243,9 +243,11 @@
                                 if (renderOverlayData[name]) {
                                     $("#raceDonutDiv").empty();
 
-                                    renderRaceDonut(formatRaceData(renderOverlayData[name]));
+                                    renderRaceDonut(formatRaceData(renderOverlayData[name]),
+                                        arrayRaceData(renderOverlayData[name]));
+
                                 } else {
-                                    alert("Sorry, no this region data in DELPHI");
+                                    // alert("Sorry, no this region data in DELPHI");
                                 }
 
                                 function formatRaceData(rawRaceData){
@@ -264,7 +266,18 @@
                                     return returnRaceRenderData;
                                 }
 
-                                function renderRaceDonut(raceData){
+                                function arrayRaceData(rawRaceData){
+                                    var returnarrayRaceRenderData =[{lable: "White", value: rawRaceData["w2010"]},
+                                        {lable: "Black", value: rawRaceData["b2010"]},
+                                        {lable: "Hispanic", value: rawRaceData["h2010"]},
+                                        {lable: "API", value: rawRaceData["a2010"]},
+                                        {lable: "Other", value: rawRaceData["o2010"]}];
+
+                                    return returnarrayRaceRenderData;
+                                }
+
+                                function renderRaceDonut(raceData, arrayRace){
+
                                     var svg = d3.select("#raceDonutDiv")
                                         .append("svg")
                                         .append("g")
@@ -317,8 +330,8 @@
                                         });
                                     }
 
-                                    change(randomData());
-
+                                    change(arrayRace);
+                                    console.log(arrayRace);
                                     d3.select(".randomize")
                                         .on("click", function() {
                                             console.log("clicked");
@@ -422,14 +435,12 @@
                                                     return [arc.centroid(d2), outerArc.centroid(d2), pos];
                                                 };
                                             });
-
                                         polyline.exit()
                                             .remove();
                                     };
                                 }
                             })
                     });
-
                 };
 
             };
