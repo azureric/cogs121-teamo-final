@@ -149,8 +149,6 @@
                 var svg = layer.append("svg");
                 var cities = svg.append("g").attr("class", "cityDiv");
 
-
-
                 overlay.draw = function() {
                     var projection = this.getProjection();
 
@@ -280,6 +278,8 @@
 
                                     var svg = d3.select("#raceDonutDiv")
                                         .append("svg")
+                                        .style("height", 200)
+                                        .style("width", 200)
                                         .append("g")
 
                                     svg.append("g")
