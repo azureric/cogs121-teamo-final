@@ -5,7 +5,10 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/mapView/mapRender.css" type="text/css">
     <title>Map View Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 </head>
+
 <body>
 <div id="map-section" class="container-fluid">
     <div class = "row">
@@ -23,7 +26,7 @@
                     <div class="iconColor" id="color8"></div>
                     <div class="iconColor" id="color9"></div>
                 </div>
-                <div id="mapDiv" style="position: fixed; height: 100%; width: 100%">
+                <div id="mapDiv" style="position: fixed; height: 100%; width: 95%; padding-left: 50px;">
                     <div id="map">
                     </div>
                 </div>
@@ -74,7 +77,44 @@
         </div>
         <div class="clearfix visible-sm-block"></div>
     </div>
+    <nav class='sidebar sidebar-menu-collapsed'>
+        <a href='#' id='justify-icon'>
+        <span class='fa fa-align-justify'></span>
+        </a>
+        <ul>
+            <li class='active'>
+                <a class='expandable' href='#' title='Dashboard'>
+                <span class='fa fa-home collapsed-element'></span>
+                <span class='expanded-element'>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class='expandable' href='#' title='Chat'>
+                    <i class="fa fa-comments collapsed-element"></i>
+                    <span class='expanded-element'>Chat</span>
+                </a>
+            </li>
+            <li>
+                <a class='expandable' href='#' title='Settings'>
+                <span class='fa fa-cog collapsed-element'></span>
+                <span class='expanded-element'>Settings</span>
+                </a>
+            </li>
+            <li>
+                <a class='expandable' href='#' title='Account'>
+                <span class='fa fa-user collapsed-element'></span>
+                <span class='expanded-element'>Account</span>
+                </a>
+            </li>
+        </ul>
+        <a href='#' id='logout-icon' title='Logout'>
+        <span class='fa fa-power-off'></span>
+        </a>
+    </nav>
 </div>
+
+<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="js/sidebar.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
