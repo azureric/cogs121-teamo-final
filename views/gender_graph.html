@@ -10,7 +10,10 @@
     </style>
 </head>
 <body>
-<svg id="fillgauge1" width="97%" height="250" onclick="gauge1.update(NewValue());"></svg>
+
+    <svg id="fillgauge1" width="500" height="250" onclick="gauge1.update(NewValue());"></svg>
+    <svg id="fillgauge2" width="500" height="250" onclick="gauge2.update(NewValue());"></svg>
+
 <!--<svg id="fillgauge2" width="19%" height="200" onclick="gauge2.update(NewValue());"></svg>-->
 <!--<svg id="fillgauge3" width="19%" height="200" onclick="gauge3.update(NewValue());"></svg>-->
 <!--<svg id="fillgauge4" width="19%" height="200" onclick="gauge4.update(NewValue());"></svg>-->
@@ -26,18 +29,27 @@
     config1.circleThickness = 0.2;
     config1.textVertPosition = 0.2;
     config1.waveAnimateTime = 1000;
-//    var gauge2= loadLiquidFillGauge("fillgauge2", 28, config1);
+//    var gauge2 = loadLiquidFillGauge("fillgauge1", 45);
 //    var config2 = liquidFillGaugeDefaultSettings();
-//    config2.circleColor = "#D4AB6A";
-//    config2.textColor = "#553300";
-//    config2.waveTextColor = "#805615";
-//    config2.waveColor = "#AA7D39";
+//    config2.circleColor = "#FF00FD";
+//    config2.textColor = "#FF00FD";
+//    config2.waveTextColor = "#FE00FF";
+//    config2.waveColor = "#FE0000";
 //    config2.circleThickness = 0.1;
+//    config2.textVertPosition = 0.2;
+//    config2.waveAnimateTime = 1100;
+    var gauge2= loadLiquidFillGauge("fillgauge2", 45, config1);
+    var config2 = liquidFillGaugeDefaultSettings();
+    config2.circleColor = "#FF00FD";
+    config2.textColor = "#FF00FD";
+    config2.waveTextColor = "#FE00FF";
+    config2.waveColor = "#FE0000";
+    config2.circleThickness = 0.1;
 //    config2.circleFillGap = 0.2;
-//    config2.textVertPosition = 0.8;
-//    config2.waveAnimateTime = 2000;
-//    config2.waveHeight = 0.3;
-//    config2.waveCount = 1;
+    config2.textVertPosition = 0.8;
+    config2.waveAnimateTime = 0;
+    config2.waveHeight = 0.3;
+    config2.waveCount = 1;
 //    var gauge3 = loadLiquidFillGauge("fillgauge3", 60.1, config2);
 //    var config3 = liquidFillGaugeDefaultSettings();
 //    config3.textVertPosition = 0.8;
@@ -82,26 +94,33 @@
 //    config5.displayPercent = false;
 //    var gauge6 = loadLiquidFillGauge("fillgauge6", 120, config5);
 
-//    function NewValue(){
-//        if(Math.random() > .5){
-//            return Math.round(Math.random()*100);
-//        } else {
-//            return (Math.random()*100).toFixed(1);
-//        }
-//    }
+    function NewValue(){
+        if(Math.random() > .5){
+            return Math.round(Math.random()*100);
+        } else {
+            return (Math.random()*100).toFixed(1);
+        }
+    }
 </script>
 
 <script language="JavaScript">
-    d3.json("/gender_data", function(error, data) {
-        function NewValue(){
-            var value = data['Hospitalization No.'];
-            if(Math.random() > .5){
-                return Math.round(value/100);
+    function NewValue2() {
+        d3.json("/gender_data", function (error, data) {
+
+            var value = Object.keys(data["2010"][0]);
+            //console.log(value);
+
+            if (Math.random() > .5) {
+                return Math.round(value / 100);
             } else {
                 return Math.round(data['Hospitalization No.'] + 10);
             }
-        }
-    })
+        })
+    }
+
+
+//    var values = Object.keys(data["2010"][0].map(key => data["2010"][0][key]));
+//    console.log(values);
 </script>
 
 </body>
