@@ -115,7 +115,6 @@ app.get('/gender_data', function(req, res) {
     //connect to DELPHI Database
     var pg = require('pg');
 
-
     var conString = process.env.DATABASE_CONNECTION_URL;
 
     var client = new pg.Client(conString);
@@ -132,9 +131,36 @@ app.get('/gender_data', function(req, res) {
                 }
 
                 var rawData = result.rows;
-                // console.log(rawData);
 
-                res.json(rawData);
+                var renderGender0 = {};
+                var renderGender1 = {};
+                var renderGender2 = {};
+                var year = {
+                    "2010": [],
+                    "2011": [],
+                    "2012": []
+                };
+
+                for (i = 0; i < rawData.length; i++) {
+                    if (rawData[i].Geography === "San Diego County (Actual Rate)") {
+                        if (parseInt(rawData[i]["Year"]) == "2010") {
+                            renderGender0[(rawData[i].Gender)] = rawData[i]["Hospitalization No."];
+                        }
+                        if (parseInt(rawData[i]["Year"]) == "2011") {
+                            renderGender1[(rawData[i].Gender)] = rawData[i]["Hospitalization No."];
+                        }
+                        if (parseInt(rawData[i]["Year"]) == "2012") {
+                            renderGender2[(rawData[i].Gender)] = rawData[i]["Hospitalization No."];
+                        }
+                    }
+                }
+                year["2010"].push(renderGender0);
+                year["2011"].push(renderGender1);
+                year["2012"].push(renderGender2);
+
+                console.log(year["2010"][0]);
+
+                res.json(year);
                 client.end();
                 //return { delphidata: result };
             });
