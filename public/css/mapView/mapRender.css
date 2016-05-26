@@ -83,19 +83,19 @@ polyline{
 }
 
 #color1 {
-  background-color: #999066;
-}
-
-#color2 {
-  background-color: #A69959;
-}
-
-#color3 {
   background-color: #B2A14D;
 }
 
+#color2 {
+  background-color: #CCB333;
+}
+
+#color3 {
+  background-color: #E6C419;
+}
+
 #color4 {
-  background-color: #BFAA40;
+  background-color: #FFD500;
 }
 
 #color5 {
@@ -159,13 +159,6 @@ polyline{
 .graph {
   text-align: center;
   color: black;
-}
-
-/* Style for Index */
-.jumbotron {
-  background-image: url("../image/cars.jpg");
-  height: 600px;
-  margin:0;
 }
 
 .title {

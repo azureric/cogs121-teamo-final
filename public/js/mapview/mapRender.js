@@ -122,13 +122,14 @@
         .domain([0, 0.8])
         .range([
             "#999066",
-            "#A69959",
+            "#999066",
             "#B2A14D",
-            "#BFAA40",
+            "#B2A14D",
             "#CCB333",
-            "#D9BB26",
+            "#CCB333",
             "#E6C419",
-            "#F2CC0D",
+            "#E6C419",
+            "#FFD500",
             "#FFD500"
         ]);
 
@@ -227,7 +228,6 @@
                                     var renderPercent = (Number(renderOverlayData[name]["ratio"]) * 100).toFixed(2) + "%";
                                     $(".description > .desTitle").text("You are exploring:")
                                     $(".description > .cityName").text(renderOverlayData[name]["area"]);
-
                                     $(".data > .data1").text(renderPercent);
                                 } else {
                                     $(".data > .data1-details").css("display", "none");
@@ -350,10 +350,11 @@
                                             change(randomData());
                                         });
 
-                                    function change(raceData) {
+                                    function change(data) {
+                                        console.log("!!!In Change " + data);
                                         //pie slices
                                         var slice = svg.select(".slices").selectAll("path.slice")
-                                            .data(pie(raceData), key);
+                                            .data(pie(data), key);
 
                                         slice.enter()
                                             .insert("path")
@@ -378,7 +379,7 @@
 
                                         //text labels
                                         var text = svg.select(".labels").selectAll("text")
-                                            .data(pie(raceData), key);
+                                            .data(pie(data), key);
 
                                         text.enter()
                                             .append("text")
@@ -418,7 +419,7 @@
 
                                         //slice to text polylines
                                         var polyline = svg.select(".lines").selectAll("polyline")
-                                            .data(pie(raceData), key);
+                                            .data(pie(data), key);
 
                                         polyline.enter()
                                             .append("polyline");
