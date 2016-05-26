@@ -14,8 +14,8 @@
     <div class = "row">
         <div class = "col-xs-8">
             <div id="map-wrap">
-                <div id="legend">
-                    <h6>Anxiety Rate (Low to High)</h6>
+                <div id="legend" style="border-radius: 10px 10px 0px 0px">
+                    <h6 style="margin-top: 0px; margin-bottom: 3px">Anxiety Rate (Low to High)</h6>
                     <div class="iconColor" id="color1"></div>
                     <div class="iconColor" id="color2"></div>
                     <div class="iconColor" id="color3"></div>
@@ -37,33 +37,24 @@
             </div>
         </div>
         <div class = "col-xs-3">
-            <div class="description">
+            <div class="description" style="text-align: center;">
                 <h3 class="desTitle">Hover your mouse on the map!</h3>
                 <h1 class="cityName"></h1>
             </div>
             <div class = "data shift">
-                <!--<h3 class="info">Raw Data:</h3>-->
-                <!--<div class="row">-->
-                    <!--<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">-->
-                        <!--<h4>Anxiety No.</h4>-->
-                    <!--</div>-->
-                    <!--<div class = "col-xs-4 col-sm-4 col-md-4 col-lg-4 ">-->
-                        <!--<h4>Data Field 2</h4>-->
-                    <!--</div>-->
-                    <!--<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">-->
-                        <!--<h4>Data Field 3</h4>-->
-                    <!--</div>-->
-                <!--</div>-->
                 <div class="row">
                     <hr align="right">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 data">
-                        <p class="data1-details" style="display: none;">The Anxiety Rate in this area is:</p>
-                        <p class="data1"></p>
+                        <p class="data1-details" style="display: none;">The Anxiety Rate in this area is:<br></p>
+                        <h1 class="data1" style="text-align: center"></h1>
                     </div>
                 </div>
 
                 <div class="row" style="text-align: center;">
                     <hr align="right">
+                    <div id="raceDountTitle">
+                        <h3>Anxiety Rate by Race</h3>
+                    </div>
                     <div id="raceDonutDiv" style="display: inline-block;">
 
                     </div>
