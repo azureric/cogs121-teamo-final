@@ -145,19 +145,19 @@
     var renderMapColor = d3.scale.quantize()
         .domain([0, 0.8])
         .range([
-            "#999066",
-            "#999066",
-            "#B2A14D",
-            "#B2A14D",
-            "#CCB333",
-            "#CCB333",
-            "#E6C419",
-            "#E6C419",
-            "#FFD500",
-            "#FFD500"
+            "#E6E8E3",
+            "#E6E8E3",
+            "#D3E0B8",
+            "#D3E0B8",
+            "#C4E87D",
+            "#C4E87D",
+            "#CCFF66",
+            "#CCFF66",
+            "#b3ff1a",
+            "#b3ff1a"
         ]);
 
-    var invaildColor = "#544745";
+    var invaildColor = "#ffffff";
 
     d3.json("geojson/mapViewSD.json",
         function(error, json) {
