@@ -1,0 +1,8 @@
+/* Box styles */
+.chatbox {
+    max-height: 60%;
+    max-width: 100%;
+    border: none;
+    padding: 5px;
+    overflow-y: scroll;
+}
