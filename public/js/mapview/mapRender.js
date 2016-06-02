@@ -249,16 +249,19 @@
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
 
-                                    $(".data > .data1-details").css("display", "initial");
+                                    $("#mapPreview").css("display", "initial");
+
                                     var renderPercent = (Number(renderOverlayData[name]["ratio"]) * 320).toFixed(3) + "%";
-                                    $(".description > .desTitle").text("You are exploring:")
-                                    $(".description > .cityName").text(renderOverlayData[name]["area"]);
+                                    // $(".description > .desTitle").text("You are exploring:")
+                                    $("#cityName").text(renderOverlayData[name]["area"]);
+                                    $("#anxietyNum").text(renderOverlayData[name]["yearSum"]);
                                     $(".data > .data1").text(renderPercent);
                                 } else {
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
 
-                                    $(".data > .data1-details").css("display", "none");
+                                    $("#mapPreview").css("display", "none");
+
                                     $(".description > .desTitle").text("Sorry, this city is currently not in the range of DELPHI dataset.")
                                     $(".description > .cityName").text("");
                                     $(".data > .data1").text("");
@@ -474,7 +477,6 @@
                                     });
                                 }
                             })
-
                     });
                 };
 
@@ -484,4 +486,4 @@
         }
     );
 
-})(d3);
+})(d3

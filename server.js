@@ -202,10 +202,7 @@ app.get('/ageData', function(req, res) {
 //                console.log(result);
 
                 var rawData = result.rows;
-                //var renderData = {"labels":["0-14", "15-24", "25-44", "45-64", "65+"] };
-                var renderDataRace2010 = {};
-                var renderDataRace2011 = {};
-                var renderDataRace2012 = {};
+
                 var data = {
                     labels:["0-14", "15-24", "25-44", "45-64", "65+"],
                     series:[
@@ -237,9 +234,7 @@ app.get('/ageData', function(req, res) {
                             if (a == NaN) {
                                 a = 0;
                             }
-
-                            console.log(a);
-
+                            
                             if (rawData[i]["Age"] == "0-14") {
                                 data["series"][0]["values"][0] = a;
                             }
