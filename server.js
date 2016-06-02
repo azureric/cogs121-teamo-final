@@ -56,6 +56,7 @@ app.get('/donut', function(req, res) {
     res.render('donut');
 });
 
+
 //race data for donut chart
 app.get('/raceData', function(req, res) {
     //connect to DELPHI Database
@@ -73,6 +74,8 @@ app.get('/raceData', function(req, res) {
                 if (err) {
                     return console.error('error running query', err);
                 }
+
+                console.log(result);
 
                 var rawData = result.rows;
                 var renderDataRace0 = {};
@@ -174,6 +177,172 @@ app.get('/gender_data', function(req, res) {
         delphidata: "No data present."
     }
 });
+
+
+app.get('/age', function(req, res) {
+    res.render('age');
+});
+
+app.get('/ageData', function(req, res) {
+    var pg = require('pg');
+    var conString = process.env.DATABASE_CONNECTION_URL;
+
+    var client = new pg.Client(conString);
+    client.connect(function(err) {
+        if (err) {
+            return console.error('could not connect to postgres', err);
+
+        }
+        client.query('SELECT "Geography", "Year", "Age", "Hospitalization No." FROM cogs121_16_raw.hhsa_anxiety_disorder_by_age_2010_2012 AS tableData',
+            function(err, result) {
+                if (err) {
+                    return console.error('error running query', err);
+                }
+
+//                console.log(result);
+
+                var rawData = result.rows;
+                //var renderData = {"labels":["0-14", "15-24", "25-44", "45-64", "65+"] };
+                var renderDataRace2010 = {};
+                var renderDataRace2011 = {};
+                var renderDataRace2012 = {};
+                var data = {
+                    labels:["0-14", "15-24", "25-44", "45-64", "65+"],
+                    series:[
+                        {
+                            label:'2010',
+                            values:[]
+                        },
+                        {
+                            label:'2011',
+                            values:[]
+                        },
+                        {
+                            label:'2012',
+                            values:[]
+                        },
+
+                    ]
+
+                };
+
+                for (i = 0; i < rawData.length; i++) {
+                    if (rawData[i].Geography === "San Diego County (Actual Rate)") {
+                        //console.log(rawData[i]);
+                        if (parseInt(rawData[i]["Year"]) == "2010") {
+                            var a = rawData[i]["Hospitalization No."];
+                            if (a == "<5") {
+                                a = 5;
+                            }
+                            if (a == NaN) {
+                                a = 0;
+                            }
+
+                            console.log(a);
+
+                            if (rawData[i]["Age"] == "0-14") {
+                                data["series"][0]["values"][0] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "15-24") {
+                                data["series"][0]["values"][1] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "25-44") {
+                                data["series"][0]["values"][2] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "45-64") {
+                                data["series"][0]["values"][3] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "65+") {
+                                data["series"][0]["values"][4] = a;
+                            }
+                            //console.log(data);
+
+                        }
+
+
+                        if (parseInt(rawData[i]["Year"]) == "2011") {
+                            var a = rawData[i]["Hospitalization No."];
+                            if (a == "<5") {
+                                a = 5;
+                            }
+
+                            if (a == NaN) {
+                                a = 0;
+                            }
+
+                            if (rawData[i]["Age"] == "0-14") {
+                                data["series"][1]["values"][0] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "15-24") {
+                                data["series"][1]["values"][1] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "25-44") {
+                                data["series"][1]["values"][2] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "45-64") {
+                                data["series"][1]["values"][3] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "65+") {
+                                data["series"][0]["values"][4] = a;
+                            }
+                        }
+                        if (parseInt(rawData[i]["Year"]) == "2012") {
+                            var a = rawData[i]["Hospitalization No."];
+                            if (a == "<5") {
+                                a = 5;
+                            }
+                            if (a == NaN) {
+                                a = 0;
+                            }
+
+
+                            if (rawData[i]["Age"] == "0-14") {
+                                data["series"][2]["values"][0] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "15-24") {
+                                data["series"][2]["values"][1] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "25-44") {
+                                data["series"][2]["values"][2] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "45-64") {
+                                data["series"][2]["values"][3] = a;
+                            }
+
+                            if (rawData[i]["Age"] == "65+") {
+                                data["series"][2]["values"][4] = a;
+                            }
+
+
+                            console.log(data["series"][2]["values"]);
+                        }
+                    }
+                    //series["2010"].push(renderDataRace2010);
+                }
+
+                res.json(data);
+                client.end();
+            });
+    });
+
+    return {
+        raceData: "No data present."
+    }
+});
+
+
+
 
 app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 
