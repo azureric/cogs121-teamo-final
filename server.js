@@ -30,7 +30,6 @@ var router = {
     chatLonely: require('./routes/chatLonely'),
     chatMeetup: require('./routes/chatMeetup'),
     chatSupport: require('./routes/chatSupport'),
-    landing: require('./routes/landing'),
     home: require('./routes/home'),
     dashboard: require('./routes/dashboard')
 };
@@ -438,7 +437,6 @@ app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 
 
 
-app.get("/chatLanding", router.landing.view);
 app.get("/chat", router.chat.view);
 app.get("/homepage", router.home.view);
 app.get("/chatAnxious", router.chatAnxious.view);
@@ -447,7 +445,6 @@ app.get("/chatStressed", router.chatStressed.view);
 app.get("/chatLonely", router.chatLonely.view);
 app.get("/chatMeetup", router.chatMeetup.view);
 app.get("/chatSupport", router.chatSupport.view);
-app.get("/landing", router.landing.view);
 app.get("/home", router.home.view);
 
 
