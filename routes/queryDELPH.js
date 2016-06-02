@@ -216,8 +216,10 @@ exports.map_anxiety_rate = function(req, res) {
 
 
                         var rawPopData = result_population.rows;
-                        console.log("rawPopData!!!" + rawPopData);
+                        console.log("rawPopData!!!" + rawPopData.length);
+
                         var j = 0;
+
                         for(j = 0; j < rawPopData.length; j++){
                             var areaChecking = rawPopData[i]["Area"].replace("San Diego", "SD");
                             console.log("areaChecking!!!" + areaChecking);
@@ -229,12 +231,14 @@ exports.map_anxiety_rate = function(req, res) {
                                 if(areaChecking == returnGeoData[k]["area"]){
                                     isFoundInReturn = 1;
                                     returnGeoData[k]["totalPop2012"] = parseInt(rawPopData[j]["Total 2012 Population"]);
-                                    break;
+                                    //break;
                                 }
                             }
+
                             if(!isFoundInReturn){
                                 returnGeoData[k]["totalPop2012"] = -1;
                             }
+
                         }
 
                         res.json(returnGeoData);
