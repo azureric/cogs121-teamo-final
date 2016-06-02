@@ -112,6 +112,7 @@
 
     // Create rectangles of the correct width
     bar.append("rect")
+
             .attr("fill", function(d,i) { return color(i % data.series.length); })
             .attr("class", "bar")
             .attr("width", x)
