@@ -10,8 +10,6 @@ exports.map_anxiety_rate = function(req, res) {
 
         }
 
-
-
         client.query('SELECT * FROM cogs121_16_raw.hhsa_anxiety_disorder_2010_2012 AS tableData',
             function(err, result) {
                 if (err) {
@@ -216,11 +214,13 @@ exports.map_anxiety_rate = function(req, res) {
                             return console.error('error running query', err);
                         }
 
-                        var rawPopData = result_population.rows;
 
+                        var rawPopData = result_population.rows;
+                        console.log("rawPopData!!!" + rawPopData);
                         var j = 0;
                         for(j = 0; j < rawPopData.length; j++){
                             var areaChecking = rawPopData[i]["Area"].replace("San Diego", "SD");
+                            console.log("areaChecking!!!" + areaChecking);
 
                             var k = 0;
                             var isFoundInReturn = 0;
@@ -228,9 +228,12 @@ exports.map_anxiety_rate = function(req, res) {
                             for(k = 0; k < returnGeoData.length; k++){
                                 if(areaChecking == returnGeoData[k]["area"]){
                                     isFoundInReturn = 1;
-
                                     returnGeoData[k]["totalPop2012"] = parseInt(rawPopData[j]["Total 2012 Population"]);
+                                    break;
                                 }
+                            }
+                            if(!isFoundInReturn){
+                                returnGeoData[k]["totalPop2012"] = -1;
                             }
                         }
 
