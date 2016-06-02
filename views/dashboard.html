@@ -20,6 +20,8 @@
     <!-- jVectorMap -->
     <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
 
+    <link href="./css/chatbox.css" rel="stylesheet" />
+
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -558,7 +560,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
               <div class="x_panel tile fixed_height_320">
                 <div class="x_title">
-                  <h2>Quick Settings</h2>
+                  <h2>CHAT GOES HERE</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -576,33 +578,33 @@
                   </ul>
                   <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
+                <div class="x_content chatbox">
                   <div class="dashboard-widget-content">
-                    <ul class="quick-list">
-                      <li><i class="fa fa-calendar-o"></i><a href="#">Settings</a>
-                      </li>
-                      <li><i class="fa fa-bars"></i><a href="#">Subscription</a>
-                      </li>
-                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-                      </li>
-                      <li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-                      <li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-                      </li>
-                      <li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
-                      </li>
-                    </ul>
+                    <!--INSERT A TWITTER CHATBOX HERE-->
 
-                    <div class="sidebar-widget">
-                      <h4>Profile Completion</h4>
-                      <canvas width="150" height="80" id="foo" class="" style="width: 160px; height: 100px;"></canvas>
-                      <div class="goal-wrapper">
-                        <span class="gauge-value pull-left">$</span>
-                        <span id="gauge-text" class="gauge-value pull-left">3,200</span>
-                        <span id="goal-text" class="goal-value pull-right">$5,000</span>
+                      <div>
+                          {{#each anxiety}}
+                            <div class="user">
+                              <img src="{{photo}}" alt="">
+                              <div class="user-info">
+                                <span class="username">{{user}}</span>
+                                <br/>
+                                <span class="posted">{{posted}}</span>
+                              </div>
+                            </div>
+                            <div class="message-content">
+                              {{message}}
+                            </div>
+                          {{/each}}
                       </div>
-                    </div>
                   </div>
+                </div>
+                <div>
+                  <h2>Talk your nervousness away~</h2>
+
+                  <form id="send_anxious_message" name="Form">
+                    <input id="user_input" name="field1" placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
+                  </form>
                 </div>
               </div>
             </div>
@@ -997,6 +999,10 @@
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
 
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="./js/dashboard.js"></script>
+
+
     <!-- Flot -->
     <script>
       $(document).ready(function() {
@@ -1263,4 +1269,6 @@
     </script>
     <!-- /gauge.js -->
   </body>
+
+
 </html>

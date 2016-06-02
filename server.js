@@ -1,6 +1,8 @@
 //dependencies for each module used
 var express = require('express');
-var http = require('http');
+var app = express();
+var http = require('http').createServer(app);
+var io = require("socket.io")(http);
 var path = require('path');
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
@@ -8,16 +10,53 @@ var session = require('express-session');
 var dotenv = require('dotenv');
 var pg = require('pg');
 const passport = require("passport");
+const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
 
-var app = express();
 
 dotenv.load();
 
+var models = require("./models");
+var db = mongoose.connection;
+
 var router = {
-    queryDELPH: require("./routes/queryDELPH")
+    queryDELPH: require("./routes/queryDELPH"),
+    index: require('./routes/indexChat'),
+    chat: require('./routes/chat'),
+    homepage: require('./routes/homepage'),
+    chatAnxious: require('./routes/chatAnxious'),
+    chatDepressed: require('./routes/chatDepressed'),
+    chatStressed: require('./routes/chatStressed'),
+    chatLonely: require('./routes/chatLonely'),
+    chatMeetup: require('./routes/chatMeetup'),
+    chatSupport: require('./routes/chatSupport'),
+    landing: require('./routes/landing'),
+    home: require('./routes/home'),
+    dashboard: require('./routes/dashboard')
+};
+
+var parser = {
+    body: require("body-parser"),
+    cookie: require("cookie-parser")
 };
 
 var conString = process.env.DATABASE_CONNECTION_URL;
+
+// Database Connection
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/cogs121');
+db.on('error', console.error.bind(console, 'Mongo DB Connection Error:'));
+db.once('open', function(callback) {
+    console.log("Database connected successfully.");
+});
+
+
+var session_middleware = session({
+    key: "session",
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: true,
+    store: new MongoStore({ mongooseConnection: db })
+});
 
 app.engine('html', handlebars({
     defaultLayout: 'layout',
@@ -26,6 +65,10 @@ app.engine('html', handlebars({
 app.set("view engine", "html");
 app.set('views', __dirname + '/views');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(parser.cookie());
+app.use(parser.body.urlencoded({ extended: true }));
+app.use(parser.body.json());
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -36,17 +79,70 @@ app.use(session({
     resave: true
 }));
 
+app.use(require('method-override')());
+app.use(session_middleware);
+/* TODO: Passport Middleware Here*/
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 //set environment ports and start application
 app.set('port', process.env.PORT || 3000);
+
+TwitterStrategy = require('passport-twitter').Strategy;
+
+passport.use(new TwitterStrategy({
+    consumerKey: process.env.TWITTER_CONSUMER_KEY ,
+    consumerSecret: process.env.TWITTER_CONSUMER_SECRET ,
+    callbackURL: "/auth/twitter/callback"
+}, function(token, token_secret, profile, done) {
+    // What goes here? Refer to step 4.
+    //console.log(profile);
+    models.User.findOne({ "twitterID": profile.id }, function(err, user) {
+        // (1) Check if there is an error. If so, return done(err);
+        if(err) return done(err);
+
+        if(!user) {
+            // (2) since the user is not found, create new user.
+            var newUser = new models.User({
+                "twitterID": profile.id,
+                "token": token,
+                "username": profile.username,
+                "displayName": profile.displayName,
+                "photo": profile.photos[0].value
+            });
+
+            // Refer to Assignment 0 to how create a new instance of a model
+            return done(null, newUser);
+        } else {
+            // (3) since the user is found, update user's information
+            process.nextTick(function() {
+                return done(null, user);
+            });
+        }
+    });
+}));
+/* TODO: Passport serialization here */
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+    done(null, user);
+});
+
+
+
+
 
 //routes
 app.get('/', function(req, res) {
     res.render('index');
 });
 
-app.get('/dashboard', function(req, res) {
-    res.render('dashboard');
-});
+app.get('/dashboard', router.dashboard.view);
+    // function(req, res) {
+    // res.render('dashboard');
+// });
 
 app.get('/map_explore', function(req, res) {
     res.render('map_view_google');
@@ -177,6 +273,227 @@ app.get('/gender_data', function(req, res) {
 
 app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 
-http.createServer(app).listen(app.get('port'), function() {
+
+
+app.get("/chatLanding", router.landing.view);
+app.get("/chat", router.chat.view);
+app.get("/homepage", router.home.view);
+app.get("/chatAnxious", router.chatAnxious.view);
+app.get("/chatDepressed", router.chatDepressed.view);
+app.get("/chatStressed", router.chatStressed.view);
+app.get("/chatLonely", router.chatLonely.view);
+app.get("/chatMeetup", router.chatMeetup.view);
+app.get("/chatSupport", router.chatSupport.view);
+app.get("/landing", router.landing.view);
+app.get("/home", router.home.view);
+
+
+// More routes here if needed
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback',
+    passport.authenticate('twitter', { successRedirect: '/homepage',
+        failureRedirect: '/login' }));
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
+io.use(function(socket, next) {
+    session_middleware(socket.request, {}, next);
+});
+
+/* TODO: Server-side Socket.io here */
+io.on('connection', function(socket) {
+    socket.on('newsfeed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newNewsfeed = new models.Newsfeed({
+            'type': 'chat',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newNewsfeed.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('newsfeed', JSON.stringify(newNewsfeed));
+        }
+    });
+
+    socket.on('anxiety', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        console.log("HERE!!!!!!!");
+
+        var newAnxietyPost = new models.Newsfeed({
+            'type': 'anxiety',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newAnxietyPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('anxiety', JSON.stringify(newAnxietyPost));
+        }
+    });
+
+    socket.on('depressed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newDepressedPost = new models.Newsfeed({
+            'type': 'depressed',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newDepressedPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('depressed', JSON.stringify(newDepressedPost));
+        }
+    });
+
+    socket.on('stressed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newStressedPost = new models.Newsfeed({
+            'type': 'stressed',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newStressedPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('stressed', JSON.stringify(newStressedPost));
+        }
+    });
+
+
+    socket.on('lonely', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newLonelyPost = new models.Newsfeed({
+            'type': 'lonely',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newLonelyPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('lonely', JSON.stringify(newLonelyPost));
+        }
+    });
+
+    socket.on('meetup', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newMeetupPost = new models.Newsfeed({
+            'type': 'meetup',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newMeetupPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('meetup', JSON.stringify(newMeetupPost));
+        }
+    });
+
+
+    socket.on('support', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newSupportPost = new models.Newsfeed({
+            'type': 'support',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newSupportPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('support', JSON.stringify(newSupportPost));
+        }
+    });
+
+});
+
+
+
+
+http.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
 });
