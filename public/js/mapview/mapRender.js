@@ -287,8 +287,8 @@
                                         if (error) throw error;
                                         var svg = d3.select("#raceDonutDiv")
                                             .append("svg")
-                                            .style("height", 200)
-                                            .style("width", 200)
+                                            .style("height", 400)
+                                            .style("width", 600)
                                             .append("g")
 
                                         svg.append("g")
@@ -300,9 +300,9 @@
                                         svg.append("g")
                                             .attr("class", "lines");
 
-                                        var width = 200,
-                                            height = 200,
-                                            radius = Math.min(width, height) / 2;
+                                        var width = 600,
+                                            height = 300,
+                                            radius = Math.min(width, height) / 3;
 
                                         var pie = d3.layout.pie()
                                             .sort(null)
@@ -318,7 +318,7 @@
                                             .outerRadius(radius * 0.9)
                                             .innerRadius(radius * 0.9);
 
-                                        svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                                        svg.attr("transform", "translate(" + width / 3 + "," + height / 3 + ")");
 
                                         var key = function(d) {
                                             return d.data.label;
