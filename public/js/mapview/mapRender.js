@@ -255,6 +255,17 @@
                                     // $(".description > .desTitle").text("You are exploring:")
                                     $("#cityName").text(renderOverlayData[name]["area"]);
                                     $("#anxietyNum").text(renderOverlayData[name]["yearSum"]);
+                                    var levelRaw = renderOverlayData[name]["yearSum"];
+                                    if(levelRaw < 20){
+                                        $("#anxietyLevel").text("Mild ");
+                                    }
+                                    else if(levelRaw < 40){
+                                        $("#anxietyLevel").text("Moderate ");
+
+                                    }
+                                    else{
+                                        $("#anxietyLevel").text("Severe ");
+                                    }
                                     $(".data > .data1").text(renderPercent);
                                 } else {
                                     $("#raceDonutDiv").empty();
