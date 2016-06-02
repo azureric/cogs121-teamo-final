@@ -223,7 +223,7 @@
                                 var name = d.properties.NAME.toLowerCase();
                                 if (renderOverlayData[name]) {
                                     $("#raceDonutDiv").empty();
-                                    $(".raceDonutTitle").css("display", "none");
+                                    $("#raceDonutTitle").css("display", "none");
 
                                     $(".data > .data1-details").css("display", "initial");
                                     var renderPercent = (Number(renderOverlayData[name]["ratio"]) * 320).toFixed(3) + "%";
@@ -232,7 +232,7 @@
                                     $(".data > .data1").text(renderPercent);
                                 } else {
                                     $("#raceDonutDiv").empty();
-                                    $(".raceDonutTitle").css("display", "none");
+                                    $("#raceDonutTitle").css("display", "none");
 
                                     $(".data > .data1-details").css("display", "none");
                                     $(".description > .desTitle").text("Sorry, this city is currently not in the range of DELPHI dataset.")
@@ -245,14 +245,14 @@
                                 if (renderOverlayData[name]) {
                                     $("#raceDonutDiv").empty();
 
-                                    $(".raceDonutTitle").css("display", "initial");
+                                    $("#raceDonutTitle").css("display", "initial");
 
                                     renderRaceDonut(formatRaceData(renderOverlayData[name]),
                                         arrayRaceData(renderOverlayData[name]));
 
                                 } else {
                                     $("#raceDonutDiv").empty();
-                                    $(".raceDonutTitle").css("display", "none");
+                                    $("#raceDonutTitle").css("display", "none");
 
                                     $(".data > .data1-details").css("display", "none");
                                 }

@@ -44,6 +44,10 @@ app.get('/', function(req, res) {
     res.render('index');
 });
 
+app.get('/dashboard', function(req, res) {
+    res.render('dashboard');
+});
+
 app.get('/map_explore', function(req, res) {
     res.render('map_view_google');
 });
