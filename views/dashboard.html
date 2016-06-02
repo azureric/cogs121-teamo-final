@@ -20,6 +20,11 @@
     <!-- jVectorMap -->
     <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
 
+    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/mapView/mapRender.css" type="text/css">
+
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -322,11 +327,14 @@
                   <!--</div>-->
                 </div>
 
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
-                  <div style="width: 100%;">
-                    <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>
+                <div class="col-md-9 col-sm-9 col-xs-12" style="height: 325px;">
+                  <!--<div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>-->
+                  <div id="mapDiv" style="width: 100%; height: 100%">
+                    <!-- This is where maps is-->
                   </div>
+                  <!--<div style="width: 100%;">-->
+                    <!--<div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>-->
+                  <!--</div>-->
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
                   <div class="x_title">
@@ -341,8 +349,9 @@
                       <h2 id="anxietyNum"><b>1,270,920</b></h2>
                     </div>
                     <div>
-                      <p>Anxiety Ranking:</p>
-                      <h1 id="anxietyRankNum"><b>7</b></h1>
+                      <p>Anxiety Level:</p>
+                      <h1 id="anxietyRankNum" style="display: inline"><b>Mild </b></h1>
+                      <i class="fa fa-question-circle" aria-hidden="true" style="display: inline"></i>
                     </div>
                   </div>
 
@@ -1262,5 +1271,11 @@
       gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/mapview/mapRender.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
+
   </body>
 </html>
