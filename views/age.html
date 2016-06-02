@@ -45,26 +45,6 @@
     d3.json("/ageData", function(error, data) {
                 if (error) throw error;
 
-//    var data = {
-//        labels: [
-//            'resilience', 'maintainability', 'accessibility',
-//            'uptime', 'functionality', 'impact'
-//        ],
-//        series: [
-//            {
-//                label: '2012',
-//                values: [4, 8, 15, 16, 23, 42]
-//            },
-//            {
-//                label: '2013',
-//                values: [12, 43, 22, 11, 73, 25]
-//            },
-//            {
-//                label: '2014',
-//                values: [31, 28, 14, 8, 15, 21]
-//            },]
-//    };
-
     var chartWidth       = 300,
             barHeight        = 25,
             groupHeight      = barHeight * data.series.length,
