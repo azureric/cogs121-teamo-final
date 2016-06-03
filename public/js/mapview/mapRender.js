@@ -245,6 +245,7 @@
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
+                                console.log("Mouse on region " + name);
                                 if (renderOverlayData[name]) {
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");

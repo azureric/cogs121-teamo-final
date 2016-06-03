@@ -21,16 +21,6 @@ var db = mongoose.connection;
 
 var router = {
     queryDELPH: require("./routes/queryDELPH"),
-    index: require('./routes/indexChat'),
-    chat: require('./routes/chat'),
-    homepage: require('./routes/homepage'),
-    chatAnxious: require('./routes/chatAnxious'),
-    chatDepressed: require('./routes/chatDepressed'),
-    chatStressed: require('./routes/chatStressed'),
-    chatLonely: require('./routes/chatLonely'),
-    chatMeetup: require('./routes/chatMeetup'),
-    chatSupport: require('./routes/chatSupport'),
-    home: require('./routes/home'),
     dashboard: require('./routes/dashboard')
 };
 
@@ -39,15 +29,12 @@ var parser = {
     cookie: require("cookie-parser")
 };
 
-var conString = process.env.DATABASE_CONNECTION_URL;
-
 // Database Connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/cogs121');
 db.on('error', console.error.bind(console, 'Mongo DB Connection Error:'));
 db.once('open', function(callback) {
     console.log("Database connected successfully.");
 });
-
 
 var session_middleware = session({
     key: "session",
@@ -128,10 +115,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
-
-
-
-
 
 //routes
 app.get('/', function(req, res) {
@@ -431,22 +414,7 @@ app.get('/ageData', function(req, res) {
 });
 
 
-
-
 app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
-
-
-
-app.get("/chat", router.chat.view);
-app.get("/homepage", router.home.view);
-app.get("/chatAnxious", router.chatAnxious.view);
-app.get("/chatDepressed", router.chatDepressed.view);
-app.get("/chatStressed", router.chatStressed.view);
-app.get("/chatLonely", router.chatLonely.view);
-app.get("/chatMeetup", router.chatMeetup.view);
-app.get("/chatSupport", router.chatSupport.view);
-app.get("/home", router.home.view);
-
 
 // More routes here if needed
 app.get('/auth/twitter', passport.authenticate('twitter'));
@@ -650,8 +618,6 @@ io.on('connection', function(socket) {
     });
 
 });
-
-
 
 
 http.listen(app.get('port'), function() {
