@@ -419,8 +419,8 @@ app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 // More routes here if needed
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', { successRedirect: '/homepage',
-        failureRedirect: '/login' }));
+    passport.authenticate('twitter', { successRedirect: '/dashboard',
+        failureRedirect: '/nowhere' }));
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
@@ -439,14 +439,12 @@ io.on('connection', function(socket) {
             return;
         }
 
-        console.log("HERE!!!!!!!");
-
         var newAnxietyPost = new models.Newsfeed({
             'type': 'anxiety',
             'user': user.username,
             'photo': user.photo,
             'message': msg,
-            'posted': Date.now(),
+            'posted': Date.now()
         });
 
         newAnxietyPost.save(saved);

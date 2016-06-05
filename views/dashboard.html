@@ -594,38 +594,79 @@
                   </ul>
                   <div class="clearfix"></div>
                 </div>
-                <div class="x_content chatbox">
-                  <div class="dashboard-widget-content">
-                    <!--INSERT A TWITTER CHATBOX HERE-->
 
-                      <div>
-                          {{#each anxiety}}
-                            <div class="user">
-                              <img src="{{photo}}" alt="">
-                              <div class="user-info">
-                                <span class="username">{{user}}</span>
-                                <br/>
-                                <span class="posted">{{posted}}</span>
-                              </div>
-                            </div>
-                            <div class="message-content">
-                              {{message}}
-                            </div>
-                          {{/each}}
-                      </div>
+                <div class="twitter-signin">
+                  <a class="btn-lg btn-block btn-social btn-twitter twitter-Button " href="/auth/twitter">
+                    <span class="fa fa-twitter"></span> Sign in with Twitter
+                  </a>
+                </div>
+
+                <div class="twitter-seechat">
+                  <div class="x_content chatbox" id="chatbox-2">
+                    <div class="dashboard-widget-content" id="messages">
+                      <!--INSERT A TWITTER CHATBOX HERE-->
+                        {{#each anxiety}}
+                        <div class="eachPost">
+                          <div class="user">
+                            <img id="user-photo" src="{{photo}}" alt="">
+                            <!--<div class="user-info">-->
+                              <span class="username" style="font-size: 100%;">{{user}}</span>
+                            <br>
+                              <span class="posted" style="font-size:75%;">{{posted}}</span>
+                            <!--</div>-->
+                          </div>
+                          <div class="message-content">
+                            {{message}}
+                          </div>
+                        </div>
+                        {{/each}}
+                    </div>
                   </div>
                 </div>
-                <div>
+
+                <div class="twitter-seechat2">
                   <h2>Talk your nervousness away~</h2>
 
-                  <form id="send_anxious_message" name="Form">
+                  <form id="send_anxious_message" action="validateForm()" name="Form">
                     <input id="user_input" name="field1" placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
                   </form>
                 </div>
+
               </div>
             </div>
 
           </div>
+
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320">
+              <div class="x_title">
+                <h2>Newsfeed</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                  <!--</li>-->
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+
+              <div>
+                <a class="twitter-timeline" href="https://twitter.com/hashtag/anxiety" data-widget-id="739549422535639040" width="100%" height="100%">#anxiety Tweets</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+              </div>
+            </div>
+          </div>
+
+        </div>
 
 
           <div class="row">

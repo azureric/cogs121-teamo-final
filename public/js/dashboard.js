@@ -16,7 +16,7 @@
     socket.on("anxiety", function(data) {
         var parsedData = JSON.parse(data);
 
-        $('#messages').prepend($('<li>').html(messageTemplate(parsedData)));
+        $('#messages').append($('<div style="margin-bottom: 10px;">').html(messageTemplate(parsedData)));
 
         function messageTemplate(parsedData) {
             var result = '<div class="user">' +
@@ -39,13 +39,25 @@
         var a=document.forms["Form"]["field1"].value;
         if (a=="" ) {
             // alert("Please tell us your feeling");
-            sweetAlert("Please tell us about your feelings.");
+            alert("Please tell us about your feelings.");
             return false;
         } else if(a.length > 1000) {
-            sweetAlert("We know you have a lot to share. Try connecting with others privately or shorten your message so we can all share the space!" );
+            alert("We know you have a lot to share. Try connecting with others privately or shorten your message so we can all share the space!" );
             return false;
         } else {
             return true;
         }
     }
 })($);
+
+var twitterFavicon = document.createElement('img');
+twitterFavicon.src = '//twitter.com/login?redirect_after_login=%2Ffavicon.ico';
+twitterFavicon.addEventListener('load', function () {
+    // document.getElementById('status').innerHTML = 'Logged into Twitter: Yes';
+    $("div.twitter-seechat").show();
+});
+twitterFavicon.addEventListener('error', function () {
+    // document.getElementById('status').innerHTML = 'Logged into Twitter: No';
+    $("div.twitter-signin").show();
+
+});
