@@ -247,15 +247,18 @@
                                 var name = d.properties.NAME.toLowerCase();
                                 console.log("Mouse on region " + name);
                                 if (renderOverlayData[name]) {
+
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
 
                                     $("#mapPreview").css("display", "initial");
 
                                     var renderPercent = (Number(renderOverlayData[name]["ratio"]) * 320).toFixed(3) + "%";
-                                    // $(".description > .desTitle").text("You are exploring:")
+
                                     $("#cityName").text(renderOverlayData[name]["area"]);
                                     $("#anxietyNum").text(renderOverlayData[name]["yearSum"]);
+                                    $("#populationNum").text(numberWithCommas(renderOverlayData[name]["totalPop2012"]));
+
                                     var levelRaw = renderOverlayData[name]["yearSum"];
                                     if(levelRaw < 20){
                                         $("#anxietyLevel").text("Mild ");
@@ -278,6 +281,15 @@
                                     $(".description > .cityName").text("");
                                     $(".data > .data1").text("");
                                 }
+
+                                function numberWithCommas(x) {
+                                    x = x.toString();
+                                    var pattern = /(-?\d+)(\d{3})/;
+                                    while (pattern.test(x))
+                                        x = x.replace(pattern, "$1,$2");
+                                    return x;
+                                }
+
                             })
                             .on("click", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
