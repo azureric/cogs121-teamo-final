@@ -3,11 +3,13 @@ var conString = process.env.DATABASE_CONNECTION_URL;
 
 exports.map_anxiety_rate = function(req, res) {
     var client = new pg.Client(conString);
+
     client.connect(function(err) {
         if (err) {
             return console.error('could not connect to postgres', err);
 
         }
+
         client.query('SELECT * FROM cogs121_16_raw.hhsa_anxiety_disorder_2010_2012 AS tableData',
             function(err, result) {
                 if (err) {
@@ -206,7 +208,42 @@ exports.map_anxiety_rate = function(req, res) {
                     returnGeoData[i]["ratio"] = returnGeoData[i]["yearSum"] / totalNumberAnx;
                 }
 
-                res.json(returnGeoData);
+                client.query('SELECT * FROM cogs121_16_raw.hhsa_san_diego_demographics_county_population_2012',
+                    function(err, result_population) {
+                        if (err) {
+                            return console.error('error running query', err);
+                        }
+
+
+                        var rawPopData = result_population.rows;
+                        console.log("rawPopData!!!" + rawPopData.length);
+
+                        var j = 0;
+
+                        for(j = 0; j < rawPopData.length; j++){
+                            var areaChecking = rawPopData[i]["Area"].replace("San Diego", "SD");
+                            console.log("areaChecking!!!" + areaChecking);
+
+                            var k = 0;
+                            var isFoundInReturn = 0;
+
+                            for(k = 0; k < returnGeoData.length; k++){
+                                if(areaChecking == returnGeoData[k]["area"]){
+                                    isFoundInReturn = 1;
+                                    returnGeoData[k]["totalPop2012"] = parseInt(rawPopData[j]["Total 2012 Population"]);
+                                    //break;
+                                }
+                            }
+
+                            if(!isFoundInReturn){
+                                returnGeoData[k]["totalPop2012"] = -1;
+                            }
+
+                        }
+
+                        res.json(returnGeoData);
+                    });
+
                 client.end();
             });
     });

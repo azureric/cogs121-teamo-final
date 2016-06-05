@@ -7,10 +7,10 @@
     );
 
     // https://snazzymaps.com/explore?sort=popular
-    var map = new google.maps.Map(d3.select("#map").node(), {
-        zoom: 9,
-        minZoom: 9,
-        maxZoom: 13,
+    var map = new google.maps.Map(d3.select("#mapDiv").node(), {
+        zoom: 8,
+        minZoom: 8,
+        maxZoom: 11,
         mapTypeControl: false,
         streetViewControl: false,
         scrollwheel: false,
@@ -18,80 +18,104 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         styles: [
             {
-                "featureType": "administrative",
-                "elementType": "labels.text.fill",
-                "stylers": [
-                    {
-                        "color": "#444444"
-                    }
-                ]
-            },
-            {
                 "featureType": "landscape",
-                "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#f2f2f2"
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "visibility": "off"
-                    }
-                ]
-            },
-            {
-                "featureType": "road",
-                "elementType": "all",
-                "stylers": [
-                    {
-                        "saturation": -100
+                        "hue": "#FFBB00"
                     },
                     {
-                        "lightness": 45
+                        "saturation": 43.400000000000006
+                    },
+                    {
+                        "lightness": 37.599999999999994
+                    },
+                    {
+                        "gamma": 1
                     }
                 ]
             },
             {
                 "featureType": "road.highway",
-                "elementType": "all",
                 "stylers": [
                     {
-                        "visibility": "simplified"
+                        "hue": "#FFC200"
+                    },
+                    {
+                        "saturation": -61.8
+                    },
+                    {
+                        "lightness": 45.599999999999994
+                    },
+                    {
+                        "gamma": 1
                     }
                 ]
             },
             {
                 "featureType": "road.arterial",
-                "elementType": "labels.icon",
                 "stylers": [
                     {
-                        "visibility": "off"
+                        "hue": "#FF0300"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 51.19999999999999
+                    },
+                    {
+                        "gamma": 1
                     }
                 ]
             },
             {
-                "featureType": "transit",
-                "elementType": "all",
+                "featureType": "road.local",
                 "stylers": [
                     {
-                        "visibility": "off"
+                        "hue": "#FF0300"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 52
+                    },
+                    {
+                        "gamma": 1
                     }
                 ]
             },
             {
                 "featureType": "water",
-                "elementType": "all",
                 "stylers": [
                     {
-                        "color": "#46bcec"
+                        "hue": "#0078FF"
                     },
                     {
-                        "visibility": "on"
+                        "saturation": -13.200000000000003
+                    },
+                    {
+                        "lightness": 2.4000000000000057
+                    },
+                    {
+                        "gamma": 1
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "stylers": [
+                    {
+                        "hue": "#00FF6A"
+                    },
+                    {
+                        "saturation": -1.0989010989011234
+                    },
+                    {
+                        "lightness": 11.200000000000017
+                    },
+                    {
+                        "gamma": 1
                     }
                 ]
             }
@@ -121,19 +145,19 @@
     var renderMapColor = d3.scale.quantize()
         .domain([0, 0.8])
         .range([
-            "#999066",
-            "#999066",
-            "#B2A14D",
-            "#B2A14D",
-            "#CCB333",
-            "#CCB333",
-            "#E6C419",
-            "#E6C419",
-            "#FFD500",
-            "#FFD500"
+            "#E6E8E3",
+            "#E6E8E3",
+            "#D3E0B8",
+            "#D3E0B8",
+            "#C4E87D",
+            "#C4E87D",
+            "#CCFF66",
+            "#CCFF66",
+            "#b3ff1a",
+            "#b3ff1a"
         ]);
 
-    var invaildColor = "#544745";
+    var invaildColor = "#ffffff";
 
     d3.json("geojson/mapViewSD.json",
         function(error, json) {
@@ -221,20 +245,35 @@
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
+                                console.log("Mouse on region " + name);
                                 if (renderOverlayData[name]) {
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
 
-                                    $(".data > .data1-details").css("display", "initial");
+                                    $("#mapPreview").css("display", "initial");
+
                                     var renderPercent = (Number(renderOverlayData[name]["ratio"]) * 320).toFixed(3) + "%";
-                                    $(".description > .desTitle").text("You are exploring:")
-                                    $(".description > .cityName").text(renderOverlayData[name]["area"]);
+                                    // $(".description > .desTitle").text("You are exploring:")
+                                    $("#cityName").text(renderOverlayData[name]["area"]);
+                                    $("#anxietyNum").text(renderOverlayData[name]["yearSum"]);
+                                    var levelRaw = renderOverlayData[name]["yearSum"];
+                                    if(levelRaw < 20){
+                                        $("#anxietyLevel").text("Mild ");
+                                    }
+                                    else if(levelRaw < 40){
+                                        $("#anxietyLevel").text("Moderate ");
+
+                                    }
+                                    else{
+                                        $("#anxietyLevel").text("Severe ");
+                                    }
                                     $(".data > .data1").text(renderPercent);
                                 } else {
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
 
-                                    $(".data > .data1-details").css("display", "none");
+                                    $("#mapPreview").css("display", "none");
+
                                     $(".description > .desTitle").text("Sorry, this city is currently not in the range of DELPHI dataset.")
                                     $(".description > .cityName").text("");
                                     $(".data > .data1").text("");
@@ -450,7 +489,6 @@
                                     });
                                 }
                             })
-
                     });
                 };
 
