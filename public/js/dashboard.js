@@ -61,3 +61,7 @@ twitterFavicon.addEventListener('error', function () {
     $("div.twitter-signin").show();
 
 });
+
+var foo = document.getElementById('chatbox');
+
+foo.scrollTop = foo.scrollHeight;

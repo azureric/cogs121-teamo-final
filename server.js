@@ -429,6 +429,8 @@ io.use(function(socket, next) {
     session_middleware(socket.request, {}, next);
 });
 
+var trackID = 0;
+
 /* TODO: Server-side Socket.io here */
 io.on('connection', function(socket) {
     socket.on('anxiety', function(msg) {
@@ -444,8 +446,13 @@ io.on('connection', function(socket) {
             'user': user.username,
             'photo': user.photo,
             'message': msg,
-            'posted': Date.now()
+            'posted': Date.now(),
+            'uniqueURL': trackID
         });
+
+        console.log(newAnxietyPost.uniqueURL);
+        console.log("HELLO THERE");
+        trackID = trackID + 1;
 
         newAnxietyPost.save(saved);
         function saved(err) {
