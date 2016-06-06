@@ -173,9 +173,9 @@ exports.map_anxiety_rate = function(req, res) {
                     renderGeoData["a2011"] = apiNum2011;
                     renderGeoData["a2012"] = apiNum2012;
 
-                    var otherNum2010 = rawData[i]["2010 Other Hospitalization No."];
-                    var otherNum2011 = rawData[i]["2011 Other Hospitalization No."];
-                    var otherNum2012 = rawData[i]["2012 Other Hospitalization No."];
+                    var otherNum2010 = rawData[i]["2010 Other Race Hospitalization No."];
+                    var otherNum2011 = rawData[i]["2011 Other Race Hospitalization No."];
+                    var otherNum2012 = rawData[i]["2012 Other Race Hospitalization No."];
 
                     if (otherNum2010 == "<5") {
                         otherNum2010 = 2.5;
