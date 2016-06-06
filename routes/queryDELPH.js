@@ -192,7 +192,7 @@ exports.map_anxiety_rate = function(req, res) {
                     }
 
                     if (otherNum2012 == "<5") {
-                        otherNum2012 = 2.5;
+                        otherNum2012 = 5;
                     } else {
                         otherNum2012 = parseInt(otherNum2012);
                     }
@@ -200,7 +200,159 @@ exports.map_anxiety_rate = function(req, res) {
                     renderGeoData["o2010"] = otherNum2010;
                     renderGeoData["o2011"] = otherNum2011;
                     renderGeoData["o2012"] = otherNum2012;
-                    
+
+
+                    var firstAge2010 = rawData[i]["2010 Age 0-14 Hospitalization No."];
+                    var firstAge2011 = rawData[i]["2011 Age 0-14 Hospitalization No."];
+                    var firstAge2012 = rawData[i]["2012 Age 0-14 Hospitalization No."];
+
+                    if (firstAge2010 == "<5") {
+                        firstAge2010 = 5;
+                    } else {
+                        firstAge2010 = parseInt(firstAge2010);
+                    }
+
+                    if (firstAge2011 == "<5") {
+                        firstAge2011 = 5;
+                    } else {
+                        firstAge2011 = parseInt(firstAge2011);
+                    }
+
+                    if (firstAge2012 == "<5") {
+                        firstAge2012 = 5;
+                    } else {
+                        firstAge2012 = parseInt(firstAge2012);
+                    }
+
+                    var firstAge = firstAge2010 + firstAge2011 + firstAge2012;
+                    renderGeoData["firstAge"] = firstAge;
+
+                    var firstAge2010 = rawData[i]["2010 Age 0-14 Hospitalization No."];
+                    var firstAge2011 = rawData[i]["2011 Age 0-14 Hospitalization No."];
+                    var firstAge2012 = rawData[i]["2012 Age 0-14 Hospitalization No."];
+
+                    if (firstAge2010 == "<5") {
+                        firstAge2010 = 5;
+                    } else {
+                        firstAge2010 = parseInt(firstAge2010);
+                    }
+
+                    if (firstAge2011 == "<5") {
+                        firstAge2011 = 5;
+                    } else {
+                        firstAge2011 = parseInt(firstAge2011);
+                    }
+
+                    if (firstAge2012 == "<5") {
+                        firstAge2012 = 5;
+                    } else {
+                        firstAge2012 = parseInt(firstAge2012);
+                    }
+
+                    var firstAge = firstAge2010 + firstAge2011 + firstAge2012;
+                    renderGeoData["firstAge"] = firstAge;
+
+                    var secondAge2010 = rawData[i]["2010 Age 15-24 Hospitalization No."];
+                    var secondAge2011 = rawData[i]["2011 Age 15-24 Hospitalization No."];
+                    var secondAge2012 = rawData[i]["2012 Age 15-24 Hospitalization No."];
+
+                    if (secondAge2010 == "<5") {
+                        secondAge2010 = 5;
+                    } else {
+                        secondAge2010 = parseInt(secondAge2010);
+                    }
+
+                    if (secondAge2011 == "<5") {
+                        secondAge2011 = 5;
+                    } else {
+                        secondAge2011 = parseInt(secondAge2011);
+                    }
+
+                    if (secondAge2012 == "<5") {
+                        secondAge2012 = 5;
+                    } else {
+                        secondAge2012 = parseInt(secondAge2012);
+                    }
+
+                    var secondAge = secondAge2010 + secondAge2011 + secondAge2012;
+                    renderGeoData["secondAge"] = secondAge;
+
+                    var thirdAge2010 = rawData[i]["2010 Age 25-44 Hospitalization No."];
+                    var thirdAge2011 = rawData[i]["2011 Age 25-44 Hospitalization No."];
+                    var thirdAge2012 = rawData[i]["2012 Age 25-44 Hospitalization No."];
+
+                    if (thirdAge2010 == "<5") {
+                        thirdAge2010 = 5;
+                    } else {
+                        thirdAge2010 = parseInt(thirdAge2010);
+                    }
+
+                    if (thirdAge2011 == "<5") {
+                        thirdAge2011 = 5;
+                    } else {
+                        thirdAge2011 = parseInt(thirdAge2011);
+                    }
+
+                    if (thirdAge2012 == "<5") {
+                        thirdAge2012 = 5;
+                    } else {
+                        thirdAge2012 = parseInt(thirdAge2012);
+                    }
+
+                    var thirdAge = thirdAge2010 + thirdAge2011 + thirdAge2012;
+                    renderGeoData["thirdAge"] = thirdAge;
+
+                    var fourthAge2010 = rawData[i]["2010 Age 45-64 Hospitalization No."];
+                    var fourthAge2011 = rawData[i]["2011 Age 45-64 Hospitalization No."];
+                    var fourthAge2012 = rawData[i]["2012 Age 45-64 Hospitalization No."];
+
+                    if (fourthAge2010 == "<5") {
+                        fourthAge2010 = 5;
+                    } else {
+                        fourthAge2010 = parseInt(fourthAge2010);
+                    }
+
+                    if (fourthAge2011 == "<5") {
+                        fourthAge2011 = 5;
+                    } else {
+                        fourthAge2011 = parseInt(fourthAge2011);
+                    }
+
+                    if (fourthAge2012 == "<5") {
+                        fourthAge2012 = 5;
+                    } else {
+                        fourthAge2012 = parseInt(fourthAge2012);
+                    }
+
+                    var fourthAge = fourthAge2010 + fourthAge2011 + fourthAge2012;
+                    renderGeoData["fourthAge"] = fourthAge;
+
+
+                    var fifthAge2010 = rawData[i]["2010 Age 65+ Hospitalization No."];
+                    var fifthAge2011 = rawData[i]["2011 Age 65+ Hospitalization No."];
+                    var fifthAge2012 = rawData[i]["2012 Age 65+ Hospitalization No."];
+
+                    if (fifthAge2010 == "<5") {
+                        fifthAge2010 = 5;
+                    } else {
+                        fifthAge2010 = parseInt(fifthAge2010);
+                    }
+
+                    if (fifthAge2011 == "<5") {
+                        fifthAge2011 = 5;
+                    } else {
+                        fifthAge2011 = parseInt(fifthAge2011);
+                    }
+
+                    if (fifthAge2012 == "<5") {
+                        fifthAge2012 = 5;
+                    } else {
+                        fifthAge2012 = parseInt(fifthAge2012);
+                    }
+
+                    var fifthAge = fifthAge2010 + fifthAge2011 + fifthAge2012;
+                    renderGeoData["fifthAge"] = fifthAge;
+
                     returnGeoData.push(renderGeoData);
 
                     vaildGeoCounter++;
