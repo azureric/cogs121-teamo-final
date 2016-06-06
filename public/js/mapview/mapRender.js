@@ -8,7 +8,7 @@
 
     // https://snazzymaps.com/explore?sort=popular
     var map = new google.maps.Map(d3.select("#mapDiv").node(), {
-        zoom: 8,
+        zoom: 9,
         minZoom: 8,
         maxZoom: 11,
         mapTypeControl: false,
@@ -186,8 +186,6 @@
                     var path = d3.geo.path().projection(googleMapProjection);
 
                     $.get("/map_anxiety_rate", function(data) {
-                        console.log(data);
-
 
                         var colorPallete = [
                             "#999066",
@@ -206,7 +204,6 @@
                         var percent;
 
                         for (var i = 0; i < data.length; i++) {
-                            console.log("The current ratio is " + data[i]["ratio"]);
 
                             var propName = data[i]["area"].toLowerCase();
                             renderOverlayData[propName] = data[i];
@@ -252,7 +249,8 @@
 
                                 console.log("Mouse on region " + name);
                                 if (renderOverlayData[name]) {
-
+                                    $(".welcomeText").hide("slow");
+                                    $(".displayText").show("slow");
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
 
@@ -266,20 +264,17 @@
 
                                     var levelRaw = renderOverlayData[name]["yearSum"];
 
-                                    var levelRawRate = levelRaw * 10000 / renderOverlayData[name]["totalPop2012"];
+                                    var levelRawRate = renderOverlayData[name]["ratio"];
 
-
-                                    if(levelRaw < 20){
+                                    if(levelRawRate < 0.012){
                                         $("#anxietyLevel").text("Mild ");
                                     }
-                                    else if(levelRaw < 40){
+                                    else if(levelRawRate < 0.025){
                                         $("#anxietyLevel").text("Moderate ");
-
                                     }
                                     else{
                                         $("#anxietyLevel").text("Severe ");
                                     }
-
 
                                     $(".data > .data1").text(renderPercent);
                                 } else {
@@ -314,6 +309,9 @@
                                     renderOverlayData[name]["fifthAge"]];
 
                                 if (renderOverlayData[name]) {
+                                    $(".displayText").show("slow");
+                                    $(".welcomeText").hide("slow");
+
                                     var blackRender = renderOverlayData[name]["b2010"]
                                         + renderOverlayData[name]["b2011"]
                                         + renderOverlayData[name]["b2012"];

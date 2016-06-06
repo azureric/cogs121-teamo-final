@@ -43,7 +43,6 @@
             </div>
 
             <div class="clearfix"></div>
-
             <br/>
 
             <!-- sidebar menu -->
@@ -101,7 +100,6 @@
                 </div>
 
                 <div class="col-md-9 col-sm-9 col-xs-12" style="height: 325px;">
-                  <!--<div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>-->
                   <div id="mapDiv" style="width: 100%; height: 100%">
                     <!-- This is where maps is-->
                   </div>
@@ -111,12 +109,13 @@
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-12 bg-white" id="mapPreview">
                   <div class="x_title">
-                    <p>Name of the region:</p>
+                    <p class="welcomeText">Hover your mouse on the map to preview regions!</p>
+                    <p class="displayText" style="display: none;">Name of the region:</p>
                     <h1 id="cityName" style="font-size: xx-large"><b></b></h1>
                     <div class="clearfix"></div>
                   </div>
 
-                  <div class="col-md-12 col-sm-12 col-xs-6">
+                  <div class="col-md-12 col-sm-12 col-xs-6 displayText" style="display: none;">
                     <div>
                       <p>Anxiety Cases:</p>
                       <h2 id="anxietyNum" style="font-weight: bold;"></h2>
@@ -128,7 +127,7 @@
                     </div>
                   </div>
 
-                  <div class="col-md-12 col-sm-12 col-xs-6">
+                  <div class="col-md-12 col-sm-12 col-xs-6 displayText" style="display: none;">
                     <div>
                       <p>Population:</p>
                       <h2 id="populationNum" style="font-weight: bold"></h2>
@@ -186,7 +185,6 @@
                     </div>
                     <div class="clearfix"></div>
                   </div>
-
 
                   <div class="widget_summary">
                     <div class="w_left w_25">
@@ -431,23 +429,8 @@
               </div>
             </div>
           </div>
-
         </div>
 
-
-          <div class="row">
-
-            <div class="col-md-8 col-sm-8 col-xs-12">
-
-
-              <div class="row">
-
-
-                <!--</div>-->
-                <!-- end of weather widget -->
-              </div>
-            </div>
-          </div>
         </div>
         <!-- /page content -->
 
@@ -502,7 +485,6 @@
 
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="./js/dashboard.js"></script>
-
 
     <!-- Flot -->
     <script>
@@ -628,6 +610,7 @@
 
     <!-- Doughnut Chart -->
     <script>
+      $(".displayText").hide();
       $(document).ready(function(){
         $(".raceChartInfoClass").hide();
         $(".ageChartInfoClass").hide();
