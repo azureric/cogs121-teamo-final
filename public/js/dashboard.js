@@ -62,6 +62,6 @@ twitterFavicon.addEventListener('error', function () {
 
 });
 
-var foo = document.getElementById('chatbox');
 
-foo.scrollTop = foo.scrollHeight;
+var element = document.getElementById("twt");
+element.scrollTop = element.scrollHeight;
