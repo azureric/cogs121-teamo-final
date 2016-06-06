@@ -117,6 +117,7 @@ passport.deserializeUser(function(user, done) {
 });
 
 //routes
+//routes
 app.get('/', function(req, res) {
     res.render('index');
 });
@@ -286,20 +287,27 @@ app.get('/ageData', function(req, res) {
 
                     var eachForm =  {
                         geo: [],
-                        labels: ["0-14", "15-24", "25-44", "45-64", "65+"],
                         series: [
                             {
-                                label: '2010',
+                                label: '0-15',
                                 values: []
                             },
                             {
-                                label: '2011',
+                                label: '15-24',
                                 values: []
                             },
                             {
-                                label: '2012',
+                                label: '25-44',
                                 values: []
-                            }]
+                            },
+                            {
+                                label: '45-64',
+                                values: []
+                            },
+                            {
+                                label: '65+',
+                                values: []
+                            },]
                     }
 
                     var e = rawData[i].Geography;
@@ -319,19 +327,19 @@ app.get('/ageData', function(req, res) {
                             }
 
                             if (rawData[i]["Age"] == "15-24") {
-                                eachForm["series"][0]["values"][1] = a;
+                                eachForm["series"][1]["values"][0] = a;
                             }
 
                             if (rawData[i]["Age"] == "25-44") {
-                                eachForm["series"][0]["values"][2] = a;
+                                eachForm["series"][2]["values"][0] = a;
                             }
 
                             if (rawData[i]["Age"] == "45-64") {
-                                eachForm["series"][0]["values"][3] = a;
+                                eachForm["series"][3]["values"][0] = a;
                             }
 
                             if (rawData[i]["Age"] == "65+") {
-                                eachForm["series"][0]["values"][4] = a;
+                                eachForm["series"][4]["values"][0] = a;
                             }
                         }
 
@@ -346,23 +354,23 @@ app.get('/ageData', function(req, res) {
                                 a = 0;
                             }
                             if (rawData[i]["Age"] == "0-14") {
-                                eachForm["series"][1]["values"][0] = a;
+                                eachForm["series"][0]["values"][0] = eachForm["series"][0]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "15-24") {
-                                eachForm["series"][1]["values"][1] = a;
+                                eachForm["series"][1]["values"][0] = eachForm["series"][1]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "25-44") {
-                                eachForm["series"][1]["values"][2] = a;
+                                eachForm["series"][2]["values"][0] = eachForm["series"][2]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "45-64") {
-                                eachForm["series"][1]["values"][3] = a;
+                                eachForm["series"][3]["values"][0] = eachForm["series"][3]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "65+") {
-                                eachForm["series"][1]["values"][4] = a;
+                                eachForm["series"][4]["values"][0] = eachForm["series"][4]["values"][0]+ a;
                             }
                         }
                         if (parseInt(rawData[i]["Year"]) == "2012") {
@@ -374,32 +382,37 @@ app.get('/ageData', function(req, res) {
                                 a = 0;
                             }
                             if (rawData[i]["Age"] == "0-14") {
-                                eachForm["series"][2]["values"][0] = a;
+                                eachForm["series"][0]["values"][0] = eachForm["series"][0]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "15-24") {
-                                eachForm["series"][2]["values"][1] = a;
+                                eachForm["series"][1]["values"][0] = eachForm["series"][1]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "25-44") {
-                                eachForm["series"][2]["values"][2] = a;
+                                eachForm["series"][2]["values"][0] = eachForm["series"][2]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "45-64") {
-                                eachForm["series"][2]["values"][3] = a;
+                                eachForm["series"][3]["values"][0] = eachForm["series"][3]["values"][0]+ a;
                             }
 
                             if (rawData[i]["Age"] == "65+") {
-                                eachForm["series"][2]["values"][4] = a;
+                                eachForm["series"][4]["values"][0] = eachForm["series"][4]["values"][0]+ a;
                             }
-
-
                         }
+
+                       eachForm["series"][0]["values"][0] /= 3;
+                       eachForm["series"][1]["values"][0] /= 3;
+                       eachForm["series"][2]["values"][0] /= 3;
+                       eachForm["series"][3]["values"][0] /= 3;
+                       eachForm["series"][4]["values"][0] /= 3;
+
                     //}
                     //series["2010"].push(renderDataRace2010);
                     data[i] = eachForm;
-
                 }
+
                 res.json(data);
                 client.end();
             });
