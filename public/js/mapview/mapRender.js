@@ -188,6 +188,7 @@
                     $.get("/map_anxiety_rate", function(data) {
                         console.log(data);
 
+
                         var colorPallete = [
                             "#999066",
                             "#A69959",
@@ -205,6 +206,8 @@
                         var percent;
 
                         for (var i = 0; i < data.length; i++) {
+                            console.log("The current ratio is " + data[i]["ratio"]);
+
                             var propName = data[i]["area"].toLowerCase();
                             renderOverlayData[propName] = data[i];
                             renderOverlayData[propName]["ratio"] = data[i]["ratio"];
@@ -244,9 +247,11 @@
 
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
-                                var name = d.properties.NAME.toLowerCase();
 
+                                var name = d.properties.NAME.toLowerCase();
+                                
                                 console.log("Mouse on region " + name);
+
                                 if (renderOverlayData[name]) {
 
                                     $("#raceDonutDiv").empty();
@@ -261,6 +266,10 @@
                                     $("#populationNum").text(numberWithCommas(renderOverlayData[name]["totalPop2012"]));
 
                                     var levelRaw = renderOverlayData[name]["yearSum"];
+
+                                    var levelRawRate = levelRaw * 10000 / renderOverlayData[name]["totalPop2012"];
+
+
                                     if(levelRaw < 20){
                                         $("#anxietyLevel").text("Mild ");
                                     }
@@ -271,6 +280,8 @@
                                     else{
                                         $("#anxietyLevel").text("Severe ");
                                     }
+
+
                                     $(".data > .data1").text(renderPercent);
                                 } else {
                                     $("#raceDonutDiv").empty();
