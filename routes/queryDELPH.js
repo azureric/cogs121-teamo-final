@@ -76,19 +76,19 @@ exports.map_anxiety_rate = function(req, res) {
                     var blackNum2011 = rawData[i]["2011 Black Hospitalization No."];
                     var blackNum2012 = rawData[i]["2012 Black Hospitalization No."];
                     if (blackNum2010 == "<5") {
-                        blackNum2010 = 2.5;
+                        blackNum2010 = 5;
                     } else {
                         blackNum2010 = parseInt(blackNum2010);
                     }
 
                     if (blackNum2011 == "<5") {
-                        blackNum2011 = 2.5;
+                        blackNum2011 = 5;
                     } else {
                         blackNum2011 = parseInt(blackNum2011);
                     }
 
                     if (blackNum2012 == "<5") {
-                        blackNum2012 = 2.5;
+                        blackNum2012 = 5;
                     } else {
                         blackNum2012 = parseInt(blackNum2012);
                     }
@@ -102,19 +102,19 @@ exports.map_anxiety_rate = function(req, res) {
                     var whiteNum2012 = rawData[i]["2012 White Hospitalization No."];
 
                     if (whiteNum2010 == "<5") {
-                        whiteNum2010 = 2.5;
+                        whiteNum2010 = 5;
                     } else {
                         whiteNum2010 = parseInt(whiteNum2010);
                     }
 
                     if (whiteNum2011 == "<5") {
-                        whiteNum2011 = 2.5;
+                        whiteNum2011 = 5;
                     } else {
                         whiteNum2011 = parseInt(whiteNum2011);
                     }
 
                     if (whiteNum2012 == "<5") {
-                        whiteNum2012 = 2.5;
+                        whiteNum2012 = 5;
                     } else {
                         whiteNum2012 = parseInt(whiteNum2012);
                     }
@@ -128,19 +128,19 @@ exports.map_anxiety_rate = function(req, res) {
                     var hispanicNum2012 = rawData[i]["2012 Hispanic Hospitalization No."];
 
                     if (hispanicNum2010 == "<5") {
-                        hispanicNum2010 = 2.5;
+                        hispanicNum2010 = 5;
                     } else {
                         hispanicNum2010 = parseInt(hispanicNum2010);
                     }
 
                     if (hispanicNum2011 == "<5") {
-                        hispanicNum2011 = 2.5;
+                        hispanicNum2011 = 5;
                     } else {
                         hispanicNum2011 = parseInt(hispanicNum2011);
                     }
 
                     if (hispanicNum2012 == "<5") {
-                        hispanicNum2012 = 2.5;
+                        hispanicNum2012 = 5;
                     } else {
                         hispanicNum2012 = parseInt(hispanicNum2012);
                     }
@@ -154,19 +154,19 @@ exports.map_anxiety_rate = function(req, res) {
                     var apiNum2012 = rawData[i]["2012 API Hospitalization No."];
 
                     if (apiNum2010 == "<5") {
-                        apiNum2010 = 2.5;
+                        apiNum2010 = 5;
                     } else {
                         apiNum2010 = parseInt(apiNum2010);
                     }
 
                     if (apiNum2011 == "<5") {
-                        apiNum2011 = 2.5;
+                        apiNum2011 = 5;
                     } else {
                         apiNum2011 = parseInt(apiNum2011);
                     }
 
                     if (apiNum2012 == "<5") {
-                        apiNum2012 = 2.5;
+                        apiNum2012 = 5;
                     } else {
                         apiNum2012 = parseInt(apiNum2012);
                     }
@@ -180,13 +180,13 @@ exports.map_anxiety_rate = function(req, res) {
                     var otherNum2012 = rawData[i]["2012 Other Race Hospitalization No."];
 
                     if (otherNum2010 == "<5") {
-                        otherNum2010 = 2.5;
+                        otherNum2010 = 5;
                     } else {
                         otherNum2010 = parseInt(otherNum2010);
                     }
 
                     if (otherNum2011 == "<5") {
-                        otherNum2011 = 2.5;
+                        otherNum2011 = 5;
                     } else {
                         otherNum2011 = parseInt(otherNum2011);
                     }
@@ -202,9 +202,10 @@ exports.map_anxiety_rate = function(req, res) {
                     renderGeoData["o2012"] = otherNum2012;
 
 
-                    var firstAge2010 = rawData[i]["2010 Age 0-14 Hospitalization No."];
-                    var firstAge2011 = rawData[i]["2011 Age 0-14 Hospitalization No."];
-                    var firstAge2012 = rawData[i]["2012 Age 0-14 Hospitalization No."];
+                    //age query
+                    var firstAge2010 = rawData[i]["2010 Ages 0-14 Hospitalization No."];
+                    var firstAge2011 = rawData[i]["2011 Ages 0-14 Hospitalization No."];
+                    var firstAge2012 = rawData[i]["2012 Ages 0-14 Hospitalization No."];
 
                     if (firstAge2010 == "<5") {
                         firstAge2010 = 5;
@@ -227,34 +228,9 @@ exports.map_anxiety_rate = function(req, res) {
                     var firstAge = firstAge2010 + firstAge2011 + firstAge2012;
                     renderGeoData["firstAge"] = firstAge;
 
-                    var firstAge2010 = rawData[i]["2010 Age 0-14 Hospitalization No."];
-                    var firstAge2011 = rawData[i]["2011 Age 0-14 Hospitalization No."];
-                    var firstAge2012 = rawData[i]["2012 Age 0-14 Hospitalization No."];
-
-                    if (firstAge2010 == "<5") {
-                        firstAge2010 = 5;
-                    } else {
-                        firstAge2010 = parseInt(firstAge2010);
-                    }
-
-                    if (firstAge2011 == "<5") {
-                        firstAge2011 = 5;
-                    } else {
-                        firstAge2011 = parseInt(firstAge2011);
-                    }
-
-                    if (firstAge2012 == "<5") {
-                        firstAge2012 = 5;
-                    } else {
-                        firstAge2012 = parseInt(firstAge2012);
-                    }
-
-                    var firstAge = firstAge2010 + firstAge2011 + firstAge2012;
-                    renderGeoData["firstAge"] = firstAge;
-
-                    var secondAge2010 = rawData[i]["2010 Age 15-24 Hospitalization No."];
-                    var secondAge2011 = rawData[i]["2011 Age 15-24 Hospitalization No."];
-                    var secondAge2012 = rawData[i]["2012 Age 15-24 Hospitalization No."];
+                    var secondAge2010 = rawData[i]["2010 Ages 15-24 Hospitalization No."];
+                    var secondAge2011 = rawData[i]["2011 Ages 15-24 Hospitalization No."];
+                    var secondAge2012 = rawData[i]["2012 Ages 15-24 Hospitalization No."];
 
                     if (secondAge2010 == "<5") {
                         secondAge2010 = 5;
@@ -277,9 +253,9 @@ exports.map_anxiety_rate = function(req, res) {
                     var secondAge = secondAge2010 + secondAge2011 + secondAge2012;
                     renderGeoData["secondAge"] = secondAge;
 
-                    var thirdAge2010 = rawData[i]["2010 Age 25-44 Hospitalization No."];
-                    var thirdAge2011 = rawData[i]["2011 Age 25-44 Hospitalization No."];
-                    var thirdAge2012 = rawData[i]["2012 Age 25-44 Hospitalization No."];
+                    var thirdAge2010 = rawData[i]["2010 Ages 25-44 Hospitalization No."];
+                    var thirdAge2011 = rawData[i]["2011 Ages 25-44 Hospitalization No."];
+                    var thirdAge2012 = rawData[i]["2012 Ages 25-44 Hospitalization No."];
 
                     if (thirdAge2010 == "<5") {
                         thirdAge2010 = 5;
@@ -302,9 +278,9 @@ exports.map_anxiety_rate = function(req, res) {
                     var thirdAge = thirdAge2010 + thirdAge2011 + thirdAge2012;
                     renderGeoData["thirdAge"] = thirdAge;
 
-                    var fourthAge2010 = rawData[i]["2010 Age 45-64 Hospitalization No."];
-                    var fourthAge2011 = rawData[i]["2011 Age 45-64 Hospitalization No."];
-                    var fourthAge2012 = rawData[i]["2012 Age 45-64 Hospitalization No."];
+                    var fourthAge2010 = rawData[i]["2010 Ages 45-64 Hospitalization No."];
+                    var fourthAge2011 = rawData[i]["2011 Ages 45-64 Hospitalization No."];
+                    var fourthAge2012 = rawData[i]["2012 Ages 45-64 Hospitalization No."];
 
                     if (fourthAge2010 == "<5") {
                         fourthAge2010 = 5;
@@ -328,9 +304,9 @@ exports.map_anxiety_rate = function(req, res) {
                     renderGeoData["fourthAge"] = fourthAge;
 
 
-                    var fifthAge2010 = rawData[i]["2010 Age 65+ Hospitalization No."];
-                    var fifthAge2011 = rawData[i]["2011 Age 65+ Hospitalization No."];
-                    var fifthAge2012 = rawData[i]["2012 Age 65+ Hospitalization No."];
+                    var fifthAge2010 = rawData[i]["2010 Ages 65+ Hospitalization No."];
+                    var fifthAge2011 = rawData[i]["2011 Ages 65+ Hospitalization No."];
+                    var fifthAge2012 = rawData[i]["2012 Ages 65+ Hospitalization No."];
 
                     if (fifthAge2010 == "<5") {
                         fifthAge2010 = 5;
