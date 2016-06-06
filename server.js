@@ -153,7 +153,7 @@ app.get('/raceData', function(req, res) {
                     return console.error('error running query', err);
                 }
 
-                console.log(result);
+                //console.log(result);
 
                 var rawData = result.rows;
                 var renderDataRace0 = {};
@@ -243,7 +243,7 @@ app.get('/gender_data', function(req, res) {
                 year["2011"].push(renderGender1);
                 year["2012"].push(renderGender2);
 
-                console.log(year["2010"][0]);
+                //console.log(year["2010"][0]);
 
                 res.json(year);
                 client.end();
@@ -304,7 +304,6 @@ app.get('/ageData', function(req, res) {
 
                     var e = rawData[i].Geography;
                     eachForm["geo"] = e;
-                    //console.log(e);
                     // if (rawData[i].Geography === "San Diego County (Actual Rate)") {
                         if (parseInt(rawData[i]["Year"]) == "2010") {
                             var a = rawData[i]["Hospitalization No."];
@@ -401,7 +400,6 @@ app.get('/ageData', function(req, res) {
                     data[i] = eachForm;
 
                 }
-                console.log(data);
                 res.json(data);
                 client.end();
             });
@@ -465,7 +463,7 @@ io.on('connection', function(socket) {
             return;
         }
 
-        console.log("HERE!!!!!!!");
+        //console.log("HERE!!!!!!!");
 
         var newAnxietyPost = new models.Newsfeed({
             'type': 'anxiety',
