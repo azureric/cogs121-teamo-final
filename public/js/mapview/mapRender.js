@@ -294,6 +294,7 @@
                             })
                             .on("click", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
+
                                 if (renderOverlayData[name]) {
                                     var blackRender = renderOverlayData[name]["b2010"]
                                         + renderOverlayData[name]["b2011"]
@@ -311,9 +312,10 @@
                                         + renderOverlayData[name]["o2011"]
                                         + renderOverlayData[name]["o2012"];
 
-                                    var currentRegionRace = [blackRender];
+                                    var currentRegionRace = [blackRender, whiteRender, hispanicRender,
+                                        apiRender, othersRender];
 
-
+                                    console.log("rendering the region race data !! " + currentRegionRace[0]);
 
                                     updateRaceChart(currentRegionRace);
                                     // $("#raceDonutDiv").empty();
