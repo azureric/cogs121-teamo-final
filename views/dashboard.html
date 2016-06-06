@@ -521,49 +521,48 @@
                       </th>
                       <th>
                         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                          <p class="">Race</p>
+                          <p class="raceChartInfoClass">Race</p>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                          <p class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p>
                         </div>
                       </th>
                     </tr>
                     </tr>
                     <tr>
                       <td>
-                        <canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                        <canvas id="canvas1" height="140" width="300" style="margin: 15px 10px 10px 0"></canvas>
                       </td>
                       <td>
-                        <table class="tile_info">
+                        <table class="tile_info raceChartInfoClass" id="raceChartInfo">
                           <tr>
                             <td>
                               <p><i class="fa fa-square blue"></i>Black </p>
                             </td>
-                            <td>28%</td>
+                            <td id="BlackRaceRate">28%</td>
                           </tr>
                           <tr>
                             <td>
                               <p><i class="fa fa-square green"></i>White </p>
                             </td>
-                            <td>22%</td>
+                            <td id="WhiteRaceRate">22%</td>
                           </tr>
                           <tr>
                             <td>
                               <p><i class="fa fa-square purple"></i>Hispanic </p>
                             </td>
-                            <td>20%</td>
+                            <td id="HispanicRaceRate">20%</td>
                           </tr>
                           <tr>
                             <td>
                               <p><i class="fa fa-square aero"></i>API </p>
                             </td>
-                            <td>15%</td>
+                            <td id="APIRaceRate">15%</td>
                           </tr>
                           <tr>
                             <td>
                               <p><i class="fa fa-square red"></i>Others </p>
                             </td>
-                            <td>30%</td>
+                            <td id="OthersRaceRate">30%</td>
                           </tr>
                         </table>
                       </td>
@@ -1145,46 +1144,25 @@
     <!-- Doughnut Chart -->
     <script>
       $(document).ready(function(){
-        var options = {
-          legend: false,
-          responsive: false
-        };
-
-        var currentRaceChart = new Chart(document.getElementById("canvas1"), {
-          type: 'doughnut',
-          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-          data: {
-            labels: [
-              "Black",
-              "White",
-              "Hispanic",
-              "API",
-              "Others"
-            ],
-            datasets: [{
-              data: [28, 22, 20, 15, 30],
-              backgroundColor: [
-                "#3498DB",
-                "#26b99a",
-                "#9B59B6",
-                "#BDC3C7",
-                "#E74C3C"
-              ],
-              hoverBackgroundColor: [
-                "#3498DB",
-                "#26b99a",
-                "#9B59B6",
-                "#BDC3C7",
-                "#E74C3C"
-              ]
-            }]
-          },
-          options: options
-        });
+        $(".raceChartInfoClass").hide();
+        var canvas = document.getElementById("canvas1");
+        var ctx = canvas.getContext("2d");
+        ctx.font = "15px Helvetica";
+        ctx.fillStyle = "#8A8A8A";
+        ctx.textAlign = "center";
+        ctx.fillText("Please select a region by clicking on the map", canvas.width/2, canvas.height/2);
       });
 
-    function updateRaceChart(renderNewdata){
+    function updateRaceChart(renderNewdata, totalRenderSum){
+
+      $("#BlackRaceRate").text((renderNewdata[0] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#WhiteRaceRate").text((renderNewdata[1] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#HispanicRaceRate").text((renderNewdata[2] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#APIRaceRate").text((renderNewdata[3] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#OthersRaceRate").text((renderNewdata[4] * 100/totalRenderSum).toFixed(1) + "%");
+
       $('#canvas1').replaceWith('<canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>');
+      $(".raceChartInfoClass").show("slow");
 
       var options = {
         legend: false,
@@ -1338,13 +1316,11 @@
       gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="js/mapview/mapRender.js"></script>
-    <!--<script src="js/bootstrap.min.js"></script>-->
 
   </body>
-
-
 </html>
