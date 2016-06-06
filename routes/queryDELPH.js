@@ -1,6 +1,8 @@
 var pg = require('pg');
 var conString = process.env.DATABASE_CONNECTION_URL;
 
+var checkVaildGeoName;
+var areaChecking;
 exports.map_anxiety_rate = function(req, res) {
     var client = new pg.Client(conString);
 
@@ -17,7 +19,7 @@ exports.map_anxiety_rate = function(req, res) {
                 }
 
                 var rawData = result.rows;
-                console.log("current raw data is: " + rawData);
+                //console.log("current raw data is: " + rawData);
 
                 var returnGeoData = [];
                 var maxAnxSumNumber = 0;
@@ -29,7 +31,7 @@ exports.map_anxiety_rate = function(req, res) {
                 for (i = 0; i < rawData.length; i++) {
                     var renderGeoData = {};
 
-                    var checkVaildGeoName = String(rawData[i]["Geography"]);
+                    checkVaildGeoName = String(rawData[i]["Geography"]);
 
                     if ((checkVaildGeoName.indexOf("Region") > -1) ||
                         (checkVaildGeoName.indexOf("Unknown") > -1) ||
@@ -173,9 +175,9 @@ exports.map_anxiety_rate = function(req, res) {
                     renderGeoData["a2011"] = apiNum2011;
                     renderGeoData["a2012"] = apiNum2012;
 
-                    var otherNum2010 = rawData[i]["2010 Other Hospitalization No."];
-                    var otherNum2011 = rawData[i]["2011 Other Hospitalization No."];
-                    var otherNum2012 = rawData[i]["2012 Other Hospitalization No."];
+                    var otherNum2010 = rawData[i]["2010 Other Race Hospitalization No."];
+                    var otherNum2011 = rawData[i]["2011 Other Race Hospitalization No."];
+                    var otherNum2012 = rawData[i]["2012 Other Race Hospitalization No."];
 
                     if (otherNum2010 == "<5") {
                         otherNum2010 = 2.5;
@@ -221,7 +223,7 @@ exports.map_anxiety_rate = function(req, res) {
                         var j = 0;
 
                         for(j = 0; j < rawPopData.length; j++){
-                            var areaChecking = rawPopData[j]["Area"].replace("San Diego", "SD");
+                            areaChecking = rawPopData[j]["Area"].replace("San Diego", "SD");
 
 
                             var k = 0;
@@ -230,7 +232,7 @@ exports.map_anxiety_rate = function(req, res) {
                             for(k = 0; k < returnGeoData.length; k++){
                                 if(areaChecking == returnGeoData[k]["area"]){
                                     isFoundInReturn = 1;
-                                    console.log("areaChecking!!!" + areaChecking);
+                                   // console.log("areaChecking!!!" + areaChecking);
                                     returnGeoData[k]["totalPop2012"] = parseInt(rawPopData[j]["Total 2012 Population"]);
                                     //break;
                                 }
@@ -248,6 +250,7 @@ exports.map_anxiety_rate = function(req, res) {
                 client.end();
             });
     });
+    //console.log("here"  + checkVaildGeoName);
 
     return {
         anxietyData: "No data present."
