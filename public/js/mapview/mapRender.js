@@ -245,6 +245,7 @@
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
+
                                 console.log("Mouse on region " + name);
                                 if (renderOverlayData[name]) {
 
@@ -294,12 +295,33 @@
                             .on("click", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
                                 if (renderOverlayData[name]) {
-                                    $("#raceDonutDiv").empty();
+                                    var blackRender = renderOverlayData[name]["b2010"]
+                                        + renderOverlayData[name]["b2011"]
+                                        + renderOverlayData[name]["b2012"];
+                                    var whiteRender = renderOverlayData[name]["w2010"]
+                                        + renderOverlayData[name]["w2011"]
+                                        + renderOverlayData[name]["w2012"];
+                                    var hispanicRender = renderOverlayData[name]["h2010"]
+                                        + renderOverlayData[name]["h2011"]
+                                        + renderOverlayData[name]["h2012"];
+                                    var apiRender = renderOverlayData[name]["a2010"]
+                                        + renderOverlayData[name]["a2011"]
+                                        + renderOverlayData[name]["a2012"];
+                                    var othersRender = renderOverlayData[name]["o2010"]
+                                        + renderOverlayData[name]["o2011"]
+                                        + renderOverlayData[name]["o2012"];
 
-                                    $("#raceDonutTitle").css("display", "initial");
+                                    var currentRegionRace = [blackRender];
 
-                                    renderRaceDonut(formatRaceData(renderOverlayData[name]),
-                                        arrayRaceData(renderOverlayData[name]));
+
+
+                                    updateRaceChart(currentRegionRace);
+                                    // $("#raceDonutDiv").empty();
+                                    //
+                                    // $("#raceDonutTitle").css("display", "initial");
+                                    //
+                                    // renderRaceDonut(formatRaceData(renderOverlayData[name]),
+                                    //     arrayRaceData(renderOverlayData[name]));
 
                                 } else {
                                     $("#raceDonutDiv").empty();
