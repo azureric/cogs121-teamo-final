@@ -188,6 +188,7 @@
                     $.get("/map_anxiety_rate", function(data) {
                         console.log(data);
 
+
                         var colorPallete = [
                             "#999066",
                             "#A69959",
@@ -205,6 +206,8 @@
                         var percent;
 
                         for (var i = 0; i < data.length; i++) {
+                            console.log("The current ratio is " + data[i]["ratio"]);
+
                             var propName = data[i]["area"].toLowerCase();
                             renderOverlayData[propName] = data[i];
                             renderOverlayData[propName]["ratio"] = data[i]["ratio"];
@@ -244,6 +247,7 @@
 
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
+
                                 var name = d.properties.NAME.toLowerCase();
 
                                 console.log("Mouse on region " + name);
@@ -261,6 +265,10 @@
                                     $("#populationNum").text(numberWithCommas(renderOverlayData[name]["totalPop2012"]));
 
                                     var levelRaw = renderOverlayData[name]["yearSum"];
+
+                                    var levelRawRate = levelRaw * 10000 / renderOverlayData[name]["totalPop2012"];
+
+
                                     if(levelRaw < 20){
                                         $("#anxietyLevel").text("Mild ");
                                     }
@@ -271,6 +279,8 @@
                                     else{
                                         $("#anxietyLevel").text("Severe ");
                                     }
+
+
                                     $(".data > .data1").text(renderPercent);
                                 } else {
                                     $("#raceDonutDiv").empty();
@@ -294,6 +304,15 @@
                             })
                             .on("click", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
+
+                                var sumRegionAge = renderOverlayData[name]["firstAge"] + renderOverlayData[name]["secondAge"] +
+                                    renderOverlayData[name]["thirdAge"] + renderOverlayData[name]["fourthAge"]
+                                    +renderOverlayData[name]["fifthAge"];
+
+                                var currentRegionAge =[ renderOverlayData[name]["firstAge"] , renderOverlayData[name]["secondAge"]
+                                    ,renderOverlayData[name]["thirdAge"],renderOverlayData[name]["fourthAge"],
+                                    renderOverlayData[name]["fifthAge"]];
+
                                 if (renderOverlayData[name]) {
                                     var blackRender = renderOverlayData[name]["b2010"]
                                         + renderOverlayData[name]["b2011"]
@@ -311,18 +330,18 @@
                                         + renderOverlayData[name]["o2011"]
                                         + renderOverlayData[name]["o2012"];
 
-                                    var currentRegionRace = [blackRender];
+                                    var currentRegionRace = [blackRender, whiteRender, hispanicRender,
+                                        apiRender, othersRender];
 
+                                    var sumRegionRace = 0;
 
+                                    $.each(currentRegionRace,function() {
+                                        sumRegionRace += this;
+                                    });
 
-                                    updateRaceChart(currentRegionRace);
-                                    // $("#raceDonutDiv").empty();
-                                    //
-                                    // $("#raceDonutTitle").css("display", "initial");
-                                    //
-                                    // renderRaceDonut(formatRaceData(renderOverlayData[name]),
-                                    //     arrayRaceData(renderOverlayData[name]));
-
+                                    updateRaceChart(currentRegionRace, sumRegionRace);
+                                    updateAgeChart(currentRegionAge, sumRegionAge);
+                                    
                                 } else {
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
@@ -360,8 +379,8 @@
                                         if (error) throw error;
                                         var svg = d3.select("#raceDonutDiv")
                                             .append("svg")
-                                            .style("height", 200)
-                                            .style("width", 200)
+                                            .style("height", 400)
+                                            .style("width", 600)
                                             .append("g")
 
                                         svg.append("g")
@@ -373,9 +392,9 @@
                                         svg.append("g")
                                             .attr("class", "lines");
 
-                                        var width = 200,
-                                            height = 200,
-                                            radius = Math.min(width, height) / 2;
+                                        var width = 600,
+                                            height = 300,
+                                            radius = Math.min(width, height) / 3;
 
                                         var pie = d3.layout.pie()
                                             .sort(null)
@@ -391,7 +410,7 @@
                                             .outerRadius(radius * 0.9)
                                             .innerRadius(radius * 0.9);
 
-                                        svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                                        svg.attr("transform", "translate(" + width / 3 + "," + height / 3 + ")");
 
                                         var key = function(d) {
                                             return d.data.label;

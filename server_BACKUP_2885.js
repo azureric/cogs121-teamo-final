@@ -452,6 +452,11 @@ io.on('connection', function(socket) {
             return;
         }
 
+<<<<<<< HEAD
+=======
+        //console.log("HERE!!!!!!!");
+
+>>>>>>> 32d8ef31a1022301b979c81d73dd9a5cbac9e03e
         var newAnxietyPost = new models.Newsfeed({
             'type': 'anxiety',
             'user': user.username,

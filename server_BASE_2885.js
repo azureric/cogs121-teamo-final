@@ -117,7 +117,6 @@ passport.deserializeUser(function(user, done) {
 });
 
 //routes
-//routes
 app.get('/', function(req, res) {
     res.render('index');
 });
@@ -154,7 +153,7 @@ app.get('/raceData', function(req, res) {
                     return console.error('error running query', err);
                 }
 
-                //console.log(result);
+                console.log(result);
 
                 var rawData = result.rows;
                 var renderDataRace0 = {};
@@ -244,7 +243,7 @@ app.get('/gender_data', function(req, res) {
                 year["2011"].push(renderGender1);
                 year["2012"].push(renderGender2);
 
-                //console.log(year["2010"][0]);
+                console.log(year["2010"][0]);
 
                 res.json(year);
                 client.end();
@@ -287,31 +286,25 @@ app.get('/ageData', function(req, res) {
 
                     var eachForm =  {
                         geo: [],
+                        labels: ["0-14", "15-24", "25-44", "45-64", "65+"],
                         series: [
                             {
-                                label: '0-15',
+                                label: '2010',
                                 values: []
                             },
                             {
-                                label: '15-24',
+                                label: '2011',
                                 values: []
                             },
                             {
-                                label: '25-44',
+                                label: '2012',
                                 values: []
-                            },
-                            {
-                                label: '45-64',
-                                values: []
-                            },
-                            {
-                                label: '65+',
-                                values: []
-                            },]
+                            }]
                     }
 
                     var e = rawData[i].Geography;
                     eachForm["geo"] = e;
+                    //console.log(e);
                     // if (rawData[i].Geography === "San Diego County (Actual Rate)") {
                         if (parseInt(rawData[i]["Year"]) == "2010") {
                             var a = rawData[i]["Hospitalization No."];
@@ -327,19 +320,19 @@ app.get('/ageData', function(req, res) {
                             }
 
                             if (rawData[i]["Age"] == "15-24") {
-                                eachForm["series"][1]["values"][0] = a;
+                                eachForm["series"][0]["values"][1] = a;
                             }
 
                             if (rawData[i]["Age"] == "25-44") {
-                                eachForm["series"][2]["values"][0] = a;
+                                eachForm["series"][0]["values"][2] = a;
                             }
 
                             if (rawData[i]["Age"] == "45-64") {
-                                eachForm["series"][3]["values"][0] = a;
+                                eachForm["series"][0]["values"][3] = a;
                             }
 
                             if (rawData[i]["Age"] == "65+") {
-                                eachForm["series"][4]["values"][0] = a;
+                                eachForm["series"][0]["values"][4] = a;
                             }
                         }
 
@@ -354,23 +347,23 @@ app.get('/ageData', function(req, res) {
                                 a = 0;
                             }
                             if (rawData[i]["Age"] == "0-14") {
-                                eachForm["series"][0]["values"][0] = eachForm["series"][0]["values"][0]+ a;
+                                eachForm["series"][1]["values"][0] = a;
                             }
 
                             if (rawData[i]["Age"] == "15-24") {
-                                eachForm["series"][1]["values"][0] = eachForm["series"][1]["values"][0]+ a;
+                                eachForm["series"][1]["values"][1] = a;
                             }
 
                             if (rawData[i]["Age"] == "25-44") {
-                                eachForm["series"][2]["values"][0] = eachForm["series"][2]["values"][0]+ a;
+                                eachForm["series"][1]["values"][2] = a;
                             }
 
                             if (rawData[i]["Age"] == "45-64") {
-                                eachForm["series"][3]["values"][0] = eachForm["series"][3]["values"][0]+ a;
+                                eachForm["series"][1]["values"][3] = a;
                             }
 
                             if (rawData[i]["Age"] == "65+") {
-                                eachForm["series"][4]["values"][0] = eachForm["series"][4]["values"][0]+ a;
+                                eachForm["series"][1]["values"][4] = a;
                             }
                         }
                         if (parseInt(rawData[i]["Year"]) == "2012") {
@@ -382,37 +375,33 @@ app.get('/ageData', function(req, res) {
                                 a = 0;
                             }
                             if (rawData[i]["Age"] == "0-14") {
-                                eachForm["series"][0]["values"][0] = eachForm["series"][0]["values"][0]+ a;
+                                eachForm["series"][2]["values"][0] = a;
                             }
 
                             if (rawData[i]["Age"] == "15-24") {
-                                eachForm["series"][1]["values"][0] = eachForm["series"][1]["values"][0]+ a;
+                                eachForm["series"][2]["values"][1] = a;
                             }
 
                             if (rawData[i]["Age"] == "25-44") {
-                                eachForm["series"][2]["values"][0] = eachForm["series"][2]["values"][0]+ a;
+                                eachForm["series"][2]["values"][2] = a;
                             }
 
                             if (rawData[i]["Age"] == "45-64") {
-                                eachForm["series"][3]["values"][0] = eachForm["series"][3]["values"][0]+ a;
+                                eachForm["series"][2]["values"][3] = a;
                             }
 
                             if (rawData[i]["Age"] == "65+") {
-                                eachForm["series"][4]["values"][0] = eachForm["series"][4]["values"][0]+ a;
+                                eachForm["series"][2]["values"][4] = a;
                             }
+
+
                         }
-
-                       eachForm["series"][0]["values"][0] /= 3;
-                       eachForm["series"][1]["values"][0] /= 3;
-                       eachForm["series"][2]["values"][0] /= 3;
-                       eachForm["series"][3]["values"][0] /= 3;
-                       eachForm["series"][4]["values"][0] /= 3;
-
                     //}
                     //series["2010"].push(renderDataRace2010);
                     data[i] = eachForm;
-                }
 
+                }
+                console.log(data);
                 res.json(data);
                 client.end();
             });
@@ -430,8 +419,8 @@ app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 // More routes here if needed
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', { successRedirect: '/dashboard',
-        failureRedirect: '/nowhere' }));
+    passport.authenticate('twitter', { successRedirect: '/homepage',
+        failureRedirect: '/login' }));
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
@@ -440,10 +429,34 @@ io.use(function(socket, next) {
     session_middleware(socket.request, {}, next);
 });
 
-var trackID = 0;
-
 /* TODO: Server-side Socket.io here */
 io.on('connection', function(socket) {
+    socket.on('newsfeed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newNewsfeed = new models.Newsfeed({
+            'type': 'chat',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newNewsfeed.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('newsfeed', JSON.stringify(newNewsfeed));
+        }
+    });
+
     socket.on('anxiety', function(msg) {
         try {
             var user = socket.request.session.passport.user;
@@ -452,18 +465,15 @@ io.on('connection', function(socket) {
             return;
         }
 
+        console.log("HERE!!!!!!!");
+
         var newAnxietyPost = new models.Newsfeed({
             'type': 'anxiety',
             'user': user.username,
             'photo': user.photo,
             'message': msg,
             'posted': Date.now(),
-            'uniqueURL': trackID
         });
-
-        console.log(newAnxietyPost.uniqueURL);
-        console.log("HELLO THERE");
-        trackID = trackID + 1;
 
         newAnxietyPost.save(saved);
         function saved(err) {
@@ -474,6 +484,139 @@ io.on('connection', function(socket) {
             io.emit('anxiety', JSON.stringify(newAnxietyPost));
         }
     });
+
+    socket.on('depressed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newDepressedPost = new models.Newsfeed({
+            'type': 'depressed',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newDepressedPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('depressed', JSON.stringify(newDepressedPost));
+        }
+    });
+
+    socket.on('stressed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newStressedPost = new models.Newsfeed({
+            'type': 'stressed',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newStressedPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('stressed', JSON.stringify(newStressedPost));
+        }
+    });
+
+
+    socket.on('lonely', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newLonelyPost = new models.Newsfeed({
+            'type': 'lonely',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newLonelyPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('lonely', JSON.stringify(newLonelyPost));
+        }
+    });
+
+    socket.on('meetup', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newMeetupPost = new models.Newsfeed({
+            'type': 'meetup',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newMeetupPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('meetup', JSON.stringify(newMeetupPost));
+        }
+    });
+
+
+    socket.on('support', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newSupportPost = new models.Newsfeed({
+            'type': 'support',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newSupportPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('support', JSON.stringify(newSupportPost));
+        }
+    });
+
 });
 
 

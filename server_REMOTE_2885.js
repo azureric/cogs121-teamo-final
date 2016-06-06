@@ -430,8 +430,8 @@ app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 // More routes here if needed
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', { successRedirect: '/dashboard',
-        failureRedirect: '/nowhere' }));
+    passport.authenticate('twitter', { successRedirect: '/homepage',
+        failureRedirect: '/login' }));
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
@@ -440,10 +440,34 @@ io.use(function(socket, next) {
     session_middleware(socket.request, {}, next);
 });
 
-var trackID = 0;
-
 /* TODO: Server-side Socket.io here */
 io.on('connection', function(socket) {
+    socket.on('newsfeed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newNewsfeed = new models.Newsfeed({
+            'type': 'chat',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newNewsfeed.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('newsfeed', JSON.stringify(newNewsfeed));
+        }
+    });
+
     socket.on('anxiety', function(msg) {
         try {
             var user = socket.request.session.passport.user;
@@ -452,18 +476,15 @@ io.on('connection', function(socket) {
             return;
         }
 
+        //console.log("HERE!!!!!!!");
+
         var newAnxietyPost = new models.Newsfeed({
             'type': 'anxiety',
             'user': user.username,
             'photo': user.photo,
             'message': msg,
             'posted': Date.now(),
-            'uniqueURL': trackID
         });
-
-        console.log(newAnxietyPost.uniqueURL);
-        console.log("HELLO THERE");
-        trackID = trackID + 1;
 
         newAnxietyPost.save(saved);
         function saved(err) {
@@ -474,6 +495,139 @@ io.on('connection', function(socket) {
             io.emit('anxiety', JSON.stringify(newAnxietyPost));
         }
     });
+
+    socket.on('depressed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newDepressedPost = new models.Newsfeed({
+            'type': 'depressed',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newDepressedPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('depressed', JSON.stringify(newDepressedPost));
+        }
+    });
+
+    socket.on('stressed', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newStressedPost = new models.Newsfeed({
+            'type': 'stressed',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newStressedPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('stressed', JSON.stringify(newStressedPost));
+        }
+    });
+
+
+    socket.on('lonely', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newLonelyPost = new models.Newsfeed({
+            'type': 'lonely',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newLonelyPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('lonely', JSON.stringify(newLonelyPost));
+        }
+    });
+
+    socket.on('meetup', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newMeetupPost = new models.Newsfeed({
+            'type': 'meetup',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newMeetupPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('meetup', JSON.stringify(newMeetupPost));
+        }
+    });
+
+
+    socket.on('support', function(msg) {
+        try {
+            var user = socket.request.session.passport.user;
+        } catch(err) {
+            console.log("no user authenticated");
+            return;
+        }
+
+        var newSupportPost = new models.Newsfeed({
+            'type': 'support',
+            'user': user.username,
+            'photo': user.photo,
+            'message': msg,
+            'posted': Date.now(),
+        });
+
+        newSupportPost.save(saved);
+        function saved(err) {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            io.emit('support', JSON.stringify(newSupportPost));
+        }
+    });
+
 });
 
 
