@@ -315,16 +315,14 @@
                                     var currentRegionRace = [blackRender, whiteRender, hispanicRender,
                                         apiRender, othersRender];
 
-                                    console.log("rendering the region race data !! " + currentRegionRace[0]);
+                                    var sumRegionRace = 0;
 
-                                    updateRaceChart(currentRegionRace);
-                                    // $("#raceDonutDiv").empty();
-                                    //
-                                    // $("#raceDonutTitle").css("display", "initial");
-                                    //
-                                    // renderRaceDonut(formatRaceData(renderOverlayData[name]),
-                                    //     arrayRaceData(renderOverlayData[name]));
+                                    $.each(currentRegionRace,function() {
+                                        sumRegionRace += this;
+                                    });
 
+                                    updateRaceChart(currentRegionRace, sumRegionRace);
+                                    
                                 } else {
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
