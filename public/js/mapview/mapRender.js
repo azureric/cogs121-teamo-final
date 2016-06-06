@@ -249,9 +249,8 @@
                             .on("mouseover", function(d) {
 
                                 var name = d.properties.NAME.toLowerCase();
-                                
-                                console.log("Mouse on region " + name);
 
+                                console.log("Mouse on region " + name);
                                 if (renderOverlayData[name]) {
 
                                     $("#raceDonutDiv").empty();
@@ -306,6 +305,14 @@
                             .on("click", function(d) {
                                 var name = d.properties.NAME.toLowerCase();
 
+                                var sumRegionAge = renderOverlayData[name]["firstAge"] + renderOverlayData[name]["secondAge"] +
+                                    renderOverlayData[name]["thirdAge"] + renderOverlayData[name]["fourthAge"]
+                                    +renderOverlayData[name]["fifthAge"];
+
+                                var currentRegionAge =[ renderOverlayData[name]["firstAge"] , renderOverlayData[name]["secondAge"]
+                                    ,renderOverlayData[name]["thirdAge"],renderOverlayData[name]["fourthAge"],
+                                    renderOverlayData[name]["fifthAge"]];
+
                                 if (renderOverlayData[name]) {
                                     var blackRender = renderOverlayData[name]["b2010"]
                                         + renderOverlayData[name]["b2011"]
@@ -333,6 +340,7 @@
                                     });
 
                                     updateRaceChart(currentRegionRace, sumRegionRace);
+                                    updateAgeChart(currentRegionAge, sumRegionAge);
                                     
                                 } else {
                                     $("#raceDonutDiv").empty();
