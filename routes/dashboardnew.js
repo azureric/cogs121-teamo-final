@@ -9,6 +9,6 @@ exports.view = function(req, res) {
             return;
         }
         console.log("Redering Newsfeed");
-        res.render('dashboard', {'anxiety': posts});
+        res.render('dashboardnew', {'anxiety': posts});
     }
 };

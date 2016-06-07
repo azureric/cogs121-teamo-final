@@ -21,7 +21,8 @@ var db = mongoose.connection;
 
 var router = {
     queryDELPH: require("./routes/queryDELPH"),
-    dashboard: require('./routes/dashboard')
+    dashboard: require('./routes/dashboard'),
+    dashboardnew: require('./routes/dashboardnew')
 };
 
 var parser = {
@@ -123,9 +124,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/dashboard', router.dashboard.view);
-    // function(req, res) {
-    // res.render('dashboard');
-// });
+app.get('/dashboardnew', router.dashboardnew.view);
+
 
 app.get('/map_explore', function(req, res) {
     res.render('map_view_google');
@@ -448,6 +448,7 @@ io.on('connection', function(socket) {
         try {
             var user = socket.request.session.passport.user;
         } catch(err) {
+
             console.log("no user authenticated");
             return;
         }

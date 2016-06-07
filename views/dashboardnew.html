@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard | Got the Feels</title>
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- jVectorMap -->
+    <link href="css/maps/jquery-jvectormap-2.0.3.css" rel="stylesheet"/>
+
+    <link href="./css/chatbox.css" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/mapView/mapRender.css" type="text/css"
+    >
+    <script src="./js/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./js/sweetalert.css">
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-sm">
+    <div class="container body">
+
+      <!-- page content -->
+      <div class="main_container">
+        <div class="col-md-3 left_col" style="position:fixed;">
+          <div class="left_col scroll-view">
+            <!--<div class="navbar nav_title" style="border: 0;">-->
+            <!--<a id="" href="#" class="site_title"><i class="fa fa-bars"></i></a>-->
+            <!--</div>-->
+
+            <div class="clearfix"></div>
+            <br/>
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <!--<h3>General</h3>-->
+                <ul class="nav side-menu">
+                  <li><a href="dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
+                  <li><a onclick = "helpDoc();" ><i class="fa fa-info"></i> Help </a></li>
+                  <li><a href="/"><i class="fa  fa-play"></i> Tutorial </a></li>
+                  <li><a href="/"><i class="fa fa-users"></i> About Us </a></li>
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen" onClick="launchIntoFullscreen(document.documentElement);">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a href="https://www.google.com/search?q=cat&espv=2&biw=1440&bih=768&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiCv4rA-YnNAhVU2GMKHYhlAjMQ_AUIBigB" data-toggle="tooltip" data-placement="top" title="Emergency Exit">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a href="/" data-toggle="tooltip" data-placement="top" title="Logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+        <div class="col-md-6">
+
+          <div class="" style="margin-left: 70px">
+            <div class="dashboard_graph">
+              <div class="row x_title">
+                <div class="col-md-6">
+                  <h3>Map Explore<small> Hover your mouse over different regions!</small></h3>
+                </div>
+
+              </div>
+
+              <div class="col-md-9 col-sm-9 col-xs-12" style="height: 325px;">
+                <div id="mapDiv" style="width: 100%; height: 100%">
+                  <!-- This is where maps is-->
+                </div>
+                <!--<div style="width: 100%;">-->
+                <!--<div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>-->
+                <!--</div>-->
+              </div>
+              <div class="col-md-3 col-sm-3 col-xs-12 bg-white" id="mapPreview">
+                <div class="x_title">
+                  <p class="welcomeText">Hover your mouse on the map to preview regions!</p>
+                  <p class="displayText" style="display: none;">Name of the region:</p>
+                  <h1 id="cityName" style="font-size: xx-large"><b></b></h1>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-6 displayText" style="display: none;">
+                  <div>
+                    <p>Anxiety Cases:</p>
+                    <h2 id="anxietyNum" style="font-weight: bold;"></h2>
+                  </div>
+                  <div>
+                    <p>Anxiety Level:</p>
+                    <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
+                    <a onclick="sweetAlert('This is the level of severity in comparison to San Diego County')";i class="fa fa-question-circle" aria-hidden="true" style="display: inline"></i></a>
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-6 displayText" style="display: none;">
+                  <div>
+                    <p>Population:</p>
+                    <h2 id="populationNum" style="font-weight: bold"></h2>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+
+        </div>
+        <div class="right_col" role="main">
+          <div class="row">
+
+          </div>
+          <br/>
+
+          <div class="row">
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Anxiety Distribution by Age</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                    <li class="dropdown">
+                      <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                    <!--</li>-->
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+
+
+                <div class="x_content ageChartInfoClass" style="display: none;">
+                  <!--<h4>San Diego County Average</h4>-->
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>0-14</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" id = "oneAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 15.2%;">
+                          <span class="sr-only" >7.7%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span id="oneAge1">7.7%</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>15-24</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" id = "twoAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                          <span class="sr-only" id="two2">20%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span id = "twoAge2">20%</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>25-44</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" id = "threeAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 28.4%;">
+                          <span class="sr-only"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span id = "threeAge3">14.2%</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>45-64</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" id="fourAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 46.8%;">
+                          <span class="sr-only">23.4%</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="w_right w_20">
+                      <span id = "fourAge4">23.4%</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="widget_summary">
+                    <div class="w_left w_25">
+                      <span>65+</span>
+                    </div>
+                    <div class="w_center w_55">
+                      <div class="progress">
+                        <div class="progress-bar bg-green" id="fiveAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 42.6%;">
+                          <span class="sr-only">21.3%</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="w_right w_20">
+                      <span id = "fiveAge5">21.3%</span>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320 overflow_hidden">
+                <div class="x_title">
+                  <h2>Anxiety Distribution by Race</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                    <!--</li>-->
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <table class="" style="width:100%">
+                    <tr>
+                      <th style="width:30%;">
+                        <p class="raceChartInfoClass" style="display: none;">Top 5</p>
+                      </th>
+                      <th>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                          <p class="raceChartInfoClass">Race</p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        </div>
+                      </th>
+                    </tr>
+                    </tr>
+                    <tr>
+                      <td>
+                        <canvas id="canvas1" height="140" width="300" style="margin: 15px 10px 10px 0"></canvas>
+                      </td>
+                      <td>
+                        <table class="tile_info raceChartInfoClass" id="raceChartInfo" style="display: none;">
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square blue"></i>Black </p>
+                            </td>
+                            <td id="BlackRaceRate">28%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square green"></i>White </p>
+                            </td>
+                            <td id="WhiteRaceRate">22%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square purple"></i>Hispanic </p>
+                            </td>
+                            <td id="HispanicRaceRate">20%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square aero"></i>API </p>
+                            </td>
+                            <td id="APIRaceRate">15%</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square red"></i>Others </p>
+                            </td>
+                            <td id="OthersRaceRate">30%</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Chat Room</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                    <!--</li>-->
+                  </ul>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="twitter-signin">
+                  <a class="btn-lg btn-block btn-social btn-twitter twitter-Button " href="/auth/twitter">
+                    <span class="fa fa-twitter"></span> Sign in with Twitter
+                  </a>
+                </div>
+
+                <div class="twitter-seechat" id="twt">
+                  <div class="chatbox" id="chatbox">
+                    <div class="dashboard-widget-content chatter" id="messages">
+                      <!--INSERT A TWITTER CHATBOX HERE-->
+                        {{#each anxiety}}
+                        <div class="eachPost">
+                          <div class="user">
+                            <img id="user-photo" src="{{photo}}" alt= "">
+                            <!--<div class="user-info">-->
+                              <span class="username" style="font-size: 100%;">{{user}}</span>
+                            <br>
+                              <span class="posted" style="font-size:75%;">{{posted}}</span>
+                            <!--</div>-->
+                          </div>
+                          <div class="message-content">
+                            {{message}}
+                          </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="twitter-seechat2">
+                  <h2>Talk your nervousness away~</h2>
+
+                  <form id="send_anxious_message" action="validateForm()" name="Form">
+                    <input id="user_input" name="field1" placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320">
+              <div class="x_title">
+                <h2>Newsfeed</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <a class="twitter-timeline" href="https://twitter.com/hashtag/anxiety" data-widget-id="739549422535639040" width="100%" height="100%">#anxiety Tweets</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Made by Team O <a href="http://cogs121.ucsd.edu">COGS 121 SP16</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="vendors/bernii/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="vendors/Flot/jquery.flot.js"></script>
+    <script src="vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="vendors/Flot/jquery.flot.time.js"></script>
+    <script src="vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="js/flot/jquery.flot.orderBars.js"></script>
+    <script src="js/flot/date.js"></script>
+    <script src="js/flot/jquery.flot.spline.js"></script>
+    <script src="js/flot/curvedLines.js"></script>
+    <!-- jVectorMap -->
+    <script src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js"></script>
+    <script src="js/datepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.js"></script>
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="./js/dashboard.js"></script>
+
+
+    <script>
+      function helpDoc(){
+        console.log('here');
+        swal({
+          type: 'info',
+          title: 'Help',
+          //imageUrl:"http://www.sbs.com.au/news/sites/sbs.com.au.news/files/banye1.jpeg" ,
+          //imageWidth:1000,
+          //imageHeight:1000,
+          text: 'Explore the different regions in San Diego and their corresponding Anxiety Rate.\n'
+          + 'Click on different highlighted region on the map to see the various anxiety distribution by age and race.\n'
+          + 'Participate in our chat room to voice out your feelings and concerns.\n Scroll through our newsfeed to find' +
+          'corresponding news regarding anxiety.\n '+ '\n Watch our tutorial video to learn even more.',
+          width: 600,
+          padding: 100,
+        })
+
+      }
+    </script>
+
+    <!-- Flot -->
+    <script>
+      $(document).ready(function() {
+        var data1 = [
+          [gd(2012, 1, 1), 17],
+          [gd(2012, 1, 2), 74],
+          [gd(2012, 1, 3), 6],
+          [gd(2012, 1, 4), 39],
+          [gd(2012, 1, 5), 20],
+          [gd(2012, 1, 6), 85],
+          [gd(2012, 1, 7), 7]
+        ];
+
+        var data2 = [
+          [gd(2012, 1, 1), 82],
+          [gd(2012, 1, 2), 23],
+          [gd(2012, 1, 3), 66],
+          [gd(2012, 1, 4), 9],
+          [gd(2012, 1, 5), 119],
+          [gd(2012, 1, 6), 6],
+          [gd(2012, 1, 7), 9]
+        ];
+        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+          data1, data2
+        ], {
+          series: {
+            lines: {
+              show: false,
+              fill: true
+            },
+            splines: {
+              show: true,
+              tension: 0.4,
+              lineWidth: 1,
+              fill: 0.4
+            },
+            points: {
+              radius: 0,
+              show: true
+            },
+            shadowSize: 2
+          },
+          grid: {
+            verticalLines: true,
+            hoverable: true,
+            clickable: true,
+            tickColor: "#d5d5d5",
+            borderWidth: 1,
+            color: '#fff'
+          },
+          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          xaxis: {
+            tickColor: "rgba(51, 51, 51, 0.06)",
+            mode: "time",
+            tickSize: [1, "day"],
+            //tickLength: 10,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10
+          },
+          yaxis: {
+            ticks: 8,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+          },
+          tooltip: false
+        });
+
+        function gd(year, month, day) {
+          return new Date(year, month - 1, day).getTime();
+        }
+      });
+    </script>
+    <!-- /Flot -->
+
+    <!-- jVectorMap -->
+    <script src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
+    <script src="js/maps/gdp-data.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#world-map-gdp').vectorMap({
+          map: 'world_mill_en',
+          backgroundColor: 'transparent',
+          zoomOnScroll: false,
+          series: {
+            regions: [{
+              values: gdpData,
+              scale: ['#E6F2F0', '#149B7E'],
+              normalizeFunction: 'polynomial'
+            }]
+          },
+          onRegionTipShow: function(e, el, code) {
+            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+          }
+        });
+      });
+    </script>
+    <!-- /jVectorMap -->
+
+    <!-- Skycons -->
+    <script>
+      $(document).ready(function() {
+        var icons = new Skycons({
+            "color": "#73879C"
+          }),
+          list = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+
+        for (i = list.length; i--;)
+          icons.set(list[i], list[i]);
+
+        icons.play();
+      });
+    </script>
+    <!-- /Skycons -->
+
+    <!-- Doughnut Chart -->
+    <script>
+      $(".displayText").hide();
+      $(document).ready(function(){
+        $(".raceChartInfoClass").hide();
+        $(".ageChartInfoClass").hide();
+        var canvas = document.getElementById("canvas1");
+        var ctx = canvas.getContext("2d");
+        ctx.font = "15px Helvetica";
+        ctx.fillStyle = "#8A8A8A";
+        ctx.textAlign = "center";
+        ctx.fillText("Please select a region by clicking on the map", canvas.width/2, canvas.height/2);
+      });
+
+      function updateAgeChart(renderNewdata, totalRenderSum){
+        var a = ((renderNewdata[0] * 220/totalRenderSum).toFixed(1) + "%");
+        var b = ((renderNewdata[1] * 220/totalRenderSum).toFixed(1) + "%");
+        var c = ((renderNewdata[2] * 220/totalRenderSum).toFixed(1) + "%");
+        var d = ((renderNewdata[3] * 220/totalRenderSum).toFixed(1) + "%");
+        var e = ((renderNewdata[4] * 220/totalRenderSum).toFixed(1) + "%");
+
+        $("#oneAge").css('width',a );
+        $("#twoAge").css('width',b );
+        $("#threeAge").css('width',c );
+        $("#fourAge").css('width',d );
+        $("#fiveAge").css('width',e );
+
+        $("#oneAge1").text((renderNewdata[0] * 100/totalRenderSum).toFixed(1) + "%");
+        $("#twoAge2").text((renderNewdata[1] * 100/totalRenderSum).toFixed(1) + "%");
+        $("#threeAge3").text((renderNewdata[2] * 100/totalRenderSum).toFixed(1) + "%");
+        $("#fourAge4").text((renderNewdata[3] * 100/totalRenderSum).toFixed(1) + "%");
+        $("#fiveAge5").text((renderNewdata[4] * 100/totalRenderSum).toFixed(1) + "%");
+      }
+
+    function updateRaceChart(renderNewdata, totalRenderSum){
+      $("#BlackRaceRate").text((renderNewdata[0] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#WhiteRaceRate").text((renderNewdata[1] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#HispanicRaceRate").text((renderNewdata[2] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#APIRaceRate").text((renderNewdata[3] * 100/totalRenderSum).toFixed(1) + "%");
+      $("#OthersRaceRate").text((renderNewdata[4] * 100/totalRenderSum).toFixed(1) + "%");
+
+      $('#canvas1').replaceWith('<canvas id="canvas1" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>');
+      $(".raceChartInfoClass").show("slow");
+      $(".ageChartInfoClass").show("slow");
+      var options = {
+        legend: false,
+        responsive: false
+      };
+
+      var currentRaceChart = new Chart(document.getElementById("canvas1"), {
+        type: 'pie',
+        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+        data: {
+          labels: [
+            "Black",
+            "White",
+            "Hispanic",
+            "API",
+            "Others"
+          ],
+          datasets: [{
+            data: renderNewdata,
+            backgroundColor: [
+              "#3498DB",
+              "#26b99a",
+              "#9B59B6",
+              "#BDC3C7",
+              "#E74C3C"
+            ],
+            hoverBackgroundColor: [
+              "#3498DB",
+              "#26b99a",
+              "#9B59B6",
+              "#BDC3C7",
+              "#E74C3C"
+            ]
+          }]
+        },
+        options: options
+      });
+    }
+    </script>
+    <!-- /Doughnut Chart -->
+    
+    <!-- bootstrap-daterangepicker -->
+    <script>
+      $(document).ready(function() {
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    </script>
+    <!-- /bootstrap-daterangepicker -->
+
+    <!-- gauge.js -->
+    <script>
+      function launchIntoFullscreen(element) {
+        if(element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if(element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if(element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        } else if(element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+        }
+      }
+
+      var opts = {
+          lines: 12,
+          angle: 0,
+          lineWidth: 0.4,
+          pointer: {
+              length: 0.75,
+              strokeWidth: 0.042,
+              color: '#1D212A'
+          },
+          limitMax: 'false',
+          colorStart: '#1ABC9C',
+          colorStop: '#1ABC9C',
+          strokeColor: '#F0F3F3',
+          generateGradient: true
+      };
+      var target = document.getElementById('foo'),
+          gauge = new Gauge(target).setOptions(opts);
+
+      gauge.maxValue = 6000;
+      gauge.animationSpeed = 32;
+      gauge.set(3200);
+      gauge.setTextField(document.getElementById("gauge-text"));
+    </script>
+    <!-- /gauge.js -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="js/mapview/mapRender.js"></script>
+
+  </body>
+</html>
