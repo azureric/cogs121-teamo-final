@@ -402,7 +402,7 @@ app.get('/ageData', function(req, res) {
                        eachForm["series"][2]["values"][0] /= 3;
                        eachForm["series"][3]["values"][0] /= 3;
                        eachForm["series"][4]["values"][0] /= 3;
-                    
+
                     data[i] = eachForm;
                 }
 
@@ -417,12 +417,11 @@ app.get('/ageData', function(req, res) {
     }
 });
 
-
 app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 
 // More routes here if needed
 app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback',
+app.get('http://gotthefeels.tk/auth/twitter/callback',
     passport.authenticate('twitter', {  successRedirect: '/dashboardnew',
                                         failureRedirect: '/nowhere' }));
 app.get('/logout', function(req, res){
@@ -464,7 +463,6 @@ io.on('connection', function(socket) {
         }
     });
 });
-
 
 http.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
