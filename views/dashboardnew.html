@@ -95,39 +95,39 @@
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 bg-white" id="mapPreview">
                   <div class="x_title">
-                    <p class="welcomeText">Hover your mouse on the map to preview regions!</p>
-                    <p class="displayText" style="display: none;">Name of the region:</p>
-                    <h1 id="cityName" style="font-size: xx-large"><b></b></h1>
+                    <!--<p class="welcomeText">Hover your mouse on the map to preview regions!</p>-->
+                    <!--<p class="welcomeText">&nbsp;</p>-->
+                    <p class="displayText" style="">Name of the region:</p>
+                    <h1 id="cityName" style="font-size: xx-large">N/A</h1>
                     <div class="clearfix"></div>
                   </div>
 
 
-                  <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="display: none;">
+                  <div class="col-md-6 col-sm-6 col-xs-6 displayText">
                     <div>
                       <p>Anxiety Cases:</p>
-                      <h2 id="anxietyNum" style="font-weight: bold;"></h2>
+                      <h2 id="anxietyNum" style="font-weight: bold;">N/A</h2>
                     </div>
                     <div>
                       <p>Anxiety Level:</p>
-                      <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
+                      <h1 id="anxietyLevel" style="display: inline; font-weight: bold;">N/A</h1>
                       <a onclick="sweetAlert('','This is the calculated anxiety level of this county in comparison to San Diego County. \n The ranking goes from mild to severe, with severe having the highest amount of anxiety cases in SD')";i class="fa fa-question-circle"; aria-hidden="true" style="display: inline;font-size:x-large"></i></a>
                     </div>
                   </div>
 
-                  <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="display: none;">
+                  <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="">
                     <div>
                       <p>Population:</p>
-                      <h2 id="populationNum" style="font-weight: bold"></h2>
+                      <h2 id="populationNum" style="font-weight: bold">N/A</h2>
                     </div>
                   </div>
-
 
 
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12" style="height: 450px;">
-                  <div id="mapDiv" style="width: 100%; height: 100%">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="height: 450px">
+                  <div id="mapDiv" style="width: 100%; height: 100%; z-index: 999999;">
                     <!-- This is where maps is-->
                   </div>
                   <!--<div style="width: 100%;">-->
@@ -638,7 +638,7 @@
 
     <!-- Doughnut Chart -->
     <script>
-      $(".displayText").hide();
+//      $(".displayText").hide();
       $(document).ready(function(){
         $(".raceChartInfoClass").hide();
         $(".ageChartInfoClass").hide();

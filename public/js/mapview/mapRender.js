@@ -9,12 +9,16 @@
     // https://snazzymaps.com/explore?sort=popular
     var map = new google.maps.Map(d3.select("#mapDiv").node(), {
         zoom: 9,
-        minZoom: 8,
-        maxZoom: 11,
+        minZoom: 9,
+        maxZoom: 10,
         mapTypeControl: false,
         streetViewControl: false,
         scrollwheel: false,
-        center: new google.maps.LatLng(32.9185, -117.1382),
+        center: new google.maps.LatLng(33.0005, -117.1382),
+        zoomControl: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        },
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         styles: [
             {
