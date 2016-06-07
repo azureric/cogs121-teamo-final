@@ -55,7 +55,7 @@
                   <li><a href="dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
                   <li><a onclick = "helpDoc();" ><i class="fa fa-info"></i> Help </a></li>
                   <li><a href="/"><i class="fa  fa-play"></i> Tutorial </a></li>
-                  <li><a href="/"><i class="fa fa-users"></i> About Us </a></li>
+                  <li><a href="/#aboutImage"><i class="fa fa-users"></i> About Us </a></li>
                 </ul>
               </div>
 
@@ -85,11 +85,12 @@
           <div class="" style="">
             <div class="dashboard_graph">
               <!--<div class="row x_title">-->
-                <!--<div class="col-md-12">-->
-                  <!--<h3>Map Explore<small> Hover your mouse over different regions!</small></h3>-->
+                <!--<div class="col-md-6">-->
+                  <!--<h3>Map Explore</h3>-->
+                    <!--<small> Hover your mouse over different regions!</small>-->
                 <!--</div>-->
 
-              <!--</div>-->
+              <!-- -</div>-->
 
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 bg-white" id="mapPreview">
@@ -106,7 +107,11 @@
                       <p>Anxiety Cases:</p>
                       <h2 id="anxietyNum" style="font-weight: bold;"></h2>
                     </div>
-
+                    <div>
+                      <p>Anxiety Level:</p>
+                      <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
+                      <a onclick="sweetAlert('','This is the calculated anxiety level of this county in comparison to San Diego County. \n The ranking goes from mild to severe, with severe having the highest amount of anxiety cases in SD')";i class="fa fa-question-circle"; aria-hidden="true" style="display: inline;font-size:x-large"></i></a>
+                    </div>
                   </div>
 
                   <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="display: none;">
@@ -116,13 +121,6 @@
                     </div>
                   </div>
 
-                  <div class="col-md-12 col-sm-12 col-xs-12 displayText" style="display: none;">
-                    <div>
-                      <p>Anxiety Level:</p>
-                      <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
-                      <a onclick="sweetAlert('This is the level of severity in comparison to San Diego County')";i class="fa fa-question-circle" aria-hidden="true" style="display: inline"></i></a>
-                    </div>
-                  </div>
 
 
                 </div>
@@ -331,7 +329,9 @@
                             </tr>
                             <tr>
                               <td>
-                                <p><i class="fa fa-square aero"></i>API </p>
+                                <p><i class="fa fa-square aero"></i>API     <a onclick="sweetAlert('','API stands for Asian Pacific Islander')";i class="fa fa-question-circle"; aria-hidden="true" style="display: inline;font-size:large"></i></a>
+                                </p>
+
                               </td>
                               <td id="APIRaceRate">15%</td>
                             </tr>
