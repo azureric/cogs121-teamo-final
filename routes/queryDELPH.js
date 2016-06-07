@@ -19,7 +19,6 @@ exports.map_anxiety_rate = function(req, res) {
                 }
 
                 var rawData = result.rows;
-                //console.log("current raw data is: " + rawData);
 
                 var returnGeoData = [];
                 var maxAnxSumNumber = 0;
@@ -384,7 +383,7 @@ exports.map_anxiety_rate = function(req, res) {
 
                     vaildGeoCounter++;
                 }
-                console.log("TOTAL NUMBER IS " + totalNumberAnx);
+
                 for (i = 0; i < vaildGeoCounter; i++) {
                     returnGeoData[i]["ratio"] = returnGeoData[i]["yearSum"] / totalNumberAnx;
                 }
@@ -395,9 +394,7 @@ exports.map_anxiety_rate = function(req, res) {
                             return console.error('error running query', err);
                         }
 
-
                         var rawPopData = result_population.rows;
-                        console.log("rawPopData!!!" + rawPopData.length);
 
                         var j = 0;
 
@@ -411,15 +408,9 @@ exports.map_anxiety_rate = function(req, res) {
                             for(k = 0; k < returnGeoData.length; k++){
                                 if(areaChecking == returnGeoData[k]["area"]){
                                     isFoundInReturn = 1;
-                                   // console.log("areaChecking!!!" + areaChecking);
                                     returnGeoData[k]["totalPop2012"] = parseInt(rawPopData[j]["Total 2012 Population"]);
-                                    //break;
                                 }
                             }
-
-                            // if(!isFoundInReturn){
-                            //     returnGeoData[k]["totalPop2012"] = -1;
-                            // }
 
                         }
 

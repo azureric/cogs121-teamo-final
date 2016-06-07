@@ -360,8 +360,15 @@
                                         sumRegionRace += this;
                                     });
 
+                                    var regionMale = renderOverlayData[name]["maleNumber"];
+                                    var regionFemale = renderOverlayData[name]["femaleNumber"];
+
+                                    var currentRegionGender = [regionMale, regionFemale];
+                                    var sumRegionGender = regionMale + regionFemale;
+
                                     updateRaceChart(currentRegionRace, sumRegionRace);
                                     updateAgeChart(currentRegionAge, sumRegionAge);
+                                    updateGenderChart(currentRegionGender, sumRegionGender);
                                     
                                 } else {
                                     $("#raceDonutDiv").empty();
