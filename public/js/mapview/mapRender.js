@@ -243,7 +243,7 @@
 
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
-                                let city = d3.select(this).style("stroke-width", 3);
+                                var city = d3.select(this).style("stroke-width", 3);
 
                                 var name = d.properties.NAME.toLowerCase();
 
