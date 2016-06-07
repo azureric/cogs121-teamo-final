@@ -2,7 +2,8 @@
 until the script determines if user is signed
 
 look at js/dashboard.js for script*/
-.twitter-chatfeed, .twitter-entermsg, .twitter-signin-div{
+.twitter-chatfeed, .twitter-entermsg, .twitter-signin-div,
+#logout-btn {
     display: none;
 }
 
@@ -13,7 +14,6 @@ look at js/dashboard.js for script*/
 .twitter-chatfeed {
     width: 100%;
     height: 60%;
-    overflow-y: scroll;
 }
 
 .user-image {
@@ -76,5 +76,26 @@ look at js/dashboard.js for script*/
     text-decoration: none;
     display: block;
     float: left;
+    margin-left: 10px;
+}
+
+#hold-chat {
+    top:0;
+    bottom:3em;
+    height:100%;
+    overflow:scroll;
+}
+
+#signout-btn {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color: #0a568c; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    float: right;
     margin-left: 10px;
 }

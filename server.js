@@ -429,7 +429,7 @@ app.get('/auth/twitter/callback',
                                         failureRedirect: '/nowhere' }));
 app.get('/logout', function(req, res){
     req.logout();
-    res.redirect('/');
+    res.redirect('/dashboardnew');
 });
 io.use(function(socket, next) {
     session_middleware(socket.request, {}, next);

@@ -16,7 +16,7 @@
     socket.on("anxietyChat", function(data) {
         var parsedData = JSON.parse(data);
 
-        $('#hold-chat').append($('<div>').html(messageTemplate(parsedData)));
+        $('#hold-chat').append($('<div>').html(messageTemplate(parsedData))).animate({scrollTop: 99999999999999}, 4000);
 
         function messageTemplate(parsedData) {
             var result = '<div class="user">' +
@@ -33,6 +33,7 @@
                 '</div>';
             return result;
         }
+
     });
 
     function validateForm() {
@@ -57,14 +58,18 @@ twitterFavicon.addEventListener('load', function () {
     // document.getElementById('status').innerHTML = 'Logged into Twitter: Yes';
     $("div.twitter-chatfeed").show();
     $("div.twitter-entermsg").show();
+    scrollChat();
+    $("#logout-btn").show();
 });
 twitterFavicon.addEventListener('error', function () {
     // document.getElementById('status').innerHTML = 'Logged into Twitter: No';
     $("div.twitter-signin-div").show();
     $("div.twitter-chatfeed").hide();
     $("div.twitter-entermsg").hide();
+    $("#logout-btn").hide();
 });
 
-
-var element = document.getElementById("user_input");
-element.scrollTop = element.scrollHeight;
+function scrollChat() {
+    $('#hold-chat').scroll();
+    $("#hold-chat").animate({scrollTop: 99999999999999}, 4000);
+}
