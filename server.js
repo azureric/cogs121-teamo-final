@@ -44,7 +44,7 @@ var session_middleware = session({
     store: new MongoStore({ mongooseConnection: db })
 });
 
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 80);
 app.engine('html', handlebars({
     defaultLayout: 'layout',
     extname: '.html'
