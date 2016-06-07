@@ -1,31 +1,10 @@
-/*!*hide role-specific div html*!*/
-/*.twitter-signin, .twitter-seechat {*/
-    /*display: none;*/
-/*}*/
+/*this first one hides the divs initially
+until the script determines if user is signed
 
-/*.twitter-seechat {*/
-    /*max-height: 60%;*/
-    /*max-width: 100%;*/
-    /*border: none;*/
-    /*padding: 5px;*/
-    /*overflow-y: scroll;*/
-/*}*/
-
-/*.eachPost {*/
-    /*margin-bottom: 10px;*/
-/*}*/
-
-/*.user img {*/
-    /*margin-top: 5px;*/
-    /*margin-right: 5px;*/
-    /*float: left;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-/*}*/
-
-/*.user .posted {*/
-    /*font-size: 100%;*/
-/*}*/
+look at js/dashboard.js for script*/
+.twitter-chatfeed, .twitter-entermsg, .twitter-signin-div{
+    display: none;
+}
 
 #chat-outer{
     height: 320px;
@@ -53,4 +32,50 @@
 
 #posted {
     font-size: 75%;
+}
+
+#twitter-signin {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color: #0a568c; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin: 0 auto;
+}
+
+#twitter-signin:hover {
+    background-color: #00A8FF;
+    color: white;
+}
+
+.twitter-entermsg {
+    margin-top: 5px;
+}
+
+#user_input {
+    width: 75%;
+    height: 50px;
+    resize: none;
+    line-height: 1;
+    margin: 0;
+    display: block;
+    float: left;
+}
+
+#send-msg-btn {
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    background-color: #0a568c; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    float: left;
+    margin-left: 10px;
 }

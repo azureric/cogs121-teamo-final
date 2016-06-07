@@ -1,6 +1,6 @@
 var models = require("../models");
 exports.view = function(req, res) {
-    models.Newsfeed.find({type: 'anxiety'}).sort('posted').exec(displayPosts);
+    models.Newsfeed.find({type: 'anxietyChat'}).sort('posted').exec(displayPosts);
 
     function displayPosts(err, posts) {
         if (err) {
@@ -9,6 +9,6 @@ exports.view = function(req, res) {
             return;
         }
         console.log("Redering Newsfeed");
-        res.render('dashboardnew', {'anxiety': posts});
+        res.render('dashboardnew', {'anxiety-msg': posts});
     }
 };

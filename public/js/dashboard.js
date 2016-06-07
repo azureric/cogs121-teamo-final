@@ -13,10 +13,10 @@
         return false;
     });
 
-    socket.on("anxiety", function(data) {
+    socket.on("anxietyChat", function(data) {
         var parsedData = JSON.parse(data);
 
-        $('#messages').append($('<div>').html(messageTemplate(parsedData)));
+        $('#hold-chat').append($('<div>').html(messageTemplate(parsedData)));
 
         function messageTemplate(parsedData) {
             var result = '<div class="user">' +
@@ -50,21 +50,21 @@
     }
 })($);
 
-var objDiv = document.getElementById("hold-chat");
-objDiv.scrollTop = objDiv.scrollHeight;
 
-// var twitterFavicon = document.createElement('img');
-// twitterFavicon.src = '//twitter.com/login?redirect_after_login=%2Ffavicon.ico';
-// twitterFavicon.addEventListener('load', function () {
-//     // document.getElementById('status').innerHTML = 'Logged into Twitter: Yes';
-//     $("div.twitter-seechat").show();
-// });
-// twitterFavicon.addEventListener('error', function () {
-//     // document.getElementById('status').innerHTML = 'Logged into Twitter: No';
-//     $("div.twitter-signin").show();
-//
-// });
-//
-//
-// var element = document.getElementById("twt");
-// element.scrollTop = element.scrollHeight;
+var twitterFavicon = document.createElement('img');
+twitterFavicon.src = '//twitter.com/login?redirect_after_login=%2Ffavicon.ico';
+twitterFavicon.addEventListener('load', function () {
+    // document.getElementById('status').innerHTML = 'Logged into Twitter: Yes';
+    $("div.twitter-chatfeed").show();
+    $("div.twitter-entermsg").show();
+});
+twitterFavicon.addEventListener('error', function () {
+    // document.getElementById('status').innerHTML = 'Logged into Twitter: No';
+    $("div.twitter-signin-div").show();
+    $("div.twitter-chatfeed").hide();
+    $("div.twitter-entermsg").hide();
+});
+
+
+var element = document.getElementById("user_input");
+element.scrollTop = element.scrollHeight;

@@ -349,9 +349,9 @@
                 </div>
               </div>
 
-              
+
               <!--CHATROOM IS HERE-->
-              <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel tile fixed_height_320" id="chat-outer">
                   <div class="x_title">
                     <h2>Chat Room</h2>
@@ -374,9 +374,20 @@
                   </div>
 
                   <!--NEW CODE GOES HERE FOR THE CHAT-->
+
+                  <!--SIGN IN TO TWITTER HERE-->
+                  <div class="twitter-signin-div">
+                    <a href="/auth/twitter">
+                      <button id="twitter-signin">Log In to Twitter<i class="fa fa-twitter" aria-hidden="true"></i>
+                      </button>
+                    </a>
+                  </div>
+
+
+                  <!--CHAT FEED-->
                   <div class="twitter-chatfeed" id="messages twitter-chat">
                     <div id="hold-chat">
-                      {{#each messages}}
+                      {{#each anxiety-msg}}
                       <div id="eachPost">
                         <div class="user">
                           <div class="user-image">
@@ -396,10 +407,11 @@
                     </div>
                   </div>
 
-                  <div>
-                    <h2>Talk your nervousness away~</h2>
+                  <!--SEND CHAT AREA-->
+                  <div class="twitter-entermsg">
                     <form id="send_anxious_message" name="Form" onsubmit ="return validateForm()" action="" >
-                      <input id="user_input" name = 'field1' placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
+                      <textarea id="user_input" name='field1' placeholder="You're not crazy, tell us what's on your mind"></textarea>
+                      <button id="send-msg-btn">Send</button>
                     </form>
                   </div>
                   <!--NEW CODE ENDS HERE FOR THE CHAT-->
@@ -428,8 +440,10 @@
                   <div class="clearfix"></div>
                 </div>
                 <div>
-                  <a class="twitter-timeline" href="https://twitter.com/hashtag/anxiety" data-widget-id="739549422535639040" width="100%" height="100%">#anxiety Tweets</a>
-                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                  <a class="twitter-timeline" href="https://twitter.com/hashtag/anxiety" data-widget-id="740057996126871553" width="100%" height="250px">#anxiety Tweets</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
+                    if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";
+                      fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
                 </div>
               </div>
             </div>

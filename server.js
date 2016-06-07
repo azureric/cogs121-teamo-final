@@ -425,7 +425,7 @@ app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 // More routes here if needed
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', {  successRedirect: '/dashboard',
+    passport.authenticate('twitter', {  successRedirect: '/dashboardnew',
                                         failureRedirect: '/nowhere' }));
 app.get('/logout', function(req, res){
     req.logout();
