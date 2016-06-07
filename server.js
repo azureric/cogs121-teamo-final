@@ -44,7 +44,7 @@ var session_middleware = session({
     store: new MongoStore({ mongooseConnection: db })
 });
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 8000);
 app.engine('html', handlebars({
     defaultLayout: 'layout',
     extname: '.html'
@@ -420,8 +420,8 @@ app.get('/ageData', function(req, res) {
 app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 
 // More routes here if needed
-app.get('http://gotthefeels.tk/auth/twitter', passport.authenticate('twitter'));
-app.get('http://gotthefeels.tk/auth/twitter/callback',
+app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {  successRedirect: '/dashboardnew',
                                         failureRedirect: '/nowhere' }));
 app.get('/logout', function(req, res){
