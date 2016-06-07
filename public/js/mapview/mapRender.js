@@ -204,7 +204,6 @@
                         var percent;
 
                         for (var i = 0; i < data.length; i++) {
-
                             var propName = data[i]["area"].toLowerCase();
                             renderOverlayData[propName] = data[i];
                             renderOverlayData[propName]["ratio"] = data[i]["ratio"];
