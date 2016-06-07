@@ -21,7 +21,7 @@
         function messageTemplate(parsedData) {
             var result = '<div class="user">' +
                 '<div class="user-image">' +
-                '<img src="' + parsedData.photo + '" alt="">' +
+                '<img id="user-image" src="' + parsedData.photo + '" alt="">' +
                 '</div>' +
                 '<div class="user-info">' +
                 '<span class="username">' + parsedData.user + '</span><br/>' +
