@@ -33,6 +33,10 @@ look at js/dashboard.js for script*/
     font-size: 75%;
 }
 
+#posted2 {
+    font-size: 75%;
+}
+
 #twitter-signin {
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;

@@ -13,7 +13,7 @@ var NewsfeedSchema = new mongoose.Schema({
     "user": String,
     "photo": String,
     "message": String,
-    "posted": Date,
+    "posted": String,
     "uniqueURL": String
 });
 

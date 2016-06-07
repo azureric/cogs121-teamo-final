@@ -453,7 +453,7 @@ io.on('connection', function(socket) {
             'user': user.username,
             'photo': user.photo,
             'message': msg,
-            'posted': Date.now(),
+            'posted': Date().toString()
         });
 
         newAnxietyPost.save(saved);

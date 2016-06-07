@@ -25,7 +25,7 @@
                 '</div>' +
                 '<div class="user-info">' +
                 '<span class="username">' + parsedData.user + '</span><br/>' +
-                '<span class="posted">' + parsedData.posted + '</span>' +
+                '<span class="posted" id="posted2">' + parsedData.posted + '</span>' +
                 '</div>' +
                 '</div>' +
                 '<div class="message-content">' +
