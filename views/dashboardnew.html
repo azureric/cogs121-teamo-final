@@ -349,8 +349,10 @@
                 </div>
               </div>
 
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel tile fixed_height_320">
+              
+              <!--CHATROOM IS HERE-->
+              <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="x_panel tile fixed_height_320" id="chat-outer">
                   <div class="x_title">
                     <h2>Chat Room</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -371,45 +373,40 @@
                     <div class="clearfix"></div>
                   </div>
 
-                  <div class="twitter-signin">
-                    <a class="btn-lg btn-block btn-social btn-twitter twitter-Button " href="/auth/twitter">
-                      <span class="fa fa-twitter"></span> Sign in with Twitter
-                    </a>
-                  </div>
-
-                  <div class="twitter-seechat" id="twt">
-                    <div class="chatbox" id="chatbox">
-                      <div class="dashboard-widget-content chatter" id="messages">
-                        <!--INSERT A TWITTER CHATBOX HERE-->
-                        {{#each anxiety}}
-                        <div class="eachPost">
-                          <div class="user">
-                            <img id="user-photo" src="{{photo}}" alt= "">
-                            <!--<div class="user-info">-->
-                            <span class="username" style="font-size: 100%;">{{user}}</span>
-                            <br>
-                            <span class="posted" style="font-size:75%;">{{posted}}</span>
-                            <!--</div>-->
+                  <!--NEW CODE GOES HERE FOR THE CHAT-->
+                  <div class="twitter-chatfeed" id="messages twitter-chat">
+                    <div id="hold-chat">
+                      {{#each messages}}
+                      <div id="eachPost">
+                        <div class="user">
+                          <div class="user-image">
+                            <img src="{{photo}}" alt="" id="user-image">
                           </div>
-                          <div class="message-content">
-                            {{message}}
+                          <div class="user-info">
+                            <span id="username">{{user}}</span>
+                            <br>
+                            <span id="posted">{{posted}}</span>
                           </div>
                         </div>
-                        {{/each}}
+                        <div class="message-content">
+                          {{message}}
+                        </div>
                       </div>
+                      {{/each}}
                     </div>
                   </div>
 
-                  <div class="twitter-seechat2">
+                  <div>
                     <h2>Talk your nervousness away~</h2>
-
-                    <form id="send_anxious_message" action="validateForm()" name="Form">
-                      <input id="user_input" name="field1" placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
+                    <form id="send_anxious_message" name="Form" onsubmit ="return validateForm()" action="" >
+                      <input id="user_input" name = 'field1' placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
                     </form>
                   </div>
-
+                  <!--NEW CODE ENDS HERE FOR THE CHAT-->
                 </div>
               </div>
+            <!--THIS IS THE END OF THE CHAT CODE-->
+
 
             <div class="col-md-6 col-sm-6 col-xs-12">
               <div class="x_panel tile fixed_height_320">

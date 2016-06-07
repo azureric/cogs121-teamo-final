@@ -50,7 +50,7 @@
     }
 })($);
 
-var objDiv = document.getElementById('hold-chat');
+var objDiv = document.getElementById("hold-chat");
 objDiv.scrollTop = objDiv.scrollHeight;
 
 // var twitterFavicon = document.createElement('img');
