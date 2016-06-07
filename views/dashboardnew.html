@@ -121,7 +121,7 @@
                     <div>
                       <p>Anxiety Level:</p>
                       <h1 id="anxietyLevel" style="display: inline; font-weight: bold;">N/A</h1>
-                      <a onclick="sweetAlert('','This is the calculated anxiety level of this county in comparison to San Diego County. \n The ranking goes from mild to severe, with severe having the highest amount of anxiety cases in SD')";i class="fa fa-question-circle"; aria-hidden="true" style="display: inline;font-size:x-large"></i></a>
+                      <a onclick="sweetAlert('','This is the calculated anxiety level of this county in comparison to San Diego County. \n \n The ranking goes from mild to severe, with severe having the highest amount of anxiety cases in SD')";i class="fa fa-question-circle"; aria-hidden="true" style="display: inline;font-size:x-large"></i></a>
                     </div>
                   </div>
 
@@ -182,6 +182,9 @@
                   </div>
 
 
+                  <div class="initial-text">
+                      <h4>Please click a region on the map to view related data.</h4>
+                  </div>
                   <div class="x_content ageChartInfoClass" style="display: none;">
                     <!--<h4>San Diego County Average</h4>-->
                     <div class="widget_summary">
@@ -294,6 +297,9 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+                  <div class="initial-text">
+                    <h4>Please click a region on the map to view related data.</h4>
+                  </div>
                   <div class="x_content">
                     <table class="" style="width:100%">
                       <tr>
@@ -377,6 +383,76 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+                  <div class="initial-text">
+                    <h4>Please click a region on the map to view related data.</h4>
+                  </div>
+                  <div class="x_content">
+                    <table class="" style="width:100%">
+                      <tr>
+                        <th style="width:30%;">
+                          <p class="raceChartInfoClass" style="display: none;">&nbsp;</p>
+                        </th>
+                        <th>
+                          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                            <p class="raceChartInfoClass">Gender</p>
+                          </div>
+                          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                          </div>
+                        </th>
+                      </tr>
+                      </tr>
+                      <tr>
+                        <td>
+                          <canvas id="canvas2" height="140" width="300" style="margin: 15px 10px 10px 0"></canvas>
+                        </td>
+                        <td>
+                          <table class="tile_info raceChartInfoClass" id="genderChartInfo" style="display: none;">
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color: #36a2eb"></i>Male </p>
+                              </td>
+                              <td id="maleRate">28%</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square" style="color: #ff6384"></i>Female </p>
+                              </td>
+                              <td id="femaleRate">22%</td>
+                            </tr>
+
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- GRAPH 4 -->
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                  <div class="x_title">
+                    <h2>Anxiety Distribution by Gender</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
+                        <!--<ul class="dropdown-menu" role="menu">-->
+                          <!--<li><a href="#">Settings 1</a>-->
+                          <!--</li>-->
+                          <!--<li><a href="#">Settings 2</a>-->
+                          <!--</li>-->
+                        <!--</ul>-->
+                      <!--</li>-->
+                      <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                      <!--</li>-->
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="initial-text">
+                    <h4>Please click a region on the map to view related data.</h4>
+                  </div>
                   <div class="x_content">
                     <table class="" style="width:100%">
                       <tr>
@@ -421,7 +497,7 @@
 
               <!--CHATROOM IS HERE-->
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel tile fixed_height_320" id="chat-outer">
+                <div class="x_panel tile" style="height: 500px;" id="chat-outer">
                   <div class="x_title">
                     <h2>Chat Room</h2>
                     <a href="/logout" id="logout-btn"><button id="signout-btn">Log Out</button></a>
@@ -511,7 +587,8 @@
                 </div>
                 <div>
                   <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/anxiety" data-widget-id="740115297516953600">#anxiety Tweets</a>
-                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                  </script>
                 </div>
               </div>
             </div>
@@ -582,9 +659,10 @@
           //imageUrl:"http://www.sbs.com.au/news/sites/sbs.com.au.news/files/banye1.jpeg" ,
           //imageWidth:1000,
           //imageHeight:1000,
-          text: 'Explore the different regions in San Diego and their corresponding Anxiety Rate.\n'
-          + 'Click on different highlighted region on the map to see the various anxiety distribution by age and race.\n'
-          + 'Participate in our chat room to voice out your feelings and concerns.\n Scroll through our newsfeed to find' +
+          text: 'Explore the different regions in San Diego and their corresponding anxiety rates by clicking on a ' +
+          'region of the map. The anxiety rates of the corresponding region for various categories, such as race and age, ' +
+          'will display and change as you navigate the map.\n'
+          + '\n Participate in our chat room to voice out your feelings and concerns or scroll through the newsfeed to find ' +
           'corresponding news regarding anxiety.\n '+ '\n Watch our tutorial video to learn even more.',
           width: 600,
           padding: 100,
@@ -952,6 +1030,5 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="js/mapview/mapRender.js"></script>
-
   </body>
 </html>

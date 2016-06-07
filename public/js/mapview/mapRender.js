@@ -1,9 +1,6 @@
 (function(d3) {
     "use strict";
 
-    $('#twitter-widget-0').find('.tweet').css('height','500px');
-    
-
     var strictBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(32.492908, -117.710885),
         new google.maps.LatLng(33.352841, -116.165932)
@@ -316,6 +313,7 @@
                             })
 
                             .on("click", function(d) {
+                                $(".initial-text").hide();
 
                                 cities.selectAll("path")
                                     .style("fill", function(d, i) {

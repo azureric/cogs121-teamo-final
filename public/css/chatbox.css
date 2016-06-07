@@ -52,7 +52,7 @@ look at js/dashboard.js for script*/
 }
 
 .twitter-entermsg {
-    margin-top: 5px;
+    margin-top: 37px;
 }
 
 #user_input {
@@ -84,6 +84,7 @@ look at js/dashboard.js for script*/
     bottom:3em;
     height:100%;
     overflow:scroll;
+    overflow-x: hidden;
 }
 
 #signout-btn {
