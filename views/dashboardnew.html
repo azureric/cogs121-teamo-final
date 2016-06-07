@@ -80,9 +80,9 @@
             <!-- /menu footer buttons -->
           </div>
         </div>
-        <div class="col-md-6">
 
-          <div class="" style="margin-left: 70px">
+        <div class="col-md-4" style="left: 70px;">
+          <div class="" style="">
             <div class="dashboard_graph">
               <div class="row x_title">
                 <div class="col-md-6">
@@ -91,294 +91,297 @@
 
               </div>
 
-              <div class="col-md-9 col-sm-9 col-xs-12" style="height: 325px;">
-                <div id="mapDiv" style="width: 100%; height: 100%">
-                  <!-- This is where maps is-->
-                </div>
-                <!--<div style="width: 100%;">-->
-                <!--<div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>-->
-                <!--</div>-->
-              </div>
-              <div class="col-md-3 col-sm-3 col-xs-12 bg-white" id="mapPreview">
-                <div class="x_title">
-                  <p class="welcomeText">Hover your mouse on the map to preview regions!</p>
-                  <p class="displayText" style="display: none;">Name of the region:</p>
-                  <h1 id="cityName" style="font-size: xx-large"><b></b></h1>
-                  <div class="clearfix"></div>
-                </div>
-
-                <div class="col-md-12 col-sm-12 col-xs-6 displayText" style="display: none;">
-                  <div>
-                    <p>Anxiety Cases:</p>
-                    <h2 id="anxietyNum" style="font-weight: bold;"></h2>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 bg-white" id="mapPreview">
+                  <div class="x_title">
+                    <p class="welcomeText">Hover your mouse on the map to preview regions!</p>
+                    <p class="displayText" style="display: none;">Name of the region:</p>
+                    <h1 id="cityName" style="font-size: xx-large"><b></b></h1>
+                    <div class="clearfix"></div>
                   </div>
-                  <div>
-                    <p>Anxiety Level:</p>
-                    <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
-                    <a onclick="sweetAlert('This is the level of severity in comparison to San Diego County')";i class="fa fa-question-circle" aria-hidden="true" style="display: inline"></i></a>
-                  </div>
-                </div>
 
-                <div class="col-md-12 col-sm-12 col-xs-6 displayText" style="display: none;">
-                  <div>
-                    <p>Population:</p>
-                    <h2 id="populationNum" style="font-weight: bold"></h2>
+                  <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="display: none;">
+                    <div>
+                      <p>Anxiety Cases:</p>
+                      <h2 id="anxietyNum" style="font-weight: bold;"></h2>
+                    </div>
+                    <div>
+                      <p>Anxiety Level:</p>
+                      <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
+                      <a onclick="sweetAlert('This is the level of severity in comparison to San Diego County')";i class="fa fa-question-circle" aria-hidden="true" style="display: inline"></i></a>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="display: none;">
+                    <div>
+                      <p>Population:</p>
+                      <h2 id="populationNum" style="font-weight: bold"></h2>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="height: 325px;">
+                  <div id="mapDiv" style="width: 100%; height: 100%">
+                    <!-- This is where maps is-->
+                  </div>
+                  <!--<div style="width: 100%;">-->
+                  <!--<div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>-->
+                  <!--</div>-->
+                </div>
+              </div>
+
 
               <div class="clearfix"></div>
             </div>
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-8">
+          <div class="right_col" role="main">
+            <div class="row">
 
-        </div>
-        <div class="right_col" role="main">
-          <div class="row">
+            </div>
+            <br/>
 
-          </div>
-          <br/>
+            <div class="row">
 
-          <div class="row">
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320">
+                  <div class="x_title">
+                    <h2>Anxiety Distribution by Age</h2>
+                    <ul class="nav navbar-right panel_toolbox">
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320">
-                <div class="x_title">
-                  <h2>Anxiety Distribution by Age</h2>
-                  <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
 
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-
-                    <li class="dropdown">
-                      <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
-                    <!--</li>-->
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-
-
-                <div class="x_content ageChartInfoClass" style="display: none;">
-                  <!--<h4>San Diego County Average</h4>-->
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>0-14</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" id = "oneAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 15.2%;">
-                          <span class="sr-only" >7.7%</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span id="oneAge1">7.7%</span>
-                    </div>
+                      <li class="dropdown">
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                      <!--</li>-->
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
 
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>15-24</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" id = "twoAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
-                          <span class="sr-only" id="two2">20%</span>
+
+                  <div class="x_content ageChartInfoClass" style="display: none;">
+                    <!--<h4>San Diego County Average</h4>-->
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>0-14</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar bg-green" id = "oneAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 15.2%;">
+                            <span class="sr-only" >7.7%</span>
+                          </div>
                         </div>
                       </div>
+                      <div class="w_right w_20">
+                        <span id="oneAge1">7.7%</span>
+                      </div>
+                      <div class="clearfix"></div>
                     </div>
-                    <div class="w_right w_20">
-                      <span id = "twoAge2">20%</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
 
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>25-44</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" id = "threeAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 28.4%;">
-                          <span class="sr-only"></span>
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>15-24</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar bg-green" id = "twoAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                            <span class="sr-only" id="two2">20%</span>
+                          </div>
                         </div>
                       </div>
+                      <div class="w_right w_20">
+                        <span id = "twoAge2">20%</span>
+                      </div>
+                      <div class="clearfix"></div>
                     </div>
-                    <div class="w_right w_20">
-                      <span id = "threeAge3">14.2%</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
 
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>45-64</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" id="fourAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 46.8%;">
-                          <span class="sr-only">23.4%</span>
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>25-44</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar bg-green" id = "threeAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 28.4%;">
+                            <span class="sr-only"></span>
+                          </div>
                         </div>
                       </div>
+                      <div class="w_right w_20">
+                        <span id = "threeAge3">14.2%</span>
+                      </div>
+                      <div class="clearfix"></div>
                     </div>
 
-                    <div class="w_right w_20">
-                      <span id = "fourAge4">23.4%</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="widget_summary">
-                    <div class="w_left w_25">
-                      <span>65+</span>
-                    </div>
-                    <div class="w_center w_55">
-                      <div class="progress">
-                        <div class="progress-bar bg-green" id="fiveAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 42.6%;">
-                          <span class="sr-only">21.3%</span>
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>45-64</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar bg-green" id="fourAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 46.8%;">
+                            <span class="sr-only">23.4%</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="w_right w_20">
-                      <span id = "fiveAge5">21.3%</span>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
 
+                      <div class="w_right w_20">
+                        <span id = "fourAge4">23.4%</span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="widget_summary">
+                      <div class="w_left w_25">
+                        <span>65+</span>
+                      </div>
+                      <div class="w_center w_55">
+                        <div class="progress">
+                          <div class="progress-bar bg-green" id="fiveAge" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 42.6%;">
+                            <span class="sr-only">21.3%</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="w_right w_20">
+                        <span id = "fiveAge5">21.3%</span>
+                      </div>
+                      <div class="clearfix"></div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320 overflow_hidden">
-                <div class="x_title">
-                  <h2>Anxiety Distribution by Race</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
-                    <!--</li>-->
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <table class="" style="width:100%">
-                    <tr>
-                      <th style="width:30%;">
-                        <p class="raceChartInfoClass" style="display: none;">Top 5</p>
-                      </th>
-                      <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                          <p class="raceChartInfoClass">Race</p>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                        </div>
-                      </th>
-                    </tr>
-                    </tr>
-                    <tr>
-                      <td>
-                        <canvas id="canvas1" height="140" width="300" style="margin: 15px 10px 10px 0"></canvas>
-                      </td>
-                      <td>
-                        <table class="tile_info raceChartInfoClass" id="raceChartInfo" style="display: none;">
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square blue"></i>Black </p>
-                            </td>
-                            <td id="BlackRaceRate">28%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square green"></i>White </p>
-                            </td>
-                            <td id="WhiteRaceRate">22%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square purple"></i>Hispanic </p>
-                            </td>
-                            <td id="HispanicRaceRate">20%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square aero"></i>API </p>
-                            </td>
-                            <td id="APIRaceRate">15%</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <p><i class="fa fa-square red"></i>Others </p>
-                            </td>
-                            <td id="OthersRaceRate">30%</td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                  </table>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320 overflow_hidden">
+                  <div class="x_title">
+                    <h2>Anxiety Distribution by Race</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                      <!--</li>-->
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table class="" style="width:100%">
+                      <tr>
+                        <th style="width:30%;">
+                          <p class="raceChartInfoClass" style="display: none;">Top 5</p>
+                        </th>
+                        <th>
+                          <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                            <p class="raceChartInfoClass">Race</p>
+                          </div>
+                          <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                          </div>
+                        </th>
+                      </tr>
+                      </tr>
+                      <tr>
+                        <td>
+                          <canvas id="canvas1" height="140" width="300" style="margin: 15px 10px 10px 0"></canvas>
+                        </td>
+                        <td>
+                          <table class="tile_info raceChartInfoClass" id="raceChartInfo" style="display: none;">
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square blue"></i>Black </p>
+                              </td>
+                              <td id="BlackRaceRate">28%</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square green"></i>White </p>
+                              </td>
+                              <td id="WhiteRaceRate">22%</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square purple"></i>Hispanic </p>
+                              </td>
+                              <td id="HispanicRaceRate">20%</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square aero"></i>API </p>
+                              </td>
+                              <td id="APIRaceRate">15%</td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <p><i class="fa fa-square red"></i>Others </p>
+                              </td>
+                              <td id="OthersRaceRate">30%</td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
-              <div class="x_panel tile fixed_height_320">
-                <div class="x_title">
-                  <h2>Chat Room</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
-                    <!--</li>-->
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
+              <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel tile fixed_height_320">
+                  <div class="x_title">
+                    <h2>Chat Room</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>-->
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <!--<li><a class="close-link"><i class="fa fa-close"></i></a>-->
+                      <!--</li>-->
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
 
-                <div class="twitter-signin">
-                  <a class="btn-lg btn-block btn-social btn-twitter twitter-Button " href="/auth/twitter">
-                    <span class="fa fa-twitter"></span> Sign in with Twitter
-                  </a>
-                </div>
+                  <div class="twitter-signin">
+                    <a class="btn-lg btn-block btn-social btn-twitter twitter-Button " href="/auth/twitter">
+                      <span class="fa fa-twitter"></span> Sign in with Twitter
+                    </a>
+                  </div>
 
-                <div class="twitter-seechat" id="twt">
-                  <div class="chatbox" id="chatbox">
-                    <div class="dashboard-widget-content chatter" id="messages">
-                      <!--INSERT A TWITTER CHATBOX HERE-->
+                  <div class="twitter-seechat" id="twt">
+                    <div class="chatbox" id="chatbox">
+                      <div class="dashboard-widget-content chatter" id="messages">
+                        <!--INSERT A TWITTER CHATBOX HERE-->
                         {{#each anxiety}}
                         <div class="eachPost">
                           <div class="user">
                             <img id="user-photo" src="{{photo}}" alt= "">
                             <!--<div class="user-info">-->
-                              <span class="username" style="font-size: 100%;">{{user}}</span>
+                            <span class="username" style="font-size: 100%;">{{user}}</span>
                             <br>
-                              <span class="posted" style="font-size:75%;">{{posted}}</span>
+                            <span class="posted" style="font-size:75%;">{{posted}}</span>
                             <!--</div>-->
                           </div>
                           <div class="message-content">
@@ -386,49 +389,48 @@
                           </div>
                         </div>
                         {{/each}}
+                      </div>
                     </div>
                   </div>
+
+                  <div class="twitter-seechat2">
+                    <h2>Talk your nervousness away~</h2>
+
+                    <form id="send_anxious_message" action="validateForm()" name="Form">
+                      <input id="user_input" name="field1" placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
+                    </form>
+                  </div>
+
                 </div>
+              </div>
 
-                <div class="twitter-seechat2">
-                  <h2>Talk your nervousness away~</h2>
-
-                  <form id="send_anxious_message" action="validateForm()" name="Form">
-                    <input id="user_input" name="field1" placeholder="You're not crazy, tell us what's on your mind" autocomplete="off" />
-                  </form>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                  <h2>Newsfeed</h2>
+                  <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Settings 1</a>
+                        </li>
+                        <li><a href="#">Settings 2</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <div class="clearfix"></div>
                 </div>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="x_panel tile fixed_height_320">
-              <div class="x_title">
-                <h2>Newsfeed</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Settings 1</a>
-                      </li>
-                      <li><a href="#">Settings 2</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-              <div>
-                <a class="twitter-timeline" href="https://twitter.com/hashtag/anxiety" data-widget-id="739549422535639040" width="100%" height="100%">#anxiety Tweets</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                <div>
+                  <a class="twitter-timeline" href="https://twitter.com/hashtag/anxiety" data-widget-id="739549422535639040" width="100%" height="100%">#anxiety Tweets</a>
+                  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
         </div>
         <!-- /page content -->
 

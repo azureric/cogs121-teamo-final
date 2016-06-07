@@ -4,15 +4,14 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require("socket.io")(http);
 var path = require('path');
-var handlebars = require('express-handlebars');
-var bodyParser = require('body-parser');
 var session = require('express-session');
-var dotenv = require('dotenv');
-var pg = require('pg');
-const passport = require("passport");
 const MongoStore = require("connect-mongo")(session);
 const mongoose = require("mongoose");
-
+const handlebars = require('express-handlebars');
+const passport = require("passport");
+var bodyParser = require('body-parser');
+var dotenv = require('dotenv');
+var pg = require('pg');
 
 dotenv.load();
 
@@ -45,6 +44,7 @@ var session_middleware = session({
     store: new MongoStore({ mongooseConnection: db })
 });
 
+app.set('port', process.env.PORT || 3000);
 app.engine('html', handlebars({
     defaultLayout: 'layout',
     extname: '.html'
@@ -55,6 +55,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(parser.cookie());
 app.use(parser.body.urlencoded({ extended: true }));
 app.use(parser.body.json());
+app.use(require('method-override')());
+app.use(session_middleware);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -66,16 +70,7 @@ app.use(session({
     resave: true
 }));
 
-app.use(require('method-override')());
-app.use(session_middleware);
 /* TODO: Passport Middleware Here*/
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-//set environment ports and start application
-app.set('port', process.env.PORT || 3000);
-
 TwitterStrategy = require('passport-twitter').Strategy;
 
 passport.use(new TwitterStrategy({
@@ -430,8 +425,8 @@ app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 // More routes here if needed
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', { successRedirect: '/dashboard',
-        failureRedirect: '/nowhere' }));
+    passport.authenticate('twitter', {  successRedirect: '/dashboard',
+                                        failureRedirect: '/nowhere' }));
 app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
@@ -440,11 +435,9 @@ io.use(function(socket, next) {
     session_middleware(socket.request, {}, next);
 });
 
-var trackID = 0;
-
 /* TODO: Server-side Socket.io here */
 io.on('connection', function(socket) {
-    socket.on('anxiety', function(msg) {
+    socket.on('anxietyChat', function(msg) {
         try {
             var user = socket.request.session.passport.user;
         } catch(err) {
@@ -454,17 +447,12 @@ io.on('connection', function(socket) {
         }
 
         var newAnxietyPost = new models.Newsfeed({
-            'type': 'anxiety',
+            'type': 'anxietyChat',
             'user': user.username,
             'photo': user.photo,
             'message': msg,
             'posted': Date.now(),
-            'uniqueURL': trackID
         });
-
-        console.log(newAnxietyPost.uniqueURL);
-        console.log("HELLO THERE");
-        trackID = trackID + 1;
 
         newAnxietyPost.save(saved);
         function saved(err) {
@@ -472,7 +460,7 @@ io.on('connection', function(socket) {
                 console.log(err);
                 return;
             }
-            io.emit('anxiety', JSON.stringify(newAnxietyPost));
+            io.emit('anxietyChat', JSON.stringify(newAnxietyPost));
         }
     });
 });
