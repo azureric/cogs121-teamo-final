@@ -420,7 +420,7 @@ app.get('/ageData', function(req, res) {
 app.get('/map_anxiety_rate', router.queryDELPH.map_anxiety_rate);
 
 // More routes here if needed
-app.get('/auth/twitter', passport.authenticate('twitter'));
+app.get('http://gotthefeels.tk/auth/twitter', passport.authenticate('twitter'));
 app.get('http://gotthefeels.tk/auth/twitter/callback',
     passport.authenticate('twitter', {  successRedirect: '/dashboardnew',
                                         failureRedirect: '/nowhere' }));
