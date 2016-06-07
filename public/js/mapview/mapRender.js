@@ -170,6 +170,7 @@
                 throw error;
             }
 
+
             var overlay = new google.maps.OverlayView();
 
             overlay.onAdd = function() {
@@ -190,6 +191,8 @@
                     var path = d3.geo.path().projection(googleMapProjection);
 
                     $.get("/map_anxiety_rate", function(data) {
+                        var clicked = false;
+                        var clickedRegion;
 
                         var colorPallete = [
                             "#999066",
@@ -248,17 +251,16 @@
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
                                 var city = d3.select(this).style("stroke-width", 3);
-
-                                console.log("Currently hovering: " + d.properties.NAME);
-                                $("#hoverText").append("<div>Currently hovering over: "+d.properties.NAME+".</div>").css("display", "inline");
-
-                                $("#hoverText").html("Currently hovering over: "+d.properties.NAME);
-
+                                $(".overlay").css("display", "none");
                                 var name = d.properties.NAME.toLowerCase();
 
-                                console.log("Mouse on region " + name);
                                 if (renderOverlayData[name]) {
-                                    $(".welcomeText").hide("slow");
+
+                                    $("#hoverText").append("<div>Currently hovering over: "+d.properties.NAME+".</div>").css("display", "inline");
+                                    $("#hoverText").html("Currently hovering over: "+d.properties.NAME);
+                                }
+
+                                if (!clicked) {
                                     $(".displayText").show("slow");
                                     $("#raceDonutDiv").empty();
                                     $("#raceDonutTitle").css("display", "none");
@@ -286,17 +288,8 @@
                                     }
 
                                     $(".data > .data1").text(renderPercent);
-                                } else {
-                                    $("#raceDonutDiv").empty();
-                                    $("#raceDonutTitle").css("display", "none");
-
-                                    $("#mapPreview").css("display", "none");
-
-                                    $(".description > .desTitle").text("Sorry, this city is currently not in the range of DELPHI dataset.")
-                                    $(".description > .cityName").text("");
-                                    $(".data > .data1").text("");
                                 }
-
+                                
                                 function numberWithCommas(x) {
                                     x = x.toString();
                                     var pattern = /(-?\d+)(\d{3})/;
@@ -304,7 +297,6 @@
                                         x = x.replace(pattern, "$1,$2");
                                     return x;
                                 }
-
                             })
 
                             .on("mouseout", function(d) {
@@ -314,6 +306,8 @@
 
                             .on("click", function(d) {
                                 $(".initial-text").hide();
+                                clicked = true;
+
 
                                 cities.selectAll("path")
                                     .style("fill", function(d, i) {
@@ -325,10 +319,48 @@
                                         }
                                     })
 
-                                let city = d3.select(this).style("fill", "red");
+                                var city = d3.select(this).style("fill", "red");
                                 
 
                                 var name = d.properties.NAME.toLowerCase();
+                                if (renderOverlayData[name]) {
+                                    $(".displayText").show("slow");
+                                    $("#raceDonutDiv").empty();
+                                    $("#raceDonutTitle").css("display", "none");
+
+                                    $("#mapPreview").css("display", "initial");
+
+                                    var renderPercent = (Number(renderOverlayData[name]["ratio"]) * 320).toFixed(3) + "%";
+
+                                    $("#cityName").text(renderOverlayData[name]["area"]);
+                                    $("#anxietyNum").text(renderOverlayData[name]["yearSum"]);
+                                    $("#populationNum").text(numberWithCommas(renderOverlayData[name]["totalPop2012"]));
+
+                                    var levelRaw = renderOverlayData[name]["yearSum"];
+
+                                    var levelRawRate = renderOverlayData[name]["ratio"];
+
+                                    if(levelRawRate < 0.012){
+                                        $("#anxietyLevel").text("Mild ");
+                                    }
+                                    else if(levelRawRate < 0.025){
+                                        $("#anxietyLevel").text("Moderate ");
+                                    }
+                                    else{
+                                        $("#anxietyLevel").text("Severe ");
+                                    }
+
+                                    $(".data > .data1").text(renderPercent);
+                                }
+                                
+                                function numberWithCommas(x) {
+                                    x = x.toString();
+                                    var pattern = /(-?\d+)(\d{3})/;
+                                    while (pattern.test(x))
+                                        x = x.replace(pattern, "$1,$2");
+                                    return x;
+                                }
+
 
                                 var sumRegionAge = renderOverlayData[name]["firstAge"] + renderOverlayData[name]["secondAge"] +
                                     renderOverlayData[name]["thirdAge"] + renderOverlayData[name]["fourthAge"]
@@ -340,7 +372,6 @@
 
                                 if (renderOverlayData[name]) {
                                     $(".displayText").show("slow");
-                                    $(".welcomeText").hide("slow");
 
                                     var blackRender = renderOverlayData[name]["b2010"]
                                         + renderOverlayData[name]["b2011"]
@@ -377,11 +408,6 @@
                                     updateAgeChart(currentRegionAge, sumRegionAge);
                                     updateGenderChart(currentRegionGender, sumRegionGender);
                                     
-                                } else {
-                                    $("#raceDonutDiv").empty();
-                                    $("#raceDonutTitle").css("display", "none");
-
-                                    $(".data > .data1-details").css("display", "none");
                                 }
 
                                 function formatRaceData(rawRaceData){
