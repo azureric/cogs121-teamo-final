@@ -243,6 +243,7 @@
 
                         cities.selectAll("path")
                             .on("mouseover", function(d) {
+                                let city = d3.select(this).style("stroke-width", 3);
 
                                 var name = d.properties.NAME.toLowerCase();
 
@@ -296,7 +297,26 @@
                                 }
 
                             })
+
+                            .on("mouseout", function(d) {
+                                let city = d3.select(this).style("stroke-width", 1);
+                            })
+
                             .on("click", function(d) {
+
+                                cities.selectAll("path")
+                                    .style("fill", function(d, i) {
+                                        if ((renderOverlayData[d.properties.NAME.toLowerCase()]) != undefined) {
+                                            var renderedColor = renderMapColor(renderOverlayData[d.properties.NAME.toLowerCase()]["ratio"] * 15);
+                                            return renderedColor;
+                                        } else {
+                                            return invaildColor;
+                                        }
+                                    })
+
+                                let city = d3.select(this).style("fill", "red");
+                                
+
                                 var name = d.properties.NAME.toLowerCase();
 
                                 var sumRegionAge = renderOverlayData[name]["firstAge"] + renderOverlayData[name]["secondAge"] +
