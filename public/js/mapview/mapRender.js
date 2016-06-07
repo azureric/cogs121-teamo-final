@@ -9,12 +9,16 @@
     // https://snazzymaps.com/explore?sort=popular
     var map = new google.maps.Map(d3.select("#mapDiv").node(), {
         zoom: 9,
-        minZoom: 8,
-        maxZoom: 11,
+        minZoom: 9,
+        maxZoom: 10,
         mapTypeControl: false,
         streetViewControl: false,
         scrollwheel: false,
-        center: new google.maps.LatLng(32.9185, -117.1382),
+        center: new google.maps.LatLng(33.0005, -117.1382),
+        zoomControl: true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        },
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         styles: [
             {
@@ -245,6 +249,11 @@
                             .on("mouseover", function(d) {
                                 var city = d3.select(this).style("stroke-width", 3);
 
+                                console.log("Currently hovering: " + d.properties.NAME);
+                                $("#hoverText").append("<div>Currently hovering over: "+d.properties.NAME+".</div>").css("display", "inline");
+
+                                $("#hoverText").html("Currently hovering over: "+d.properties.NAME);
+
                                 var name = d.properties.NAME.toLowerCase();
 
                                 console.log("Mouse on region " + name);
@@ -300,6 +309,7 @@
 
                             .on("mouseout", function(d) {
                                 let city = d3.select(this).style("stroke-width", 1);
+                                $("#hoverText").css("display", "none");
                             })
 
                             .on("click", function(d) {
@@ -356,8 +366,15 @@
                                         sumRegionRace += this;
                                     });
 
+                                    var regionMale = renderOverlayData[name]["maleNumber"];
+                                    var regionFemale = renderOverlayData[name]["femaleNumber"];
+
+                                    var currentRegionGender = [regionMale, regionFemale];
+                                    var sumRegionGender = regionMale + regionFemale;
+
                                     updateRaceChart(currentRegionRace, sumRegionRace);
                                     updateAgeChart(currentRegionAge, sumRegionAge);
+                                    updateGenderChart(currentRegionGender, sumRegionGender);
                                     
                                 } else {
                                     $("#raceDonutDiv").empty();

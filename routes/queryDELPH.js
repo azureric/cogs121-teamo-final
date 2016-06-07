@@ -19,7 +19,6 @@ exports.map_anxiety_rate = function(req, res) {
                 }
 
                 var rawData = result.rows;
-                //console.log("current raw data is: " + rawData);
 
                 var returnGeoData = [];
                 var maxAnxSumNumber = 0;
@@ -303,7 +302,6 @@ exports.map_anxiety_rate = function(req, res) {
                     var fourthAge = fourthAge2010 + fourthAge2011 + fourthAge2012;
                     renderGeoData["fourthAge"] = fourthAge;
 
-
                     var fifthAge2010 = rawData[i]["2010 Ages 65+ Hospitalization No."];
                     var fifthAge2011 = rawData[i]["2011 Ages 65+ Hospitalization No."];
                     var fifthAge2012 = rawData[i]["2012 Ages 65+ Hospitalization No."];
@@ -329,11 +327,63 @@ exports.map_anxiety_rate = function(req, res) {
                     var fifthAge = fifthAge2010 + fifthAge2011 + fifthAge2012;
                     renderGeoData["fifthAge"] = fifthAge;
 
+                    var male2010 = rawData[i]["2010 Male Hospitalization No."];
+                    var male2011 = rawData[i]["2011 Male Hospitalization No."];
+                    var male2012 = rawData[i]["2012 Male Hospitalization No."];
+
+                    if (male2010 == "<5") {
+                        male2010 = 5;
+                    } else {
+                        male2010 = parseInt(male2010);
+                    }
+
+                    if (male2011 == "<5") {
+                        male2011 = 5;
+                    } else {
+                        male2011 = parseInt(male2011);
+                    }
+
+                    if (male2012 == "<5") {
+                        male2012 = 5;
+                    } else {
+                        male2012 = parseInt(male2012);
+                    }
+
+                    var maleNumber = male2010 + male2011 + male2012;
+
+                    renderGeoData["maleNumber"] = maleNumber;
+
+                    var female2010 = rawData[i]["2010 Female Hospitalization No."];
+                    var female2011 = rawData[i]["2011 Female Hospitalization No."];
+                    var female2012 = rawData[i]["2012 Female Hospitalization No."];
+
+                    if (female2010 == "<5") {
+                        female2010 = 5;
+                    } else {
+                        female2010 = parseInt(female2010);
+                    }
+
+                    if (female2011 == "<5") {
+                        female2011 = 5;
+                    } else {
+                        female2011 = parseInt(female2011);
+                    }
+
+                    if (female2012 == "<5") {
+                        female2012 = 5;
+                    } else {
+                        female2012 = parseInt(female2012);
+                    }
+
+                    var femaleNumber = female2010 + female2011 + female2012;
+
+                    renderGeoData["femaleNumber"] = femaleNumber;
+
                     returnGeoData.push(renderGeoData);
 
                     vaildGeoCounter++;
                 }
-                console.log("TOTAL NUMBER IS " + totalNumberAnx);
+
                 for (i = 0; i < vaildGeoCounter; i++) {
                     returnGeoData[i]["ratio"] = returnGeoData[i]["yearSum"] / totalNumberAnx;
                 }
@@ -344,9 +394,7 @@ exports.map_anxiety_rate = function(req, res) {
                             return console.error('error running query', err);
                         }
 
-
                         var rawPopData = result_population.rows;
-                        console.log("rawPopData!!!" + rawPopData.length);
 
                         var j = 0;
 
@@ -360,15 +408,9 @@ exports.map_anxiety_rate = function(req, res) {
                             for(k = 0; k < returnGeoData.length; k++){
                                 if(areaChecking == returnGeoData[k]["area"]){
                                     isFoundInReturn = 1;
-                                   // console.log("areaChecking!!!" + areaChecking);
                                     returnGeoData[k]["totalPop2012"] = parseInt(rawPopData[j]["Total 2012 Population"]);
-                                    //break;
                                 }
                             }
-
-                            // if(!isFoundInReturn){
-                            //     returnGeoData[k]["totalPop2012"] = -1;
-                            // }
 
                         }
 

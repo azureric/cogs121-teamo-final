@@ -288,3 +288,11 @@ ul {
     margin-top: 20px;
 
 }
+
+#hoverText {
+    display: inline;
+    color: #73879C;
+    font-weight: bold;
+    z-index: 99999;
+    margin-top: 20px;
+}
