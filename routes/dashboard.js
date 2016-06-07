@@ -8,6 +8,6 @@ exports.view = function(req, res) {
             res.send(500);
             return;
         }
-        res.render('dashboard', {'messages': posts});
+        res.render('dashboardnew', {'messages': posts});
     }
 };
