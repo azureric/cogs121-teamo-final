@@ -51,9 +51,9 @@
                 <!--<h3>General</h3>-->
                 <ul class="nav side-menu">
                   <li><a href="dashboard"><i class="fa fa-home"></i> Dashboard </a></li>
-                  <li><a href="/"><i class="fa fa-question-circle"></i> Help </a></li>
-                  <li><a href="/"><i class="fa fa-envelope"></i> Contact Us </a></li>
-                  <li><a href="/"><i class="fa fa-info-circle"></i> About </a></li>
+                  <li><a onclick = "helpDoc();" ><i class="fa fa-info"></i> Help </a></li>
+                  <li><a href="/"><i class="fa  fa-play"></i> Tutorial </a></li>
+                  <li><a href="/"><i class="fa fa-users"></i> About Us </a></li>
                 </ul>
               </div>
 
@@ -485,6 +485,31 @@
 
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="./js/dashboard.js"></script>
+
+
+    <script>
+      function helpDoc(){
+        console.log('here');
+        swal({
+          type: 'info',
+          title: 'Help',
+          //imageUrl:"http://www.sbs.com.au/news/sites/sbs.com.au.news/files/banye1.jpeg" ,
+          //imageWidth:1000,
+          //imageHeight:1000,
+          text: 'Explore the different regions in San Diego and their corresponding Anxiety Rate.\n'
+          + 'Click on different highlighted region on the map to see the various anxiety distribution by age and race.\n'
+          + 'Participate in our chat room to voice out your feelings and concerns.\n Scroll through our newsfeed to find' +
+          'corresponding news regarding anxiety.\n '+ '\n Watch our tutorial video to learn even more.',
+          width: 600,
+          padding: 100,
+        })
+
+      }
+
+    </script>
+
+
+
 
     <!-- Flot -->
     <script>
