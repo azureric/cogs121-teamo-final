@@ -81,15 +81,15 @@
           </div>
         </div>
 
-        <div class="col-md-4" style="left: 70px;">
+        <div class="col-md-4" style="left: 70px; position:fixed;">
           <div class="" style="">
             <div class="dashboard_graph">
-              <div class="row x_title">
-                <div class="col-md-6">
-                  <h3>Map Explore<small> Hover your mouse over different regions!</small></h3>
-                </div>
+              <!--<div class="row x_title">-->
+                <!--<div class="col-md-12">-->
+                  <!--<h3>Map Explore<small> Hover your mouse over different regions!</small></h3>-->
+                <!--</div>-->
 
-              </div>
+              <!--</div>-->
 
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12 bg-white" id="mapPreview">
@@ -100,16 +100,13 @@
                     <div class="clearfix"></div>
                   </div>
 
+
                   <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="display: none;">
                     <div>
                       <p>Anxiety Cases:</p>
                       <h2 id="anxietyNum" style="font-weight: bold;"></h2>
                     </div>
-                    <div>
-                      <p>Anxiety Level:</p>
-                      <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
-                      <a onclick="sweetAlert('This is the level of severity in comparison to San Diego County')";i class="fa fa-question-circle" aria-hidden="true" style="display: inline"></i></a>
-                    </div>
+
                   </div>
 
                   <div class="col-md-6 col-sm-6 col-xs-6 displayText" style="display: none;">
@@ -118,10 +115,20 @@
                       <h2 id="populationNum" style="font-weight: bold"></h2>
                     </div>
                   </div>
+
+                  <div class="col-md-12 col-sm-12 col-xs-12 displayText" style="display: none;">
+                    <div>
+                      <p>Anxiety Level:</p>
+                      <h1 id="anxietyLevel" style="display: inline; font-weight: bold;"> </h1>
+                      <a onclick="sweetAlert('This is the level of severity in comparison to San Diego County')";i class="fa fa-question-circle" aria-hidden="true" style="display: inline"></i></a>
+                    </div>
+                  </div>
+
+
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12" style="height: 325px;">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="height: 450px;">
                   <div id="mapDiv" style="width: 100%; height: 100%">
                     <!-- This is where maps is-->
                   </div>
@@ -137,7 +144,7 @@
           </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-8" style="float: right;">
           <div class="right_col" role="main">
             <div class="row">
 
