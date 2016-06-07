@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .left_col {
-  background: #2A3F54; }
+  background: #2A3F54;
+  height: 100%; }
 
 .nav-sm .container.body .col-md-3.left_col {
   width: 70px;
