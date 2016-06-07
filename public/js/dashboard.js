@@ -50,6 +50,9 @@
     }
 })($);
 
+var objDiv = document.getElementById('hold-chat');
+objDiv.scrollTop = objDiv.scrollHeight;
+
 // var twitterFavicon = document.createElement('img');
 // twitterFavicon.src = '//twitter.com/login?redirect_after_login=%2Ffavicon.ico';
 // twitterFavicon.addEventListener('load', function () {
