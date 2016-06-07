@@ -245,6 +245,11 @@
                             .on("mouseover", function(d) {
                                 var city = d3.select(this).style("stroke-width", 3);
 
+                                console.log("Currently hovering: " + d.properties.NAME);
+                                $("#hoverText").append("<div>Currently hovering over: "+d.properties.NAME+".</div>").css("display", "inline");
+
+                                $("#hoverText").html("Currently hovering over: "+d.properties.NAME);
+
                                 var name = d.properties.NAME.toLowerCase();
 
                                 console.log("Mouse on region " + name);
@@ -300,6 +305,7 @@
 
                             .on("mouseout", function(d) {
                                 let city = d3.select(this).style("stroke-width", 1);
+                                $("#hoverText").css("display", "none");
                             })
 
                             .on("click", function(d) {

@@ -25,8 +25,8 @@
     <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/mapView/mapRender.css" type="text/css"
-    >
+    <link rel="stylesheet" href="css/mapView/mapRender.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/d3_tooltip.css">
     <script src="./js/sweetalert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./js/sweetalert.css">
     <!-- Custom Theme Style -->
@@ -122,6 +122,10 @@
               </div>
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12" style="height: 325px;">
+                  <div style="height: 40px;">
+                    <br>
+                    <h4 id="hoverText"></h4>
+                  </div>
                   <div id="mapDiv" style="width: 100%; height: 100%">
                     <!-- This is where maps is-->
                   </div>
@@ -826,6 +830,7 @@
     <!-- /gauge.js -->
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script type="text/javascript" src="js/d3-tip.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.10.0/d3-legend.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script src="js/mapview/mapRender.js"></script>
