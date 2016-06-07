@@ -319,7 +319,7 @@
                                         }
                                     })
 
-                                var city = d3.select(this).style("fill", "red");
+                                var city = d3.select(this).style("fill", "#d81313");
                                 
 
                                 var name = d.properties.NAME.toLowerCase();
