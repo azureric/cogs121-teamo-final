@@ -428,8 +428,10 @@ app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {  successRedirect: '/dashboardnew',
                                         failureRedirect: '/nowhere' }));
 app.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/dashboardnew');
+    req.logOut();
+
+    var value = '?signout=true';
+    res.redirect('/dashboardnew' + value);
 });
 io.use(function(socket, next) {
     session_middleware(socket.request, {}, next);
