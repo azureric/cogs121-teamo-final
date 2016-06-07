@@ -399,7 +399,8 @@ exports.map_anxiety_rate = function(req, res) {
                         var j = 0;
 
                         for(j = 0; j < rawPopData.length; j++){
-                            areaChecking = rawPopData[j]["Area"].replace("San Diego", "SD");
+                            areaChecking = rawPopData[j]["Area"].replace("SD", "San Diego");
+                            // areaChecking = rawPopData[j]["Area"];
 
 
                             var k = 0;
@@ -414,13 +415,46 @@ exports.map_anxiety_rate = function(req, res) {
 
                         }
 
-                        res.json(returnGeoData);
-                    });
+                        client.query('SELECT * FROM cogs121_16_raw.hhsa_san_diego_demographics_median_income_2012',
+                            function(err, result_income) {
+                                if (err) {
+                                    console.log("error in income! ");
+                                    return console.error('error running query', err);
+                                }
 
-                client.end();
+                                var rawIncomeData = result_income.rows;
+
+                                var j = 0;
+
+                                for(j = 0; j < rawIncomeData.length; j++){
+
+                                    //areaChecking = rawIncomeData[j]["Area"].replace("San Diego", "SD");
+                                    areaChecking = rawIncomeData[j]["Area"];
+
+                                    if(areaChecking == "Mid City"){
+                                        areaChecking = "Mid-City";
+                                    }
+
+                                    var k = 0;
+                                    for(k = 0; k < returnGeoData.length; k++){
+                                        if(areaChecking == returnGeoData[k]["area"]){
+                                            returnGeoData[k]["incomeAge_1"] = parseInt(rawIncomeData[j]["Households with income <$15K"]);
+                                            returnGeoData[k]["incomeAge_2"] = parseInt(rawIncomeData[j]["Households with income $15k-$35k"]);
+                                            returnGeoData[k]["incomeAge_3"] = parseInt(rawIncomeData[j]["Households with income$35k-$50k"]);
+                                            returnGeoData[k]["incomeAge_4"] = parseInt(rawIncomeData[j]["Households with income $50k-$75k"]);
+                                            returnGeoData[k]["incomeAge_5"] = parseInt(rawIncomeData[j]["Households with income $75k-$100k"]);
+                                            returnGeoData[k]["incomeAge_6"] = parseInt(rawIncomeData[j]["Households with income $100k-$150k"]);
+                                            returnGeoData[k]["incomeAge_7"] = parseInt(rawIncomeData[j]["Households with income $150k-$200k"]);
+                                            returnGeoData[k]["incomeAge_8"] = parseInt(rawIncomeData[j]["Households with income >$200k"]);
+                                        }
+                                    }
+                                }
+                                res.json(returnGeoData);
+                                client.end();
+                            });
+                    });
             });
     });
-    //console.log("here"  + checkVaildGeoName);
 
     return {
         anxietyData: "No data present."

@@ -300,7 +300,7 @@
                             })
 
                             .on("mouseout", function(d) {
-                                let city = d3.select(this).style("stroke-width", 1);
+                                var city = d3.select(this).style("stroke-width", 1);
                                 $("#hoverText").css("display", "none");
                             })
 
@@ -404,10 +404,22 @@
                                     var currentRegionGender = [regionMale, regionFemale];
                                     var sumRegionGender = regionMale + regionFemale;
 
+
+                                    var incomeG1= renderOverlayData[name]["incomeAge_1"];
+                                    var incomeG2= renderOverlayData[name]["incomeAge_2"];
+                                    var incomeG3= renderOverlayData[name]["incomeAge_3"];
+                                    var incomeG4= renderOverlayData[name]["incomeAge_4"];
+                                    var incomeG5= renderOverlayData[name]["incomeAge_5"];
+                                    var incomeG6= renderOverlayData[name]["incomeAge_6"];
+                                    var incomeG7= renderOverlayData[name]["incomeAge_7"];
+                                    var incomeG8= renderOverlayData[name]["incomeAge_8"];
+
+                                    var currentRegionIncome = [incomeG1, incomeG2, incomeG3, incomeG4, incomeG5, incomeG6, incomeG7, incomeG8];
+
                                     updateRaceChart(currentRegionRace, sumRegionRace);
                                     updateAgeChart(currentRegionAge, sumRegionAge);
                                     updateGenderChart(currentRegionGender, sumRegionGender);
-                                    
+                                    updateIncomeChart(currentRegionIncome);
                                 }
 
                                 function formatRaceData(rawRaceData){

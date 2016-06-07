@@ -129,7 +129,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12" style="height: 325px;">
+                <div class="col-md-12 col-sm-12 col-xs-12" style="height: 450px;">
                   <div style="height: 40px;">
                     <br>
                     <h4 id="hoverText"></h4>
@@ -471,25 +471,25 @@
                       </tr>
                       <tr>
                         <td>
-                          <canvas id="canvas2" height="140" width="300" style="margin: 15px 10px 10px 0"></canvas>
+                          <canvas id="canvas3" height="140" width="300" style="margin: 15px 10px 10px 0"></canvas>
                         </td>
-                        <td>
-                          <table class="tile_info raceChartInfoClass" id="genderChartInfo" style="display: none;">
-                            <tr>
-                              <td>
-                                <p><i class="fa fa-square" style="color: #36a2eb"></i>Male </p>
-                              </td>
-                              <td id="maleRate">28%</td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <p><i class="fa fa-square" style="color: #ff6384"></i>Female </p>
-                              </td>
-                              <td id="femaleRate">22%</td>
-                            </tr>
+                        <!--<td>-->
+                          <!--<table class="tile_info raceChartInfoClass" id="genderChartInfo" style="display: none;">-->
+                            <!--<tr>-->
+                              <!--<td>-->
+                                <!--<p><i class="fa fa-square" style="color: #36a2eb"></i>Male </p>-->
+                              <!--</td>-->
+                              <!--<td id="incomeRate1">28%</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                              <!--<td>-->
+                                <!--<p><i class="fa fa-square" style="color: #ff6384"></i>Female </p>-->
+                              <!--</td>-->
+                              <!--<td id="incomeRate2">22%</td>-->
+                            <!--</tr>-->
 
-                          </table>
-                        </td>
+                          <!--</table>-->
+                        <!--</td>-->
                       </tr>
                     </table>
                   </div>
@@ -911,6 +911,27 @@
         options: options
       });
     }
+      function updateIncomeChart(renderNewData){
+        // Line chart
+        var ctx = document.getElementById("canvas3");
+        var lineChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: ["<$15k", "$15k-$35k", "$50k-$75k", "$75k-$100k", "$100k-$150k", "$150k-$200k", ">$200k"],
+            datasets: [{
+              label: "My First dataset",
+              backgroundColor: "rgba(38, 185, 154, 0.31)",
+              borderColor: "rgba(38, 185, 154, 0.7)",
+              pointBorderColor: "rgba(38, 185, 154, 0.7)",
+              pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+              pointHoverBackgroundColor: "#fff",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointBorderWidth: 1,
+              data: [31, 74, 6, 39, 20, 85, 7]
+            }]
+          },
+        });
+      }
     </script>
     <!-- /Doughnut Chart -->
     

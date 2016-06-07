@@ -402,9 +402,7 @@ app.get('/ageData', function(req, res) {
                        eachForm["series"][2]["values"][0] /= 3;
                        eachForm["series"][3]["values"][0] /= 3;
                        eachForm["series"][4]["values"][0] /= 3;
-
-                    //}
-                    //series["2010"].push(renderDataRace2010);
+                    
                     data[i] = eachForm;
                 }
 
